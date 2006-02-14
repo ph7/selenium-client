@@ -1,0 +1,8 @@
+<project name="selenium" default="all">
+    <target name="all">
+        <!--  output="${tmp}/ruby_out.txt" -->
+        <exec executable="ruby" failonerror="true">
+            <arg line="selenium_example.rb"/>
+        </exec>
+    </target>
+</project>
