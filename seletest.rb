@@ -21,23 +21,11 @@ class Test::Unit::TestCase
     end
 
     def setup
-        @processor = Selenium::WebrickCommandProcessor.new(driver_port) do |webrick|
-        	mount_directories(webrick)
-        end
-        @selenium = @processor.proxy
-
-	# TODO: allow configurable, multi-browser execution
-        @browser = Selenium::DefaultBrowserLauncher.new
-        
-        host, port = server_info
-        url = sprintf('http://%s:%s/%s/SeleneseRunner.html?driverhost=%s&driverport=%s', host, port, path_to_runner, driver_host, driver_port)
-        @browser.launch(url)
+        @selenium = Selenium::SeleneseInterpreter.new(10000);
     end
     
     def teardown
         @selenium.test_complete
-        @processor.close
-        @browser.close
     end
 
     alias file_open open
