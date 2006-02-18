@@ -34,8 +34,8 @@ module Selenium
 
     def do_command(commandString)
       timeout(@timeout) do
-        http = Net::HTTP.new("localhost", "8080")
-        response, result = http.get('/selenium-driver/driver?commandRequest=' + commandString)
+        http = Net::HTTP.new("localhost", "8180")
+        response, result = http.get('/selenium/driver/?commandRequest=' + commandString)
         print "RESULT: " + result + "\n\n"
         if "|testComplete|||" == commandString
         	result = nil
