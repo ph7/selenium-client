@@ -21,7 +21,7 @@ class Test::Unit::TestCase
     end
 
     def setup
-        @selenium = Selenium::SeleneseInterpreter.new(10000);
+        @selenium = Selenium::SeleneseInterpreter.new("localhost", 4444, 10000);
     end
     
     def teardown

@@ -24,7 +24,9 @@ module Selenium
   class SeleneseInterpreter
     include Selenium
   
-    def initialize(timeout)
+    def initialize(server_host, server_port, timeout)
+      @server_host = server_host
+      @server_port = server_port
       @timeout = timeout
     end
     
@@ -32,22 +34,27 @@ module Selenium
       "SeleneseInterpreter"
     end
 
+    def start(browserStartCommand, browserURL)
+      result = get_new_browser_session(browserStartCommand, browserURL)
+      @session_id = result.to_i
+      #print "@session_id = " + @session_id.to_s + "\n"
+      if 0 == @session_id
+        @session_id = nil
+        raise SeleniumCommandError, result
+      end
+    end
+
     def do_command(commandString)
       timeout(@timeout) do
-        http = Net::HTTP.new("localhost", "8180")
-        response, result = http.get('/selenium/driver/?commandRequest=' + commandString)
-        print "RESULT: " + result + "\n\n"
-        if "|testComplete|||" == commandString
-        	result = nil
+        http = Net::HTTP.new(@server_host, @server_port)
+        get_string = '/selenium-server/driver/?commandRequest=' + commandString
+        if @session_id != nil
+          get_string = get_string + "&sessionId=" + @session_id.to_s
         end
-        if nil != result
-          if "OK" != result
-            if "PASSED" != result
-              raise SeleniumCommandError, result
-            end
-          end
-        end
-        result
+        #print "Requesting --->" + get_string + "\n"
+        response, result = http.get(get_string)
+        #print "RESULT: " + result + "\n\n"
+        return result
       end
     end
     
@@ -62,9 +69,35 @@ module Selenium
       element_identifier = args[0]
       value = args[1]
       command_string = "|#{method_name}|#{element_identifier}|#{value}|"
-      do_command(command_string)
+      #print "command_string: " + command_string
+      if method_name =~ /^get/
+      	return do_command(command_string)
+      end
+      if method_name =~ /^(verify|assert)/
+      	return do_verify(command_string)
+      end
+      do_action(command_string)
     end
+    
+    def do_verify(command_string)
+      result = do_command(command_string)
+      if "PASSED" != result
+        raise SeleniumCommandError, result
+      end
+      result
+    end
+    
+    def do_action(command_string)
+      result = do_command(command_string)
+      if "OK" != result
+        raise SeleniumCommandError, result
+      end
+      result
+    end
+    
   end
+
+
 
   def translate_method_to_wire_command (method)
       method_no_prefix = (method.to_s =~ /__(.*)/ ? $1 : method.to_s)
