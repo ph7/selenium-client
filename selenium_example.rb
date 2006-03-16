@@ -5,26 +5,18 @@ require 'selenium'
 
 class ExampleTest < Test::Unit::TestCase
 
-    def server_info
-    	['localhost', 7896]
-    end
-    def path_to_runner
-    	'selenium-driver'
-    end
-    def mount_directories(webrick)
-      # AUT
-      webrick.mount("/", Selenium::NonCachingFileHandler, "../javascript/tests/html")
-
-      # Selenium's static files and dynamic handler
-      webrick.mount("/selenium-driver", Selenium::NonCachingFileHandler, "../javascript")
-    end
+	def setup
+		super
+	end
 
     def test_something
-        open '/test_click_page1.html'
-        verify_text 'link', 'Click here for next page'
-        click_and_wait 'link'
-        verify_location '/test_click_page2.html'
-        click_and_wait 'previousPage'
-        verify_element_present 'link'
+    	start "*firefox", "http://www.irian.at"
+        open "http://www.irian.at/myfaces-sandbox/inputSuggestAjax.jsf"
+		verify_text_present "suggest"
+		type "_idJsp0:_idJsp3", "foo"
+		key_down "_idJsp0:_idJsp3", 120
+		key_press "_idJsp0:_idJsp3", 120
+		sleep 2
+		verify_text_present "foo1"
     end
 end
