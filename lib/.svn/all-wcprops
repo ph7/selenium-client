@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/selenium-rc/!svn/ver/2402/trunk/clients/ruby/lib
+END
+selenium.rb.reference
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/selenium-rc/!svn/ver/2269/trunk/clients/ruby/lib/selenium.rb.reference
+END
+selenium.rb
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/selenium-rc/!svn/ver/2404/trunk/clients/ruby/lib/selenium.rb
+END
+tcp_socket_extension.rb
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/selenium-rc/!svn/ver/2393/trunk/clients/ruby/lib/tcp_socket_extension.rb
+END

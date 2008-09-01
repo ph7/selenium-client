@@ -1,0 +1,97 @@
+8
+
+dir
+2402
+https://svn.openqa.org/svn/selenium-rc/trunk/clients/ruby/vendor/mocha-0.5.6
+https://svn.openqa.org/svn/selenium-rc
+
+
+
+2008-05-22T06:14:41.116127Z
+2302
+ph7
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+0891141a-5dea-0310-ad27-ebc607f31677
+
+test
+dir
+
+RELEASE
+file
+
+
+
+
+2008-08-14T04:34:30.000000Z
+627c2cc34f7496560540b8ddafe9b768
+2008-05-22T06:14:41.116127Z
+2302
+ph7
+
+Rakefile
+file
+
+
+
+
+2008-08-14T04:34:30.000000Z
+d40634d45bb63627f6b92e6c1311435f
+2008-05-22T06:14:41.116127Z
+2302
+ph7
+
+lib
+dir
+
+COPYING
+file
+
+
+
+
+2008-08-14T04:34:30.000000Z
+b4d1afd96a16f81a57bb16660a917c91
+2008-05-22T06:14:41.116127Z
+2302
+ph7
+
+MIT-LICENSE
+file
+
+
+
+
+2008-08-14T04:34:30.000000Z
+3b5114237ef6176f5569205f6a9a54a7
+2008-05-22T06:14:41.116127Z
+2302
+ph7
+
+README
+file
+
+
+
+
+2008-08-14T04:34:30.000000Z
+1202c287c8f8efb23d88d7239bf1ea88
+2008-05-22T06:14:41.116127Z
+2302
+ph7
+
+examples
+dir
+

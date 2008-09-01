@@ -1,0 +1,46 @@
+8
+
+dir
+2402
+https://svn.openqa.org/svn/selenium-rc/trunk/clients/ruby/test/unit
+https://svn.openqa.org/svn/selenium-rc
+
+
+
+2008-08-30T16:42:29.197144Z
+2402
+ph7
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+0891141a-5dea-0310-ad27-ebc607f31677
+
+unit_test_helper.rb
+file
+
+
+
+
+2008-08-15T22:20:50.000000Z
+4266458ca8ff8e91933b90609d62962c
+2008-08-16T00:24:05.615920Z
+2377
+ph7
+
+selenium
+dir
+
+nautilus
+dir
+

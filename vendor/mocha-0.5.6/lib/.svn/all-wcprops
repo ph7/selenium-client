@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/selenium-rc/!svn/ver/2302/trunk/clients/ruby/vendor/mocha-0.5.6/lib
+END
+mocha_standalone.rb
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/selenium-rc/!svn/ver/2302/trunk/clients/ruby/vendor/mocha-0.5.6/lib/mocha_standalone.rb
+END
+stubba.rb
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/selenium-rc/!svn/ver/2302/trunk/clients/ruby/vendor/mocha-0.5.6/lib/stubba.rb
+END
+mocha.rb
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/selenium-rc/!svn/ver/2302/trunk/clients/ruby/vendor/mocha-0.5.6/lib/mocha.rb
+END

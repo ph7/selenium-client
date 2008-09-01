@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/selenium-rc/!svn/ver/2393/trunk/clients/ruby/lib/selenium/rspec/reporting
+END
+file_path_strategy.rb
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/selenium-rc/!svn/ver/2392/trunk/clients/ruby/lib/selenium/rspec/reporting/file_path_strategy.rb
+END
+selenium_test_report_formatter.rb
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/selenium-rc/!svn/ver/2393/trunk/clients/ruby/lib/selenium/rspec/reporting/selenium_test_report_formatter.rb
+END
+html_report.rb
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/selenium-rc/!svn/ver/2391/trunk/clients/ruby/lib/selenium/rspec/reporting/html_report.rb
+END
+system_capture.rb
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/selenium-rc/!svn/ver/2392/trunk/clients/ruby/lib/selenium/rspec/reporting/system_capture.rb
+END

@@ -1,0 +1,64 @@
+8
+
+dir
+2402
+https://svn.openqa.org/svn/selenium-rc/trunk/clients/ruby/lib/selenium
+https://svn.openqa.org/svn/selenium-rc
+
+
+
+2008-08-30T16:42:29.197144Z
+2402
+ph7
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+0891141a-5dea-0310-ad27-ebc607f31677
+
+rake
+dir
+
+command_error.rb
+file
+
+
+
+
+2008-08-14T04:34:29.000000Z
+d964e9bac5985161a05d94d63d8e3915
+2008-04-19T05:35:25.783906Z
+2269
+ph7
+
+remote_control
+dir
+
+rspec
+dir
+
+protocol_error.rb
+file
+
+
+
+
+2008-08-14T04:34:29.000000Z
+2db2da557a853124d628520c0e33d639
+2008-05-22T06:14:41.116127Z
+2302
+ph7
+
+client
+dir
+

@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/selenium-rc/!svn/ver/2302/trunk/clients/ruby/vendor/mocha-0.5.6/test/acceptance
+END
+optional_parameters_acceptance_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/svn/selenium-rc/!svn/ver/2302/trunk/clients/ruby/vendor/mocha-0.5.6/test/acceptance/optional_parameters_acceptance_test.rb
+END
+partial_mocks_acceptance_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/selenium-rc/!svn/ver/2302/trunk/clients/ruby/vendor/mocha-0.5.6/test/acceptance/partial_mocks_acceptance_test.rb
+END
+sequence_acceptance_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/selenium-rc/!svn/ver/2302/trunk/clients/ruby/vendor/mocha-0.5.6/test/acceptance/sequence_acceptance_test.rb
+END
+standalone_acceptance_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/selenium-rc/!svn/ver/2302/trunk/clients/ruby/vendor/mocha-0.5.6/test/acceptance/standalone_acceptance_test.rb
+END
+stubba_acceptance_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/selenium-rc/!svn/ver/2302/trunk/clients/ruby/vendor/mocha-0.5.6/test/acceptance/stubba_acceptance_test.rb
+END
+mock_with_initializer_block_acceptance_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/svn/selenium-rc/!svn/ver/2302/trunk/clients/ruby/vendor/mocha-0.5.6/test/acceptance/mock_with_initializer_block_acceptance_test.rb
+END
+expected_invocation_count_acceptance_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/svn/selenium-rc/!svn/ver/2302/trunk/clients/ruby/vendor/mocha-0.5.6/test/acceptance/expected_invocation_count_acceptance_test.rb
+END
+parameter_matcher_acceptance_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/svn/selenium-rc/!svn/ver/2302/trunk/clients/ruby/vendor/mocha-0.5.6/test/acceptance/parameter_matcher_acceptance_test.rb
+END
+mocked_methods_dispatch_acceptance_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/svn/selenium-rc/!svn/ver/2302/trunk/clients/ruby/vendor/mocha-0.5.6/test/acceptance/mocked_methods_dispatch_acceptance_test.rb
+END
+mocha_acceptance_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/selenium-rc/!svn/ver/2302/trunk/clients/ruby/vendor/mocha-0.5.6/test/acceptance/mocha_acceptance_test.rb
+END

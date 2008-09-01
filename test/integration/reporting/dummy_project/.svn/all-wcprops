@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/selenium-rc/!svn/ver/2393/trunk/clients/ruby/test/integration/reporting/dummy_project
+END
+Rakefile
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/selenium-rc/!svn/ver/2382/trunk/clients/ruby/test/integration/reporting/dummy_project/Rakefile
+END
+first_spec.rb
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/selenium-rc/!svn/ver/2405/trunk/clients/ruby/test/integration/reporting/dummy_project/first_spec.rb
+END
+second_spec.rb
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/selenium-rc/!svn/ver/2405/trunk/clients/ruby/test/integration/reporting/dummy_project/second_spec.rb
+END
+spec_helper.rb
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/selenium-rc/!svn/ver/2391/trunk/clients/ruby/test/integration/reporting/dummy_project/spec_helper.rb
+END

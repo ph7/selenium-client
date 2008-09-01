@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/selenium-rc/!svn/ver/2392/trunk/clients/ruby/test/integration/api
+END
+key_press_spec.rb
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/selenium-rc/!svn/ver/2377/trunk/clients/ruby/test/integration/api/key_press_spec.rb
+END
+click_spec.rb
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/selenium-rc/!svn/ver/2404/trunk/clients/ruby/test/integration/api/click_spec.rb
+END
+retrieve_last_remote_control_logs_spec.rb
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/selenium-rc/!svn/ver/2392/trunk/clients/ruby/test/integration/api/retrieve_last_remote_control_logs_spec.rb
+END
+screenshot_spec.rb
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/selenium-rc/!svn/ver/2377/trunk/clients/ruby/test/integration/api/screenshot_spec.rb
+END
+start_stop_spec.rb
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/selenium-rc/!svn/ver/2377/trunk/clients/ruby/test/integration/api/start_stop_spec.rb
+END

@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/selenium-rc/!svn/ver/2377/trunk/clients/ruby/test/integration/smoke
+END
+backward_compatible_api_spec.rb
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/selenium-rc/!svn/ver/2405/trunk/clients/ruby/test/integration/smoke/backward_compatible_api_spec.rb
+END
+google_search_spec.rb
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/selenium-rc/!svn/ver/2404/trunk/clients/ruby/test/integration/smoke/google_search_spec.rb
+END

@@ -1,0 +1,55 @@
+8
+
+dir
+2402
+https://svn.openqa.org/svn/selenium-rc/trunk/clients/ruby/test/integration/reporting
+https://svn.openqa.org/svn/selenium-rc
+
+
+
+2008-08-26T18:06:43.282192Z
+2393
+ph7
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+0891141a-5dea-0310-ad27-ebc607f31677
+
+dummy_project
+dir
+
+system_capture_spec.rb
+file
+
+
+
+
+2008-08-23T22:40:30.000000Z
+864c9078a3caac77ffea1cf9dd87687d
+2008-08-23T22:44:50.455837Z
+2389
+ph7
+
+selenium_test_report_formatter_spec.rb
+file
+2403
+
+
+
+2008-08-30T16:55:15.000000Z
+517b5f6d3e0707f4fe985b0dcbbe697f
+2008-08-30T17:02:00.461878Z
+2403
+ph7
+

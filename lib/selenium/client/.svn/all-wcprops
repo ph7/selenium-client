@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/selenium-rc/!svn/ver/2392/trunk/clients/ruby/lib/selenium/client
+END
+selenium_helper.rb
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/selenium-rc/!svn/ver/2376/trunk/clients/ruby/lib/selenium/client/selenium_helper.rb
+END
+selenese_client.rb
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/selenium-rc/!svn/ver/2404/trunk/clients/ruby/lib/selenium/client/selenese_client.rb
+END
+idiomatic.rb
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/selenium-rc/!svn/ver/2404/trunk/clients/ruby/lib/selenium/client/idiomatic.rb
+END
+base.rb
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/selenium-rc/!svn/ver/2404/trunk/clients/ruby/lib/selenium/client/base.rb
+END
+driver.rb
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/selenium-rc/!svn/ver/2404/trunk/clients/ruby/lib/selenium/client/driver.rb
+END

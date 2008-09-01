@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/selenium-rc/!svn/ver/2389/trunk/clients/ruby/test/unit/selenium/client
+END
+selenese_client_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/selenium-rc/!svn/ver/2376/trunk/clients/ruby/test/unit/selenium/client/selenese_client_test.rb
+END
+idiomatic_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/selenium-rc/!svn/ver/2404/trunk/clients/ruby/test/unit/selenium/client/idiomatic_test.rb
+END
+base_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/selenium-rc/!svn/ver/2404/trunk/clients/ruby/test/unit/selenium/client/base_test.rb
+END
