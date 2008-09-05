@@ -34,4 +34,8 @@ describe "Click Instrumentation" do
     page.get_alert.should eql("double clicked!")
   end
   
+<<<<<<< HEAD:test/integration/api/click_spec.rb
 end
+=======
+end
+>>>>>>> a0b6ef2b95b811fcc95500dca7746d78bbf8e85c:test/integration/api/click_spec.rb
