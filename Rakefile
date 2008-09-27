@@ -143,7 +143,6 @@ Spec::Rake::SpecTask.new("test:parallel") do |t|
     t.spec_opts << "--format=progress"                
 end
 
-
 specification = Gem::Specification.new do |s|
   s.name = "selenium-client"
   s.summary = "Official Ruby Client for Selenium RC."
