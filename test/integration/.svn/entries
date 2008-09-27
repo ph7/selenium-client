@@ -1,52 +1,0 @@
-8
-
-dir
-2402
-https://svn.openqa.org/svn/selenium-rc/trunk/clients/ruby/test/integration
-https://svn.openqa.org/svn/selenium-rc
-
-
-
-2008-08-26T18:06:43.282192Z
-2393
-ph7
-
-
-svn:special svn:externals svn:needs-lock
-
-
-
-
-
-
-
-
-
-
-
-0891141a-5dea-0310-ad27-ebc607f31677
-
-headless
-dir
-
-api
-dir
-
-reporting
-dir
-
-spec_helper.rb
-file
-
-
-
-
-2008-08-26T04:31:50.000000Z
-2b6a9f06a10e95b5b57275dea4b4cf20
-2008-08-26T14:15:48.418033Z
-2392
-ph7
-
-smoke
-dir
-
