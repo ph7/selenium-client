@@ -12,9 +12,10 @@ require 'spec/rake/spectask'
 require 'selenium/rake/tasks'
 
 CLEAN.include("COMMENTS")
-CLOBBER.include(
-  'lib/selenium/client/generated_driver',
-  '**/*.log'
+CLEAN.include(
+  'lib/selenium/client/generated_driver.rb',
+  '**/*.log',
+  "target"
 )
 
 if ENV["SELENIUM_RC_JAR"]
@@ -31,7 +32,7 @@ end
 task :default => :"test:unit"
 
 desc "Start a Selenium remote control, run all integration tests and stop the remote control"
-task :'ci:integration' => [ :'test:unit' ] do
+task :'ci:integration' => [ :clean, :'test:unit' ] do
   Rake::Task[:"selenium:rc:stop"].invoke rescue nil
   begin
     Rake::Task[:"selenium:rc:start"].invoke
@@ -42,7 +43,7 @@ task :'ci:integration' => [ :'test:unit' ] do
 end
 
 file "target/iedoc.xml" do
-	sh "unzip -u '#{SELENIUM_RC_JAR}' core/iedoc.xml -d target"
+	sh "unzip -uj '#{SELENIUM_RC_JAR}' core/iedoc.xml -d target"
 end
 
 desc "Generate driver from iedoc.xml"
