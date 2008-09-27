@@ -33,7 +33,7 @@ raise "Invalid Selnium RC jar : '#{SELENIUM_RC_JAR}" unless File.exists?(SELENIU
 task :default => :"test:unit"
 
 desc "Start a Selenium remote control, run all integration tests and stop the remote control"
-task :'ci:integration' do
+task :'ci:integration' => [ :'test:unit' ] do
   Rake::Task[:"selenium:rc:stop"].invoke rescue nil
   begin
     Rake::Task[:"selenium:rc:start"].invoke
