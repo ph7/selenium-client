@@ -65,6 +65,18 @@ unit_tests do
     assert_equal :the_value, client.value(:the_locator)
   end
 
+  test "field returns the result of the getValue command" do
+    client = Class.new { include Selenium::Client::Idiomatic }.new
+    client.expects(:string_command).with("getValue", [:the_locator,]).returns(:the_value)
+    assert_equal :the_value, client.field(:the_locator)
+  end
+
+  test "checked? returns the result of the isChecked command" do
+    client = Class.new { include Selenium::Client::Idiomatic }.new
+    client.expects(:boolean_command).with("isChecked", [:the_locator,]).returns(:the_value)
+    assert_equal :the_value, client.checked?(:the_locator)
+  end
+
   test "text_present? returns the result of the isTextPresent command" do
     client = Class.new { include Selenium::Client::Idiomatic }.new
     client.expects(:boolean_command).with("isTextPresent", [:the_pattern,]).returns(:the_result)
@@ -119,4 +131,10 @@ unit_tests do
     assert_equal :the_result, client.js_eval(:the_script)
   end
   
+  test "table_cell_text returns the result of the getTable command" do
+    client = Class.new { include Selenium::Client::Idiomatic }.new
+    client.expects(:string_command).with("getTable", [:the_cell_address,]).returns(:the_value)
+    assert_equal :the_value, client.table_cell_text(:the_cell_address)
+  end
+
 end

@@ -81,8 +81,21 @@ module Selenium
       # depending on whether the element is checked or not.
       #
       # 'locator' is an element locator
+      def field(locator)
+        string_command "getValue", [locator,]
+      end
+
+      # Alias for +field+ 
       def value(locator)
-        string_command"getValue", [locator,]
+	      field locator
+      end
+
+      # Returns whether a toggle-button (checkbox/radio) is checked. 
+      # Fails if the specified element doesn't exist or isn't a toggle-button.
+      #
+      # 'locator' is an element locator pointing to a checkbox or radio button
+      def checked?(locator)
+        boolean_command "isChecked", [locator,]
       end
 
       # Whether an alert occurred
@@ -180,6 +193,13 @@ module Selenium
           remote_control_command "setTimeout", [timeout_in_seconds * 1000,]
       end
 
+      # Returns the text from a cell of a table. The cellAddress syntax
+      # tableLocator.row.column, where row and column start at 0.
+      #
+      # 'tableCellAddress' is a cell address, e.g. "foo.1.4"
+      def table_cell_text(tableCellAddress)
+        string_command "getTable", [tableCellAddress,]
+      end
 
       # set speed
     end
