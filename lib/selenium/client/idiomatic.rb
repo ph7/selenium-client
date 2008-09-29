@@ -58,6 +58,10 @@ module Selenium
         remote_control_command("click", [locator,])        
         if options[:wait_for] == :page
           wait_for_page options[:timeout_in_seconds]
+	      elsif options[:wait_for] == :ajax
+	          wait_for_ajax options[:timeout_in_seconds]
+	      elsif options[:wait_for] == :effects
+	          wait_for_effects options[:timeout_in_seconds]
         end
       end
 

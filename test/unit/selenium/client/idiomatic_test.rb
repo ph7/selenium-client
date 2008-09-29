@@ -52,11 +52,39 @@ unit_tests do
     client.click :the_locator, :wait_for => :page
   end
 
-  test "click waits for pagewith explicit timeout when one is provided" do
+  test "click waits for page with explicit timeout when one is provided" do
     client = Class.new { include Selenium::Client::Idiomatic }.new
     client.expects(:remote_control_command).with("click", [:the_locator,])
     client.expects(:wait_for_page).with(:the_timeout)
     client.click :the_locator, :wait_for => :page, :timeout_in_seconds => :the_timeout
+  end
+
+  test "click waits for ajax to complete when wait_for option is provided" do
+    client = Class.new { include Selenium::Client::Idiomatic }.new
+    client.expects(:remote_control_command).with("click", [:the_locator,])
+    client.expects(:wait_for_ajax).with(nil)
+    client.click :the_locator, :wait_for => :ajax
+  end
+
+  test "click waits for ajax with explicit timeout when one is provided" do
+    client = Class.new { include Selenium::Client::Idiomatic }.new
+    client.expects(:remote_control_command).with("click", [:the_locator,])
+    client.expects(:wait_for_ajax).with(:the_timeout)
+    client.click :the_locator, :wait_for => :ajax, :timeout_in_seconds => :the_timeout
+  end
+
+  test "click waits for effects to complete when wait_for option is provided" do
+    client = Class.new { include Selenium::Client::Idiomatic }.new
+    client.expects(:remote_control_command).with("click", [:the_locator,])
+    client.expects(:wait_for_effects).with(nil)
+    client.click :the_locator, :wait_for => :effects
+  end
+
+  test "click waits for effects with explicit timeout when one is provided" do
+    client = Class.new { include Selenium::Client::Idiomatic }.new
+    client.expects(:remote_control_command).with("click", [:the_locator,])
+    client.expects(:wait_for_effects).with(:the_timeout)
+    client.click :the_locator, :wait_for => :effects, :timeout_in_seconds => :the_timeout
   end
 
   test "value returns the result of the getValue command" do
