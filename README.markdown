@@ -112,7 +112,7 @@ Writing Tests
     	alias :page :selenium_driver
 
      before(:all) do
-    	  @selenium_driver = Selenium::Client::Driver.new "localhost", 4444, "*firefox", "http://www.google.com", 10000    
+       @selenium_driver = Selenium::Client::Driver.new "localhost", 4444, "*firefox", "http://www.google.com", 10000    
      end
 
      before(:each) do
