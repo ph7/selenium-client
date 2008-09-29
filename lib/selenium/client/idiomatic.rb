@@ -68,14 +68,14 @@ module Selenium
       # Verifies that the specified text pattern appears somewhere on the rendered page shown to the user.
       #
       # 'pattern' is a pattern to match with the text of the page
-      def text_present?(pattern)
+      def text?(pattern)
         boolean_command "isTextPresent", [pattern,]
       end
 
       # Verifies that the specified element is somewhere on the page.
       #
       # 'locator' is an element locator
-      def element_present?(locator)
+      def element?(locator)
         boolean_command "isElementPresent", [locator,]
       end
 

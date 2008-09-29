@@ -105,16 +105,16 @@ unit_tests do
     assert_equal :the_value, client.checked?(:the_locator)
   end
 
-  test "text_present? returns the result of the isTextPresent command" do
+  test "text? returns the result of the isTextPresent command" do
     client = Class.new { include Selenium::Client::Idiomatic }.new
     client.expects(:boolean_command).with("isTextPresent", [:the_pattern,]).returns(:the_result)
-    assert_equal :the_result, client.text_present?(:the_pattern)
+    assert_equal :the_result, client.text?(:the_pattern)
   end
 
-  test "element_present? returns the result of the isElementPresent command" do
+  test "element? returns the result of the isElementPresent command" do
     client = Class.new { include Selenium::Client::Idiomatic }.new
     client.expects(:boolean_command).with("isElementPresent", [:the_locator,]).returns(:the_result)
-    assert_equal :the_result, client.element_present?(:the_locator)
+    assert_equal :the_result, client.element?(:the_locator)
   end
 
   test "alert? returns the result of the isAlertPresent command" do

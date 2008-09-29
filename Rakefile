@@ -145,7 +145,7 @@ end
 specification = Gem::Specification.new do |s|
   s.name = "selenium-client"
   s.summary = "Official Ruby Client for Selenium RC."
-  s.version = "1.2.1"
+  s.version = "1.2.2"
   s.author = "OpenQA"
   s.email = 'selenium-client@rubyforge.org'
   s.homepage = "http://selenium-client.rubyforge.com"
@@ -156,7 +156,7 @@ specification = Gem::Specification.new do |s|
   s.extensions = []
   s.rdoc_options << '--title' << 'Selenium Client' << '--main' << 'README' << '--line-numbers'
   s.has_rdoc = true
-  s.extra_rdoc_files = ['README']
+  s.extra_rdoc_files = ['README.markdown']
 	s.test_file = "test/all_unit_tests.rb"
 end
 
@@ -173,9 +173,13 @@ Rake::RDocTask.new("rdoc") do |rdoc|
   rdoc.title    = "Selenium Client"
   rdoc.main = "README"
   rdoc.rdoc_dir = "doc"
-  rdoc.rdoc_files.include('README')
+  rdoc.rdoc_files.include('README.markdown')
   rdoc.rdoc_files.include('lib/**/*.rb')
   rdoc.rdoc_files.include('doc/**/*.rdoc')
   rdoc.options << '--line-numbers' << '--inline-source' 
 end
 
+desc "Publish RDoc on Rubyforge website"
+task :'rdoc:publish' => :rdoc do
+  sh "scp -r doc/* #{ENV['USER']}@rubyforge.org:/var/www/gforge-projects/selenium-client"
+end

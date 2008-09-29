@@ -4,3 +4,4 @@ target
 pkg
 iedoc2ruby.xml
 .svn
+lib/selenium/client/generated_driver.rb
