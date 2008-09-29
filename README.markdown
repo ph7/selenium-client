@@ -33,11 +33,8 @@ Features
 
  * State-of-the-art reporting for RSpec.
 
-Use It
-======
-
- Plain API
- ---------
+Plain API
+=========
  
  Selenium client is just a plain Ruby API, so you can use it wherever you can use Ruby. For instance
  to write a little Ruby script using selenium-client you could write something like:
@@ -62,8 +59,8 @@ Use It
       @browser.close_current_browser_session    
     end
  
- Writing Tests
- -------------
+Writing Tests
+=============
  
  Most likely you will be writing functional and acceptance tests using selenium-client. If you are a 
  `Test::Unit` fan your tests will look like:
@@ -104,8 +101,8 @@ Use It
     
  If BDD is more your style, here is how you can achieve the same thing  using RSpec:
  
- Start/Stop a Selenium Remote Control Server
- -------------------------------------------
+Start/Stop a Selenium Remote Control Server
+===========================================
  
   Selenium client comes with some convenient Rake tasks to start/stop a Remote Control server.
   To leverage all selenium-client capabilities I recommend downloading a recent nightly build of
@@ -132,8 +129,8 @@ Use It
  Check out [RemoteControlStartTask](http://selenium-client.rubyforge.org/classes/Selenium/Rake/RemoteControlStartTask.html) and [RemoteControlStopTask](http://selenium-client.rubyforge.org/classes/Selenium/Rake/RemoteControlStopTask.html) for more 
 details. 
 
- State-of-the-Art RSpec Reporting
- --------------------------------
+State-of-the-Art RSpec Reporting
+================================
 
  Selenium Client comes with out-of-the-box RSpec reporting that include HTML snapshots, O.S. screenshots, in-browser page
 screenshots (not limited to current viewport), and a capture of the latest remote controls for all failing tests. And all
@@ -142,9 +139,9 @@ Grid](http://selenium-grid.openqa.org))
 
  Using selenium-client RSpec reporting is as simple as using `SeleniumTestReportFormatter` as one of you RSpec formatters. For instance:
 
-   require 'spec/rake/spectask'
-   desc 'Run acceptance tests for web application'
-   Spec::Rake::SpecTask.new(:'test:acceptance:web:serial') do |t|
+    require 'spec/rake/spectask'
+    desc 'Run acceptance tests for web application'
+    Spec::Rake::SpecTask.new(:'test:acceptance:web:serial') do |t|
      t.libs << "test"
      t.pattern = "test/*_spec.rb"
      t.spec_opts << '--color'
@@ -152,8 +149,10 @@ Grid](http://selenium-grid.openqa.org))
      t.spec_opts << "--format=Selenium::RSpec::SeleniumTestReportFormatter:./tmp/acceptance_tests_report.html"
      t.spec_opts << "--format=progress"                
      t.verbose = true
-   end
+    end
 
- You can then get cool reports like [this one]()
+ You can then get cool reports like [this one](http://ph7spot.com/examples/selenium_rspec_report.html)
+
+
  
  
