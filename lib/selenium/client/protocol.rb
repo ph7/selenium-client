@@ -3,7 +3,8 @@ module Selenium
 
     HTTP_HEADERS = { 'Content-Type' => 'application/x-www-form-urlencoded; charset=utf-8' }
     
-    module SeleneseClient
+    # Module in charge of handling Selenium over-the-wire HTTP protocol
+    module Protocol
       attr_reader :session_id
   
       def remote_control_command(verb, args=[])

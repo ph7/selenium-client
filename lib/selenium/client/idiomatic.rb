@@ -1,11 +1,9 @@
-#
-# Provide a more idiomatic API than the generated Ruby driver.
-#
-# Work on progress...
-#
 module Selenium
   module Client
     
+		# Provide a more idiomatic API than the generated Ruby driver.
+		#
+		# Work in progress...
     module Idiomatic
 
       # Return the text content of an HTML element (rendered text shown to
@@ -169,6 +167,17 @@ module Selenium
       # 'script' is the JavaScript snippet to run
       def js_eval(script)
         string_command"getEval", [script,]
+      end
+
+      # Set the Remote Control timeout (as opposed to the client side driver timeout).
+      # This timout specifies the amount of time that Selenium Core will wait for actions to complete.
+      # 
+      # The default timeout is 30 seconds.
+      # 'timeout' is a timeout in seconds, after which the action will return with an error
+      #
+      # Actions that require waiting include "open" and the "waitFor*" actions.
+      def remote_control_timeout_in_seconds=(timeout_in_seconds)
+          remote_control_command "setTimeout", [timeout_in_seconds * 1000,]
       end
 
 
