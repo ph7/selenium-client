@@ -12,11 +12,7 @@ require 'spec/rake/spectask'
 require 'selenium/rake/tasks'
 
 CLEAN.include("COMMENTS")
-CLEAN.include(
-  'lib/selenium/client/generated_driver.rb',
-  '**/*.log',
-  "target"
-)
+CLEAN.include('lib/selenium/client/generated_driver.rb', '**/*.log', "target", "pkg")
 
 if ENV["SELENIUM_RC_JAR"]
 	# User override
@@ -149,7 +145,7 @@ end
 specification = Gem::Specification.new do |s|
   s.name = "selenium-client"
   s.summary = "Official Ruby Client for Selenium RC."
-  s.version = "1.3"
+  s.version = "1.2"
   s.author = "OpenQA"
   s.email = 'selenium-client@rubyforge.org'
   s.homepage = "http://selenium-client.rubyforge.com"
@@ -165,9 +161,12 @@ specification = Gem::Specification.new do |s|
 end
 
 Rake::GemPackageTask.new(specification) do |package|
-	 package.need_zip = false
-	 package.need_tar = false
+  package.need_zip = false
+  package.need_tar = false
 end
+
+desc "Build the RubyGem"
+task :gem
  
 desc "Generate documentation"
 Rake::RDocTask.new("rdoc") do |rdoc|

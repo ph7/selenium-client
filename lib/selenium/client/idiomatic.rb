@@ -18,17 +18,17 @@ module Selenium
       #
       # 'locator' is an Selenium element locator
       def text_content(locator)
-        get_string "getText", [locator,]
+        string_command"getText", [locator,]
       end
       
       # Return the title of the current HTML page.
       def title
-        get_string "getTitle"
+        string_command"getTitle"
       end
 
       # Returns the absolute URL of the current page.
       def location
-        get_string "getLocation"
+        string_command"getLocation"
       end
 
       # Waits for a new page to load.
@@ -43,12 +43,12 @@ module Selenium
       # command will return with an error
       def wait_for_page(timeout_in_seconds=nil)
           actual_timeout = timeout_in_seconds || default_timeout_in_seconds
-        do_command "waitForPageToLoad", [actual_timeout * 1000,]
+        remote_control_command "waitForPageToLoad", [actual_timeout * 1000,]
       end
 
       # Gets the entire text of the page.
       def body_text
-        get_string "getBodyText"
+        string_command"getBodyText"
       end
 
       # Clicks on a link, button, checkbox or radio button. If the click action
@@ -57,7 +57,7 @@ module Selenium
       #
       # 'locator' is an element locator      
       def click(locator, options={})
-        do_command("click", [locator,])        
+        remote_control_command("click", [locator,])        
         if options[:wait_for] == :page
           wait_for_page options[:timeout_in_seconds]
         end
@@ -67,14 +67,14 @@ module Selenium
       #
       # 'pattern' is a pattern to match with the text of the page
       def text_present?(pattern)
-        get_boolean "isTextPresent", [pattern,]
+        boolean_command "isTextPresent", [pattern,]
       end
 
       # Verifies that the specified element is somewhere on the page.
       #
       # 'locator' is an element locator
       def element_present?(locator)
-        get_boolean "isElementPresent", [locator,]
+        boolean_command "isElementPresent", [locator,]
       end
 
       # Gets the (whitespace-trimmed) value of an input field 
@@ -84,12 +84,12 @@ module Selenium
       #
       # 'locator' is an element locator
       def value(locator)
-        get_string "getValue", [locator,]
+        string_command"getValue", [locator,]
       end
 
       # Whether an alert occurred
       def alert?
-        get_boolean "isAlertPresent"
+        boolean_command "isAlertPresent"
       end
 
       # Retrieves the message of a JavaScript alert generated during the previous action, 
@@ -105,12 +105,12 @@ module Selenium
       # generated and Selenium will hang until someone manually clicks OK.
       # 
       def alert
-        get_string "getAlert"
+        string_command"getAlert"
       end
       
       # Whether a confirmation has been auto-acknoledged (i.e. confirm() been called)
       def confirmation?
-        get_boolean "isConfirmationPresent"
+        boolean_command "isConfirmationPresent"
       end
 
       # Retrieves the message of a JavaScript confirmation dialog generated during
@@ -131,12 +131,12 @@ module Selenium
       # dialog WILL be generated and Selenium will hang until you manually click
       # OK.
       def confirmation
-        get_string "getConfirmation"
+        string_command"getConfirmation"
       end
 
       # Whether a prompt occurred
       def prompt?
-        get_boolean "isPromptPresent"
+        boolean_command "isPromptPresent"
       end
 
       # Retrieves the message of a JavaScript question prompt dialog generated during
@@ -153,7 +153,7 @@ module Selenium
       # page's onload() event handler. In this case a visible dialog WILL be
       # generated and Selenium will hang until someone manually clicks OK.
       def prompt
-        get_string "getPrompt"
+        string_command"getPrompt"
       end
 
       # Returns the result of evaluating the specified JavaScript snippet whithin the browser.
@@ -168,7 +168,7 @@ module Selenium
       # 
       # 'script' is the JavaScript snippet to run
       def js_eval(script)
-        get_string "getEval", [script,]
+        string_command"getEval", [script,]
       end
 
 

@@ -37,13 +37,13 @@ module Selenium
         @extension_js = extension_js
       end
       
-      def start()
-        result = get_string("getNewBrowserSession", [@browser_string, @browser_url, @extension_js])
+      def start
+        result = string_command "getNewBrowserSession", [@browser_string, @browser_url, @extension_js]
         @session_id = result
       end
       
-      def stop()
-        do_command("testComplete", [])
+      def stop
+        remote_control_command "testComplete"
         @session_id = nil
       end
 
@@ -57,10 +57,6 @@ module Selenium
       
       def session_started?
         not @session_id.nil?
-      end
-      
-      def default_timeout_in_seconds
-        @timeout
       end
       
       def chrome_backend?

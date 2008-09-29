@@ -2,34 +2,55 @@ require File.expand_path(File.dirname(__FILE__) + '/../../unit_test_helper')
 
 unit_tests do
   
-  test "get_string returns the selenese command response" do
+  test "remote_control_command return the content of the HTTP response when the command succeeds" do
     client = Class.new { include Selenium::Client::SeleneseClient }.new
-    client.expects(:do_command).with(:a_verb, :some_args).returns("A String")
-    assert_equal "A String", client.get_string(:a_verb, :some_args)
+    client.stubs(:http_request_for).with(:a_verb, :some_args).returns(:the_request)
+    client.expects(:http_post).with(:the_request).returns(["OK", "the response"])
+    assert_equal "the response", client.remote_control_command(:a_verb, :some_args)
   end
 
-  test "args are optionals for get_string (when there are none)" do
+  test "remote_control_command raises a SeleniumCommandError when the command fails" do
     client = Class.new { include Selenium::Client::SeleneseClient }.new
-    client.expects(:do_command).with(:a_verb, [])
-    client.get_string :a_verb
+    client.stubs(:http_request_for).with(:a_verb, :some_args).returns(:the_request)
+    client.expects(:http_post).with(:the_request).returns(["ERROR", "the error message"])
+    assert_raises(SeleniumCommandError) { client.remote_control_command(:a_verb, :some_args) }
+  end
+
+  test "the args are optional for remote_control_command" do
+    client = Class.new { include Selenium::Client::SeleneseClient }.new
+    client.expects(:http_request_for).with(:a_verb, []).returns(:the_request)
+    client.stubs(:http_post).with(:the_request).returns(["OK", "the response"])
+    client.remote_control_command(:a_verb)
+  end
+
+  test "string_commandreturns the selenese command response" do
+    client = Class.new { include Selenium::Client::SeleneseClient }.new
+    client.expects(:remote_control_command).with(:a_verb, :some_args).returns("A String")
+    assert_equal "A String", client.string_command(:a_verb, :some_args)
+  end
+
+  test "args are optionals for string_command(when there are none)" do
+    client = Class.new { include Selenium::Client::SeleneseClient }.new
+    client.expects(:remote_control_command).with(:a_verb, [])
+    client.string_command:a_verb
   end
 
   test "get_string_parses the command response as a CSV row" do
     client = Class.new { include Selenium::Client::SeleneseClient }.new
-    client.expects(:do_command).with(:a_verb, :some_args).returns("One,Two,Three")
-    assert_equal ["One", "Two", "Three"], client.get_string_array(:a_verb, :some_args)
+    client.expects(:remote_control_command).with(:a_verb, :some_args).returns("One,Two,Three")
+    assert_equal ["One", "Two", "Three"], client.string_array_command(:a_verb, :some_args)
   end
 
   test "get_string_parses the command response preserve spaces" do
     client = Class.new { include Selenium::Client::SeleneseClient }.new
-    client.expects(:do_command).with(:a_verb, :some_args).returns(" One , Two & Three ")
-    assert_equal [" One ", " Two & Three "], client.get_string_array(:a_verb, :some_args)
+    client.expects(:remote_control_command).with(:a_verb, :some_args).returns(" One , Two & Three ")
+    assert_equal [" One ", " Two & Three "], client.string_array_command(:a_verb, :some_args)
   end
 
   test "get_string_parses ignore commas escaped with a backspace" do
     client = Class.new { include Selenium::Client::SeleneseClient }.new
-    client.expects(:do_command).with(:a_verb, :some_args).returns("One,Two\\,Three")
-    assert_equal ["One", "Two,Three"], client.get_string_array(:a_verb, :some_args)
+    client.expects(:remote_control_command).with(:a_verb, :some_args).returns("One,Two\\,Three")
+    assert_equal ["One", "Two,Three"], client.string_array_command(:a_verb, :some_args)
   end
     
   test "parse_boolean_value returns true when string is true" do
@@ -52,29 +73,29 @@ unit_tests do
     end
   end
 
-  test "get_boolean returns true when get_string returns 'true'" do
+  test "boolean_command returns true when string_commandreturns 'true'" do
     client = Class.new { include Selenium::Client::SeleneseClient }.new
-    client.stubs(:get_string).with(:a_verb, :some_args).returns("true")
-    assert_equal true, client.get_boolean(:a_verb, :some_args)
+    client.stubs(:string_command).with(:a_verb, :some_args).returns("true")
+    assert_equal true, client.boolean_command(:a_verb, :some_args)
   end
 
-  test "args are optionals for get_boolean (when there are none)" do
+  test "args are optionals for boolean_command (when there are none)" do
     client = Class.new { include Selenium::Client::SeleneseClient }.new
-    client.expects(:get_string).with(:a_verb, []).returns("true")
-    client.get_boolean(:a_verb)
+    client.expects(:string_command).with(:a_verb, []).returns("true")
+    client.boolean_command(:a_verb)
   end
 
-  test "get_boolean returns false when get_string returns 'false'" do
+  test "boolean_command returns false when string_commandreturns 'false'" do
     client = Class.new { include Selenium::Client::SeleneseClient }.new
-    client.stubs(:get_string).with(:a_verb, :some_args).returns("false")
-    assert_equal false, client.get_boolean(:a_verb, :some_args)
+    client.stubs(:string_command).with(:a_verb, :some_args).returns("false")
+    assert_equal false, client.boolean_command(:a_verb, :some_args)
   end
 
-  test "get_boolean_array returns an array of evaluated boolean values" do
+  test "boolean_array_command returns an array of evaluated boolean values" do
     client = Class.new { include Selenium::Client::SeleneseClient }.new
-    client.stubs(:get_string_array).with(:a_verb, :some_args).returns(
+    client.stubs(:string_array_command).with(:a_verb, :some_args).returns(
         ["true", "false", "true", "true", "false"])
-    assert_equal [true, false, true, true, false], client.get_boolean_array(:a_verb, :some_args)
+    		assert_equal [true, false, true, true, false], client.boolean_array_command(:a_verb, :some_args)
   end
   
   test "http_request_for a verb is cmd=verb" do
