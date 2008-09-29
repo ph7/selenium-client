@@ -142,7 +142,10 @@ Start/Stop a Selenium Remote Control Server
   To leverage all selenium-client capabilities I recommend downloading a recent nightly build of
   a standalone packaging of Selenium Remote Control (great for kick-ass Safari and Firefox 3 support anyway).
   You will find the mightly build at [OpenQA.org](http://archiva.openqa.org/repository/snapshots/org/openqa/selenium/selenium-remote-control/1.0-SNAPSHOT/)
-  
+ 
+ You typically "freeze" the Selenium Remote Control jar in your `vendor` 
+ directory.
+ 
     require 'selenium/rake/tasks' 
     
     Selenium::Rake::RemoteControlStartTask.new do |rc|
