@@ -24,7 +24,7 @@ Features
   for more details.
  
  * Convenience methods for AJAX.
-   See the [Extensions](http://selenium-client.rubyforge.org/classes/Selenium/Client/Extensions.html))
+   See the [Extensions](http://selenium-client.rubyforge.org/classes/Selenium/Client/Extensions.html)
    for more details.
    
  * Leveraging latest innovations in Selenium Remote Control (screenshots, log captures, ...)
@@ -100,7 +100,41 @@ Writing Tests
     end
     
  If BDD is more your style, here is how you can achieve the same thing  using RSpec:
- 
+
+    require 'rubygems'
+    require 'spec'
+    gem "selenium-client"
+    require "selenium"
+    require "selenium/rspec/spec_helper"
+
+    describe "Google Search" do
+    	attr_reader :selenium_driver
+    	alias :page :selenium_driver
+
+     before(:all) do
+    	  @selenium_driver = Selenium::Client::Driver.new "localhost", 4444, "*firefox", "http://www.google.com", 10000    
+     end
+
+     before(:each) do
+       selenium_driver.start_new_browser_session
+     end
+
+     after(:each) do
+       selenium_driver.close_current_browser_session
+     end
+
+     it "can find Selenium" do    
+       page.open "/"
+       page.title.should eql("Google")
+       page.type "q", "Selenium"
+       page.click "btnG", :wait_for => :page
+       page.value("q").should eql("Selenium")
+       page.text?("selenium.openqa.org").should be_true
+       page.title.should eql("Selenium - Google Search")
+     end
+
+    end 
+
 Start/Stop a Selenium Remote Control Server
 ===========================================
  
@@ -134,14 +168,14 @@ State-of-the-Art RSpec Reporting
 
  Selenium Client comes with out-of-the-box RSpec reporting that include HTML snapshots, O.S. screenshots, in-browser page
 screenshots (not limited to current viewport), and a capture of the latest remote controls for all failing tests. And all
-course all this works even if your infrastructure is distributed (say you are using [Selenium
+course all this works even if your infrastructure is distributed (In particular in makes wonders with [Selenium
 Grid](http://selenium-grid.openqa.org))
 
  Using selenium-client RSpec reporting is as simple as using `SeleniumTestReportFormatter` as one of you RSpec formatters. For instance:
 
     require 'spec/rake/spectask'
     desc 'Run acceptance tests for web application'
-    Spec::Rake::SpecTask.new(:'test:acceptance:web:serial') do |t|
+    Spec::Rake::SpecTask.new(:'test:acceptance:web') do |t|
      t.libs << "test"
      t.pattern = "test/*_spec.rb"
      t.spec_opts << '--color'
