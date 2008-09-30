@@ -29,14 +29,14 @@ Features
 
 * Flexible wait semantics inline with the trigerring action. e.g.
  
-    click 'the_button_id', :wait_for => :page
-    click 'the_button_id', :wait_for => :ajax
-    click 'the_button_id', :wait_for => :element, :element => 'new_element_id'
-    click 'the_button_id', :wait_for => :no_element, :element => 'disappearing_element_id'
-    click 'the_button_id', :wait_for => :text, :text => 'New Text'
-    click 'the_button_id', :wait_for => :no_text, :text => 'Disappearing Text'
-    click 'the_button_id', :wait_for => :effects
-    click 'the_button_id', :wait_for => :condition, :javascript => "some arbitrary javascript expression"
+  * `click 'the_button_id', :wait_for => :page`
+  * `click 'the_button_id', :wait_for => :ajax`
+  * `click 'the_button_id', :wait_for => :element, :element => 'new_element_id'`
+  * `click 'the_button_id', :wait_for => :no_element, :element => 'disappearing_element_id'`
+  * `click 'the_button_id', :wait_for => :text, :text => 'New Text'`
+  * `click 'the_button_id', :wait_for => :no_text, :text => 'Disappearing Text'`
+  * `click 'the_button_id', :wait_for => :effects`
+  * `click 'the_button_id', :wait_for => :condition, :javascript => "some arbitrary javascript expression"`
 
   Check out the `click`, `go_back` and `wait_for` methods of the [Idiomatic Module](http://selenium-client.rubyforge.org/classes/Selenium/Client/Idiomatic.html)
            
