@@ -16,18 +16,18 @@ Install It
 Features
 ========
 
- * Backward compatible with the old-fashioned, XSL generated Selenium Ruby API.
-   See [the generated driver](http://selenium-client.rubyforge.org/classes/Selenium/Client/GeneratedDriver.html) to get an extensive reference.
+* Backward compatible with the old-fashioned, XSL generated Selenium Ruby API.
+ See [the generated driver](http://selenium-client.rubyforge.org/classes/Selenium/Client/GeneratedDriver.html) to get an extensive reference.
    
- * Idiomatic interface to the Selenium API.
+* Idiomatic interface to the Selenium API.
   See [the Idiomatic module](http://selenium-client.rubyforge.org/classes/Selenium/Client/Idiomatic.html)
   for more details.
  
- * Convenience methods for AJAX.
-   See the [Extensions](http://selenium-client.rubyforge.org/classes/Selenium/Client/Extensions.html)
-   for more details.
+* Convenience methods for AJAX.
+ See the [Extensions](http://selenium-client.rubyforge.org/classes/Selenium/Client/Extensions.html)
+  for more details.
 
- * Flexible wait semantics inline with the trigerring action. e.g.
+* Flexible wait semantics inline with the trigerring action. e.g.
  
     click 'the_button_id', :wait_for => :page
     click 'the_button_id', :wait_for => :ajax
@@ -38,13 +38,13 @@ Features
     click 'the_button_id', :wait_for => :effects
     click 'the_button_id', :wait_for => :condition, :javascript => "some arbitrary javascript expression"
 
-   Check out the `click`, `go_back` and `wait_for` methods of the [Idiomatic Module](http://selenium-client.rubyforge.org/classes/Selenium/Client/Idiomatic.html)
+  Check out the `click`, `go_back` and `wait_for` methods of the [Idiomatic Module](http://selenium-client.rubyforge.org/classes/Selenium/Client/Idiomatic.html)
            
- * Leveraging latest innovations in Selenium Remote Control (screenshots, log captures, ...)
+* Leveraging latest innovations in Selenium Remote Control (screenshots, log captures, ...)
  
- * Robust Rake task to start/stop the Selenium Remote Control server. More details in the next section.
+* Robust Rake task to start/stop the Selenium Remote Control server. More details in the next section.
 
- * State-of-the-art reporting for RSpec.
+* State-of-the-art reporting for RSpec.
 
 Plain API
 =========
