@@ -4,8 +4,7 @@
 #
 require "test/unit"
 require "rubygems"
-gem "selenium-client"
-require "selenium"
+require "selenium/client"
 
 class ExampleTest < Test::Unit::TestCase
 	attr_reader :browser

@@ -1,7 +1,6 @@
 require 'rubygems'
 require 'spec'
-gem "selenium-client"
-require "selenium"
+require "selenium/client"
 require "selenium/rspec/spec_helper"
 
 describe "Google Search" do

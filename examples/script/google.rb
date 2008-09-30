@@ -4,8 +4,7 @@
 #
 require "test/unit"
 require "rubygems"
-gem "selenium-client"
-require "selenium"
+require "selenium/client"
 
 begin
   @browser = Selenium::Client::Driver.new("localhost", 4444, "*firefox", "http://www.google.com", 10000);

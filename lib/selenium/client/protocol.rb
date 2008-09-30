@@ -10,7 +10,7 @@ module Selenium
       def remote_control_command(verb, args=[])
         timeout(default_timeout_in_seconds) do
           status, response = http_post(http_request_for(verb, args))
-          raise SeleniumCommandError, response unless status == "OK"          
+          raise Selenium::CommandError, response unless status == "OK"          
           response
         end
       end

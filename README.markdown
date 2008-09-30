@@ -36,7 +36,20 @@ Features
 Plain API
 =========
  
- Selenium client is just a plain Ruby API, so you can use it wherever you can use Ruby. For instance
+ Selenium client is just a plain Ruby API, so you can use it wherever you can use Ruby. 
+ 
+ To used the new API just require the client driver:
+ 
+    require "rubygems"
+    require "selenium/client"
+
+ For a fully backward compatible API you can start with:
+ 
+    require "rubygems"
+    gem "selenium-client"
+    require "selenium"
+ 
+ For instance
  to write a little Ruby script using selenium-client you could write something like:
 
     #!/usr/bin/env ruby
@@ -45,8 +58,7 @@ Plain API
     #
     require "test/unit"
     require "rubygems"
-    gem "selenium-client"
-    require "selenium"
+    require "selenium/client"
 
     begin
       @browser = Selenium::Client::Driver.new("localhost", 4444, "*firefox", "http://www.google.com", 10000);
