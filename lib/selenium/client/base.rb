@@ -9,6 +9,8 @@ module Selenium
       include Selenium::Client::GeneratedDriver
       include Selenium::Client::Extensions
       include Selenium::Client::Idiomatic
+
+      attr_reader :browser_string
   
       def initialize(server_host, server_port, browser_string, browser_url, timeout_in_seconds=300)
         @server_host = server_host

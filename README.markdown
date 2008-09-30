@@ -26,7 +26,20 @@ Features
  * Convenience methods for AJAX.
    See the [Extensions](http://selenium-client.rubyforge.org/classes/Selenium/Client/Extensions.html)
    for more details.
-   
+
+ * Flexible wait semantics inline with the trigerring action. e.g.
+ 
+     click 'the_button_id', :wait_for => :page
+     click 'the_button_id', :wait_for => :ajax
+     click 'the_button_id', :wait_for => :element, :element => 'new_element_id'
+     click 'the_button_id', :wait_for => :no_element, :element => 'disappearing_element_id'
+     click 'the_button_id', :wait_for => :text, :text => 'New Text'
+     click 'the_button_id', :wait_for => :no_text, :text => 'Disappearing Text'
+     click 'the_button_id', :wait_for => :effects
+     click 'the_button_id', :wait_for => :condition, :javascript => "some arbitrary javascript expression"
+
+   Check out the `click`, `go_back` and `wait_for` methods of the [Idiomatic Module](http://selenium-client.rubyforge.org/classes/Selenium/Client/Idiomatic.html)
+           
  * Leveraging latest innovations in Selenium Remote Control (screenshots, log captures, ...)
  
  * Robust Rake task to start/stop the Selenium Remote Control server. More details in the next section.
@@ -202,6 +215,21 @@ Grid](http://selenium-grid.openqa.org))
 
  You can then get cool reports like [this one](http://ph7spot.com/examples/selenium_rspec_report.html)
 
+Contribute and Join the Fun!
+============================
 
+  We welcome new features, add-ons, bug fixes, example, documentation, etc. Make the gem work the way you
+  envision!
+  
+* I recommend cloning the selenium-client [reference repository](http://github.com/ph7/selenium/tree/master)
+  I you are more of a SVN guy, the same code also lives at [OpenQA](http://svn.openqa.org/svn/selenium-rc/trunk/clients/ruby)
+  
+* You can also check out the [RubyForge page](http://rubyforge.org/projects/selenium-client) and the [RDoc](http://selenium-client.rubyforge.org)
+  
+* We also have a [continuous integration server](http://xserve.openqa.org:8080/view/Ruby%20Client)
+
+
+  
+  
  
  

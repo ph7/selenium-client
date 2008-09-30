@@ -32,6 +32,20 @@ unit_tests do
     client.stubs(:default_timeout_in_seconds).returns(7)
     client.wait_for_page
   end
+
+  test "wait_for_condition wait for a page to load use default timeout when none is specified" do
+    client = Class.new { include Selenium::Client::Idiomatic }.new
+    client.expects(:remote_control_command).with("waitForCondition", ["some javascript", 7000,])
+    client.stubs(:default_timeout_in_seconds).returns(7)
+    client.wait_for_condition "some javascript"
+  end
+
+  test "wait_for_condition wait for a page to load use explicit timeout when specified, converting it to milliseconds" do
+    client = Class.new { include Selenium::Client::Idiomatic }.new
+    client.expects(:remote_control_command).with("waitForCondition", ["some javascript", 24000,])
+    client.stubs(:default_timeout_in_seconds).returns(7)
+    client.wait_for_condition "some javascript", 24
+  end
   
   test "body_text returns the result of the getBodyText command" do
     client = Class.new { include Selenium::Client::Idiomatic }.new
@@ -45,46 +59,105 @@ unit_tests do
     client.click :the_locator
   end
 
-  test "click waits for page to load when wait_for option is provided" do
+  test "click calls wait_for with options provided" do
     client = Class.new { include Selenium::Client::Idiomatic }.new
     client.expects(:remote_control_command).with("click", [:the_locator,])
-    client.expects(:wait_for_page).with(nil)
+    client.expects(:wait_for).with(:wait_for => :page)
     client.click :the_locator, :wait_for => :page
   end
 
-  test "click waits for page with explicit timeout when one is provided" do
+  test "wait does nothing when no options are given" do
     client = Class.new { include Selenium::Client::Idiomatic }.new
-    client.expects(:remote_control_command).with("click", [:the_locator,])
+    client.expects(:remote_control_command).never
+    client.wait_for({})
+  end
+
+  test "wait_for waits for page with explicit timeout when one is provided" do
+    client = Class.new { include Selenium::Client::Idiomatic }.new
     client.expects(:wait_for_page).with(:the_timeout)
-    client.click :the_locator, :wait_for => :page, :timeout_in_seconds => :the_timeout
+    client.wait_for :wait_for => :page, :timeout_in_seconds => :the_timeout
   end
 
-  test "click waits for ajax to complete when wait_for option is provided" do
+  test "wait_for waits for ajax to complete when ajax option is provided" do
     client = Class.new { include Selenium::Client::Idiomatic }.new
-    client.expects(:remote_control_command).with("click", [:the_locator,])
     client.expects(:wait_for_ajax).with(nil)
-    client.click :the_locator, :wait_for => :ajax
+    client.wait_for :wait_for => :ajax
   end
 
-  test "click waits for ajax with explicit timeout when one is provided" do
+  test "wait_for waits for ajax with explicit timeout when one is provided" do
     client = Class.new { include Selenium::Client::Idiomatic }.new
-    client.expects(:remote_control_command).with("click", [:the_locator,])
     client.expects(:wait_for_ajax).with(:the_timeout)
-    client.click :the_locator, :wait_for => :ajax, :timeout_in_seconds => :the_timeout
+    client.wait_for :wait_for => :ajax, :timeout_in_seconds => :the_timeout
   end
 
-  test "click waits for effects to complete when wait_for option is provided" do
+  test "wait_for waits for element to be present when element option is provided" do
     client = Class.new { include Selenium::Client::Idiomatic }.new
-    client.expects(:remote_control_command).with("click", [:the_locator,])
+    client.expects(:wait_for_element).with(:the_new_element_id, nil)
+    client.wait_for :wait_for => :element, :element => :the_new_element_id
+  end
+
+  test "wait_for waits for element with explicit timeout when one is provided" do
+    client = Class.new { include Selenium::Client::Idiomatic }.new
+    client.expects(:wait_for_element).with(:the_new_element_id, :the_timeout)
+    client.wait_for :wait_for => :element, :element => :the_new_element_id,
+                    :timeout_in_seconds => :the_timeout
+  end
+
+  test "wait_for waits for no element to be present when no_element option is provided" do
+    client = Class.new { include Selenium::Client::Idiomatic }.new
+    client.expects(:wait_for_no_element).with(:the_new_element_id, nil)
+    client.wait_for :wait_for => :no_element, :element => :the_new_element_id
+  end
+
+  test "wait_for waits for no element with explicit timeout when one is provided" do
+    client = Class.new { include Selenium::Client::Idiomatic }.new
+    client.expects(:wait_for_no_element).with(:the_new_element_id, :the_timeout)
+    client.wait_for :wait_for => :no_element, :element => :the_new_element_id,
+                    :timeout_in_seconds => :the_timeout
+  end
+
+  test "wait_for waits for text to be present when text option is provided" do
+    client = Class.new { include Selenium::Client::Idiomatic }.new
+    client.expects(:wait_for_text).with("some text", nil)
+    client.wait_for :wait_for => :text, :text => "some text"
+  end
+
+  test "wait_for waits for text with explicit timeout when one is provided" do
+    client = Class.new { include Selenium::Client::Idiomatic }.new
+    client.expects(:wait_for_text).with("some text", :the_timeout)
+    client.wait_for :wait_for => :text, :text => "some text",
+                    :timeout_in_seconds => :the_timeout
+  end
+
+  test "wait_for waits for text to NOT be present when no_text option is provided" do
+    client = Class.new { include Selenium::Client::Idiomatic }.new
+    client.expects(:wait_for_no_text).with("some text", nil)
+    client.wait_for :wait_for => :no_text, :text => "some text"
+  end
+
+  test "wait_for waits for no text with explicit timeout when one is provided" do
+    client = Class.new { include Selenium::Client::Idiomatic }.new
+    client.expects(:wait_for_no_text).with("some text", :the_timeout)
+    client.wait_for :wait_for => :no_text, :text => "some text",
+                    :timeout_in_seconds => :the_timeout
+  end
+
+  test "wait_for waits for effects to complete when effects option is provided" do
+    client = Class.new { include Selenium::Client::Idiomatic }.new
     client.expects(:wait_for_effects).with(nil)
-    client.click :the_locator, :wait_for => :effects
+    client.wait_for :wait_for => :effects
   end
 
-  test "click waits for effects with explicit timeout when one is provided" do
+  test "wait_for waits for effects with explicit timeout when one is provided" do
     client = Class.new { include Selenium::Client::Idiomatic }.new
-    client.expects(:remote_control_command).with("click", [:the_locator,])
     client.expects(:wait_for_effects).with(:the_timeout)
-    client.click :the_locator, :wait_for => :effects, :timeout_in_seconds => :the_timeout
+    client.wait_for :wait_for => :effects, :timeout_in_seconds => :the_timeout
+  end
+
+  test "wait_for waits for some javascript to be true when condition option is provided" do
+    client = Class.new { include Selenium::Client::Idiomatic }.new
+    client.expects(:wait_for_condition).with("some javascript", nil)
+    client.wait_for :wait_for => :condition, :javascript => "some javascript"
   end
 
   test "value returns the result of the getValue command" do

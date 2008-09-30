@@ -14,7 +14,7 @@ module Selenium
       # or the innerText (IE-like browsers) of the element, which is the
       # rendered text shown to the user.
       #
-      # 'locator' is an Selenium element locator
+      # * 'locator' is an Selenium element locator
       def text_content(locator)
         string_command"getText", [locator,]
       end
@@ -37,44 +37,84 @@ module Selenium
       # if you want to wait for a page to load, you must wait immediately 
       # after a Selenium command that caused a page-load.
       # 
-      # 'timeout_in_seconds' is a timeout in seconds, after which this 
-      # command will return with an error
+      # * 'timeout_in_seconds' is a timeout in seconds, after which this 
+      #   command will return with an error
       def wait_for_page(timeout_in_seconds=nil)
           actual_timeout = timeout_in_seconds || default_timeout_in_seconds
         remote_control_command "waitForPageToLoad", [actual_timeout * 1000,]
       end
 
+      # Flexible wait semantics. ait is happening browser side. Useful for testing AJAX application.
+      #
+      # * wait :wait_for => :page                                       # will wait for a new page to load
+      # * wait :wait_for => :ajax                                       # will wait for all ajax requests to be completed (Prototype only)
+      # * wait :wait_for => :effects                                    # will wait for all Prototype effects to be rendered
+      # * wait :wait_for => :element, :element => 'new_element_id'      # will wait for an element to be present/appear
+      # * wait :wait_for => :no_element, :element => 'new_element_id'   # will wait for an element to be not be present/disappear
+      # * wait :wait_for => :text, :text => 'some text'                 # will wait for some text to be present/appear
+      # * wait :wait_for => :no_text, :text => 'some text'              # will wait for the text to be not be present/disappear
+      # * wait :wait_for => :condition, :javascript => 'some expression' # will wait for the javascript expression to be true
+      #
+      # Using options you can also define an explicit timeout (:timeout_in_seconds key). Otherwise the default driver timeout
+      # is used.
+      def wait_for(options)
+        if options[:wait_for] == :page
+          wait_for_page options[:timeout_in_seconds]
+	      elsif options[:wait_for] == :ajax
+	          wait_for_ajax options[:timeout_in_seconds]
+	      elsif options[:wait_for] == :element
+	          wait_for_element options[:element], options[:timeout_in_seconds]
+	      elsif options[:wait_for] == :no_element
+	          wait_for_no_element options[:element], options[:timeout_in_seconds]
+	      elsif options[:wait_for] == :text
+	          wait_for_text options[:text], options[:timeout_in_seconds]
+	      elsif options[:wait_for] == :no_text
+	          wait_for_no_text options[:text], options[:timeout_in_seconds]
+	      elsif options[:wait_for] == :effects
+	          wait_for_effects options[:timeout_in_seconds]
+	      elsif options[:wait_for] == :condition
+	          wait_for_condition options[:javascript], options[:timeout_in_seconds]
+        end
+      end
+	
       # Gets the entire text of the page.
       def body_text
         string_command"getBodyText"
       end
 
-      # Clicks on a link, button, checkbox or radio button. If the click action
-      # causes a new page to load (like a link usually does), call
-      # waitForPageToLoad.
+      # Clicks on a link, button, checkbox or radio button.
       #
       # 'locator' is an element locator      
+      # 
+      # Using 'options' you can automatically wait for an event to happen after the 
+      # click. e.g.
+      #
+      # * click 'some_id', :wait_for => :page                                        # will wait for a new page to load
+      # * click 'some_id', :wait_for => :ajax                                        # will wait for all ajax requests to be completed (Prototype only)
+      # * click 'some_id', :wait_for => :effects                                     # will wait for all Prototype effects to be rendered
+      # * click 'some_id', :wait_for => :element, :element => 'new_element_id'       # will wait for an element to be present/appear
+      # * click 'some_id', :wait_for => :no_element, :element => 'new_element_id'    # will wait for an element to be not be present/disappear
+      # * click :wait_for => :text, :text => 'some text'                             # will wait for some text to be present/appear
+      # * click :wait_for => :no_text, :text => 'some text'                          # will wait for the text to be not be present/disappear
+      # * click 'some_id', :wait_for => :condition, :javascript => 'some expression' # will wait for the javascript expression to be true
+      #
+      # Using options you can also define an explicit timeout (:timeout_in_seconds key). Otherwise the default driver timeout
+      # is used.
       def click(locator, options={})
         remote_control_command("click", [locator,])        
-        if options[:wait_for] == :page
-          wait_for_page options[:timeout_in_seconds]
-	      elsif options[:wait_for] == :ajax
-	          wait_for_ajax options[:timeout_in_seconds]
-	      elsif options[:wait_for] == :effects
-	          wait_for_effects options[:timeout_in_seconds]
-        end
+        wait_for options
       end
 
       # Verifies that the specified text pattern appears somewhere on the rendered page shown to the user.
       #
-      # 'pattern' is a pattern to match with the text of the page
+      # * 'pattern' is a pattern to match with the text of the page
       def text?(pattern)
         boolean_command "isTextPresent", [pattern,]
       end
 
       # Verifies that the specified element is somewhere on the page.
       #
-      # 'locator' is an element locator
+      # * 'locator' is an element locator
       def element?(locator)
         boolean_command "isElementPresent", [locator,]
       end
@@ -84,7 +124,7 @@ module Selenium
       # For checkbox/radio elements, the value will be "on" or "off" 
       # depending on whether the element is checked or not.
       #
-      # 'locator' is an element locator
+      # * 'locator' is an element locator
       def field(locator)
         string_command "getValue", [locator,]
       end
@@ -97,7 +137,7 @@ module Selenium
       # Returns whether a toggle-button (checkbox/radio) is checked. 
       # Fails if the specified element doesn't exist or isn't a toggle-button.
       #
-      # 'locator' is an element locator pointing to a checkbox or radio button
+      # * 'locator' is an element locator pointing to a checkbox or radio button
       def checked?(locator)
         boolean_command "isChecked", [locator,]
       end
@@ -113,8 +153,10 @@ module Selenium
       # Getting an alert has the same effect as manually clicking OK. If an
       # alert is generated but you do not consume it with getAlert, the next Selenium action
       # will fail.
+      #
       # Under Selenium, JavaScript alerts will NOT pop up a visible alert
       # dialog.
+      #
       # Selenium does NOT support JavaScript alerts that are generated in a
       # page's onload() event handler. In this case a visible dialog WILL be
       # generated and Selenium will hang until someone manually clicks OK.
@@ -181,7 +223,7 @@ module Selenium
       # a locator to refer to a single element in your application page, you can
       # use <tt>this.browserbot.findElement("id=foo")</tt> where "id=foo" is your locator.
       # 
-      # 'script' is the JavaScript snippet to run
+      # * 'script' is the JavaScript snippet to run
       def js_eval(script)
         string_command"getEval", [script,]
       end
@@ -200,12 +242,47 @@ module Selenium
       # Returns the text from a cell of a table. The cellAddress syntax
       # tableLocator.row.column, where row and column start at 0.
       #
-      # 'tableCellAddress' is a cell address, e.g. "foo.1.4"
+      # * 'tableCellAddress' is a cell address, e.g. "foo.1.4"
       def table_cell_text(tableCellAddress)
         string_command "getTable", [tableCellAddress,]
       end
 
-      # set speed
+      # Runs the specified JavaScript snippet repeatedly until it evaluates to "true".
+      # The snippet may have multiple lines, but only the result of the last line
+      # will be considered.
+      # 
+      # Note that, by default, the snippet will be run in the runner's test window, not in the window
+      # of your application.  To get the window of your application, you can use
+      # the JavaScript snippet <tt>selenium.browserbot.getCurrentWindow()</tt>, and then
+      # run your JavaScript in there
+      # 
+      #
+      # * 'script' is the JavaScript snippet to run
+      # * 'timeout_in_seconds' is a timeout in seconds, after which this command will return with an error
+      def wait_for_condition(script, timeout_in_seconds = nil)
+        remote_control_command "waitForCondition", [script, (timeout_in_seconds || default_timeout_in_seconds) * 1000,]
+      end
+
+      # Simulates the user clicking the "back" button on their browser.
+      # Using 'options' you can automatically wait for an event to happen after the 
+      # click. e.g.
+      #
+      # * go_back :wait_for => :page                                        # will wait for a new page to load
+      # * go_back :wait_for => :ajax                                        # will wait for all ajax requests to be completed (Prototype only)
+      # * go_back :wait_for => :effects                                     # will wait for all Prototype effects to be rendered
+      # * go_back :wait_for => :element, :element => 'new_element_id'       # will wait for an element to be present/appear
+      # * go_back :wait_for => :no_element, :element => 'new_element_id'    # will wait for an element to be not be present/disappear
+      # * go_back :wait_for => :text, :text => 'some text'                  # will wait for some text to be present/appear
+      # * go_back :wait_for => :no_text, :text => 'some text'               # will wait for the text to be not be present/disappear
+      # * go_back :wait_for => :condition, :javascript => 'some expression' # will wait for the javascript expression to be true
+      #
+      # Using options you can also define an explicit timeout (:timeout_in_seconds key). Otherwise the default driver timeout
+      # is used.
+      def go_back(options={})
+        remote_control_command "goBack"
+        wait_for options
+      end
+
     end
   
   end
