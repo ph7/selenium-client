@@ -7,8 +7,9 @@ require File.expand_path(File.dirname(__FILE__) + "/../../../../lib/selenium/rsp
 
 Spec::Runner.configure do |config|
 
-  config.after(:each) do    
-    @selenium_driver.stop
+  # The system capture need to happen BEFORE the closing the Selenium session 
+  config.append_after(:each) do    
+    @selenium_driver.close_current_browser_session
   end
 
   def create_selenium_driver(options = {})

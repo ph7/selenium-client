@@ -42,7 +42,7 @@ module Selenium
       # 'timeout_in_seconds' is a timeout in seconds, after which this 
       # command will return with an error
       def wait_for_page(timeout_in_seconds=nil)
-          actual_timeout = timeout_in_seconds || default_timeout_in_seconds
+        actual_timeout = timeout_in_seconds || default_timeout_in_seconds
         do_command "waitForPageToLoad", [actual_timeout * 1000,]
       end
 
