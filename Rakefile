@@ -83,6 +83,7 @@ end
 task :"test:integration" => ["lib/selenium/client/generated_driver.rb", :'test:integration:headless']
 
 begin
+  gem "deep_test", ">=1.2.1"
   require "deep_test/rake_tasks"
 
   desc "Run all integration tests in parallel"
