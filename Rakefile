@@ -46,8 +46,11 @@ file "target/iedoc.xml" do
 	sh "unzip -uj '#{SELENIUM_RC_JAR}' core/iedoc.xml -d target"
 end
 
-desc "Generate driver from iedoc.xml"
-file "lib/selenium/client/generated_driver.rb" => [ "target/iedoc.xml" ] do
+task :clean_driver_build do
+  rm 'lib/selenium/client/generated_driver.rb'
+end
+
+file "lib/selenium/client/generated_driver.rb" => [ :clean_driver_build, "target/iedoc.xml" ] do
   sh "ant generate-sources"
 end
 
@@ -154,7 +157,7 @@ specification = Gem::Specification.new do |s|
   s.homepage = "http://selenium-client.rubyforge.com"
   s.rubyforge_project = 'selenium-client'
   s.platform = Gem::Platform::RUBY
-  s.files = FileList['lib/**/*.rb']
+  s.files = FileList['lib/**/*.rb', 'vendor/selenium-remote-control/*']
   s.require_path = "lib"
   s.extensions = []
   s.rdoc_options << '--title' << 'Selenium Client' << '--main' << 'README' << '--line-numbers'
@@ -169,7 +172,8 @@ Rake::GemPackageTask.new(specification) do |package|
 end
 
 desc "Build the RubyGem"
-task :gem
+task :gem => "lib/selenium/client/generated_driver.rb"
+
  
 desc "Generate documentation"
 Rake::RDocTask.new("rdoc") do |rdoc|
