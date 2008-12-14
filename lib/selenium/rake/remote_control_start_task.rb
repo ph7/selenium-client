@@ -11,7 +11,8 @@ module Selenium
         @name = name
         @port = 4444
         @timeout_in_seconds = 5
-        @jar_file = "vendor/selenium/selenium-server-1.0-standalone.jar"
+        #TODO: is there a way reference the root of the GEM?  like RAILS_ROOT
+        @jar_file = File.expand_path(File.dirname(__FILE__) + '/../../../vendor/selenium-remote-control/selenium-server-1.0-SNAPSHOT-standalone.jar')
         @additional_args = []
         @background = false
         @wait_until_up_and_running = false
