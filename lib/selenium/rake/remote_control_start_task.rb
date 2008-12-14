@@ -3,7 +3,8 @@ module Selenium
   
     class RemoteControlStartTask
       attr_accessor :port, :timeout_in_seconds, :background, 
-                    :wait_until_up_and_running, :additional_args
+                    :wait_until_up_and_running, :additional_args,
+                    :log_to
       attr_reader :jar_file
 
       def initialize(name = :'selenium:rc:start')
@@ -29,6 +30,7 @@ module Selenium
           remote_control = Selenium::RemoteControl::RemoteControl.new("0.0.0.0", @port, @timeout_in_seconds)
           remote_control.jar_file = @jar_file
           remote_control.additional_args = @additional_args
+          remote_control.log_to = @log_to
           remote_control.start :background => @background
           if @background && @wait_until_up_and_running
             puts "Waiting for Remote Control to be up and running..."
