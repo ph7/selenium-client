@@ -59,7 +59,7 @@ Rake::TestTask.new(:'test:unit') do |t|
   t.test_files = FileList['test/unit/**/*_test.rb']
   t.warning = true
 end
-task :"test:unit" => "lib/selenium/client/generated_driver.rb"
+task :"test:unit" => ["lib/selenium/client/generated_driver.rb", 'make_spec']
 
 Selenium::Rake::RemoteControlStartTask.new do |rc|
   rc.port = 4444
@@ -174,6 +174,12 @@ end
 desc "Build the RubyGem"
 task :gem => "lib/selenium/client/generated_driver.rb"
 
+desc "Create a gemspec file"
+task :make_spec do
+  File.open("#{specification.name}.gemspec", "w") do |file|
+    file.puts specification.to_ruby
+  end
+end
  
 desc "Generate documentation"
 Rake::RDocTask.new("rdoc") do |rdoc|
