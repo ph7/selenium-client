@@ -15,6 +15,8 @@ module Selenium
       # rendered text shown to the user.
       #
       # * 'locator' is an Selenium element locator
+      #
+      # TODO - Should be renamed 'text'
       def text_content(locator)
         string_command"getText", [locator,]
       end
