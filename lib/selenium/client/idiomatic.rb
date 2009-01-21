@@ -59,6 +59,7 @@ module Selenium
       # Flexible wait semantics. ait is happening browser side. Useful for testing AJAX application.
       #
       # * wait :wait_for => :page                                       # will wait for a new page to load
+      # * wait :wait_for => :popup, :window => 'a window id'            # will wait for a new popup window to appear. Also selects the popup window for you provide `:select => true`
       # * wait :wait_for => :ajax                                       # will wait for all ajax requests to be completed (Prototype only)
       # * wait :wait_for => :effects                                    # will wait for all Prototype effects to be rendered
       # * wait :wait_for => :element, :element => 'new_element_id'      # will wait for an element to be present/appear
@@ -84,6 +85,9 @@ module Selenium
 	          wait_for_no_text options[:text], options[:timeout_in_seconds]
 	      elsif options[:wait_for] == :effects
 	          wait_for_effects options[:timeout_in_seconds]
+	      elsif options[:wait_for] == :popup
+	          wait_for_popup options[:window], options[:timeout_in_seconds]
+	          select_window options[:window] if options[:select]
 	      elsif options[:wait_for] == :condition
 	          wait_for_condition options[:javascript], options[:timeout_in_seconds]
         end
@@ -102,6 +106,7 @@ module Selenium
       # click. e.g.
       #
       # * click 'some_id', :wait_for => :page                                        # will wait for a new page to load
+      # * click 'some_id', :wait_for => :popup, :window => 'a window id'             # will wait for a new popup window to appear. Also selects the popup window for you provide `:select => true`
       # * click 'some_id', :wait_for => :ajax                                        # will wait for all ajax requests to be completed (Prototype only)
       # * click 'some_id', :wait_for => :effects                                     # will wait for all Prototype effects to be rendered
       # * click 'some_id', :wait_for => :element, :element => 'new_element_id'       # will wait for an element to be present/appear

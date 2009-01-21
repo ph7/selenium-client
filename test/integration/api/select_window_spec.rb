@@ -5,9 +5,7 @@ describe "Window Selection" do
   it "Selects and close popup windows " do
     selenium_driver.start_new_browser_session
     page.open "http://localhost:4444/selenium-server/tests/html/test_select_window.html"
-    page.click "popupPage"
-    page.wait_for_popup "myPopupWindow"
-    page.select_window "name=myPopupWindow"
+    page.click "popupPage", :wait_for => :popup, :window => "myPopupWindow", :select => true
     page.location.should =~ %r{/tests/html/test_select_window_popup.html}
     page.title.should =~ /Select Window Popup/
     page.get_all_window_names.size.should eql(2)
@@ -26,9 +24,7 @@ describe "Window Selection" do
   it "Select an anonymous window (one that isn't assigned to a variable)" do
     selenium_driver.start_new_browser_session
     page.open "http://localhost:4444/selenium-server/tests/html/test_select_window.html"
-    page.click "popupAnonymous"
-    page.wait_for_popup "anonymouspopup"
-    page.select_window "anonymouspopup"
+    page.click "popupAnonymous", :wait_for => :popup, :window => "anonymouspopup", :select => true
     page.location.should =~ %r{/tests/html/test_select_window_popup.html}
     page.click "closePage"
     page.select_window "null"    
@@ -37,9 +33,7 @@ describe "Window Selection" do
   it "Try onclick close handler" do
     selenium_driver.start_new_browser_session
     page.open "http://localhost:4444/selenium-server/tests/html/test_select_window.html"
-    page.click "popupAnonymous"
-    page.wait_for_popup "anonymouspopup"
-    page.select_window "anonymouspopup"
+    page.click "popupAnonymous", :wait_for => :popup, :window => "anonymouspopup", :select => true
     page.location.should =~ %r{/tests/html/test_select_window_popup.html}
     page.click "closePage2"
   end
