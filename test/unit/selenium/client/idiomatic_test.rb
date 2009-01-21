@@ -308,5 +308,23 @@ unit_tests do
     assert_equal :the_value, client.delete_cookie(:the_name, {:max_age => 60, :domain => ".foo.com"})
   end
 
+  test "wait_for_popup returns the result of the waitForPopUp command" do
+    client = Class.new { include Selenium::Client::Idiomatic }.new
+    client.expects(:remote_control_command).with("waitForPopUp", [:the_window_id, 0]).returns(:the_value)
+    assert_equal :the_value, client.wait_for_popup(:the_window_id, 0)
+  end
 
+  test "wait_for_popup convert the timeout from seconds to milliseconds" do
+    client = Class.new { include Selenium::Client::Idiomatic }.new
+    client.expects(:remote_control_command).with("waitForPopUp", [:the_window_id, 3000]).returns(:the_value)
+    assert_equal :the_value, client.wait_for_popup(:the_window_id, 3)
+  end
+  
+  test "wait_for_popup use default timeout when none is specified" do
+    client = Class.new { include Selenium::Client::Idiomatic }.new
+    client.expects(:remote_control_command).with("waitForPopUp", [:the_window_id, 7000]).returns(:the_value)
+    client.stubs(:default_timeout_in_seconds).returns(7)
+    client.wait_for_popup :the_window_id
+  end
+  
 end
