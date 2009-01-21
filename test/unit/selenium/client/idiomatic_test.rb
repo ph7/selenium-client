@@ -353,4 +353,22 @@ unit_tests do
     assert_equal :the_value, client.delete_cookie(:the_name, {:max_age => 60, :domain => ".foo.com"})
   end
   
+  test "all_window_ids returns the result of the getAllWindowIds command" do
+    client = Class.new { include Selenium::Client::Idiomatic }.new
+    client.expects(:string_array_command).with("getAllWindowIds").returns(:the_value)
+    assert_equal :the_value, client.all_window_ids
+  end
+
+  test "all_window_names returns the result of the getAllWindowNames command" do
+    client = Class.new { include Selenium::Client::Idiomatic }.new
+    client.expects(:string_array_command).with("getAllWindowNames").returns(:the_value)
+    assert_equal :the_value, client.all_window_names
+  end
+
+  test "all_window_titles returns the result of the getAllWindowTitles command" do
+    client = Class.new { include Selenium::Client::Idiomatic }.new
+    client.expects(:string_array_command).with("getAllWindowTitles").returns(:the_value)
+    assert_equal :the_value, client.all_window_titles
+  end
+  
 end

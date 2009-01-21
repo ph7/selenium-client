@@ -353,6 +353,23 @@ module Selenium
         remote_control_command "deleteCookie", [name,options,]
       end
 
+      # Returns the IDs of all windows that the browser knows about.
+      def all_window_ids
+        string_array_command "getAllWindowIds"
+      end
+
+
+      # Returns the names of all windows that the browser knows about.
+      def all_window_names
+        string_array_command "getAllWindowNames"
+      end
+
+
+      # Returns the titles of all windows that the browser knows about.
+      def all_window_titles
+        string_array_command "getAllWindowTitles"
+      end
+
     end
   
   end

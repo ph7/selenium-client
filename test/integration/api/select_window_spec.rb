@@ -8,13 +8,12 @@ describe "Window Selection" do
     page.click "popupPage", :wait_for => :popup, :window => "myPopupWindow", :select => true
     page.location.should =~ %r{/tests/html/test_select_window_popup.html}
     page.title.should =~ /Select Window Popup/
-    page.get_all_window_names.size.should eql(2)
-    page.get_all_window_names.include?("myPopupWindow").should be_true
+    page.all_window_names.size.should eql(2)
+    page.all_window_names.include?("myPopupWindow").should be_true
     page.close
     page.select_window "null"
     page.location.should =~ %r{/tests/html/test_select_window.html}
-    page.click "popupPage"
-    page.wait_for_pop_up "myPopupWindow", "5000"
+    page.click "popupPage", :wait_for => :popup, :window => "myPopupWindow"
     page.select_window "title=Select Window Popup"
     page.location.should =~ %r{/tests/html/test_select_window_popup.html}
     page.close
