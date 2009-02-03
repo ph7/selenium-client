@@ -50,19 +50,46 @@ module Selenium
 		  end
 
 			# Wait for some text to be present (the wait in happenning browser side).
-		  def wait_for_text(locator, text, timeout_in_seconds=nil)
-		    script = "var element;
-		              try {
-		                element = selenium.browserbot.findElement('#{locator}');
-		              } catch(e) {
-		                element = null;
-		              }
-		              element != null && element.innerHTML == '#{text}'"
+			#
+			# If locator is nil or no locator is provided, the text will be
+			# detected anywhere in the page.
+			#
+			# If a non nil locator is provided, the text will be
+			# detected within the innerHTML of the element identified by the locator.			
+		  def wait_for_text(text, locator=nil, timeout_in_seconds=nil)
+		    script = case locator
+		    when nil:
+  		    <<-EOS
+              var text;
+              try {
+                text = selenium.browserbot.getCurrentWindow().find('#{text}');
+              } catch(e) {
+                text = null;
+              }
+              text != null
+          EOS
+        else
+  		    <<-EOS
+  		        var element;
+                try {
+                  element = selenium.browserbot.getCurrentWindow().find('#{locator}');
+                } catch(e) {
+                  element = null;
+                }
+                element != null && element.innerHTML == '#{text}'"
+          EOS
+        end          
 
 		    wait_for_condition script, timeout_in_seconds
 		  end
 
 			# Wait for some text to NOT be present (the wait in happenning browser side).
+			#
+			# If locator is nil or no locator is provided, the text will be
+			# detected anywhere in the page.
+			#
+			# If a non nil locator is provided, the text will be
+			# detected within the innerHTML of the element identified by the locator.			
 		  def wait_for_no_text(locator, original_text, timeout_in_seconds=nil)
 		    script = "var element;
 		              try {

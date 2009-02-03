@@ -12,6 +12,16 @@ describe "Google Search" do
     page.title.should eql("Selenium SeleniumHQ - Google Search")
   end
 
+  it "wait_for_text variant" do
+    page.open "http://www.google.com/webhp?hl=en"
+    page.title.should eql("Google")
+    page.type "q", "Selenium SeleniumHQ"
+    page.value("q").should eql("Selenium SeleniumHQ")
+    page.click "btnG", :wait_for => :text, :text => "Selenium SeleniumHQ"
+    page.wait_for :wait_for => :text, :locator => 'q', :text => "Selenium SeleniumHQ"
+    page.title.should eql("Selenium SeleniumHQ - Google Search")
+  end
+
   it "can search videos" do
     page.open "http://video.google.com"
     page.type "q", "hello world"

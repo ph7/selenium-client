@@ -131,13 +131,13 @@ unit_tests do
 
   test "wait_for waits for text to be present when text option is provided" do
     client = Class.new { include Selenium::Client::Idiomatic }.new
-    client.expects(:wait_for_text).with("some text", nil)
-    client.wait_for :wait_for => :text, :text => "some text"
+    client.expects(:wait_for_text).with("some text", "a locator", nil)
+    client.wait_for :wait_for => :text, :element => "a locator", :text => "some text"
   end
 
   test "wait_for waits for text with explicit timeout when one is provided" do
     client = Class.new { include Selenium::Client::Idiomatic }.new
-    client.expects(:wait_for_text).with("some text", :the_timeout)
+    client.expects(:wait_for_text).with("some text", nil, :the_timeout)
     client.wait_for :wait_for => :text, :text => "some text",
                     :timeout_in_seconds => :the_timeout
   end
