@@ -84,7 +84,7 @@ module Selenium
 	      elsif options[:wait_for] == :text
 	          wait_for_text options[:text], options[:element], options[:timeout_in_seconds]
 	      elsif options[:wait_for] == :no_text
-	          wait_for_no_text options[:text], options[:timeout_in_seconds]
+          wait_for_no_text options[:text], options[:element], options[:timeout_in_seconds]
 	      elsif options[:wait_for] == :effects
 	          wait_for_effects options[:timeout_in_seconds]
 	      elsif options[:wait_for] == :popup
@@ -289,6 +289,7 @@ module Selenium
       # click. e.g.
       #
       # * go_back :wait_for => :page                                                   # will wait for a new page to load
+      # * go_back :wait_for => :popup, :window => 'a window id'                        # will wait for a new popup window to appear. Also selects the popup window for you provide `:select => true`
       # * go_back :wait_for => :ajax                                                   # will wait for all ajax requests to be completed (Prototype only)
       # * go_back :wait_for => :effects                                                # will wait for all Prototype effects to be rendered
       # * go_back :wait_for => :element, :element => 'new_element_id'                  # will wait for an element to be present/appear

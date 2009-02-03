@@ -144,13 +144,13 @@ unit_tests do
 
   test "wait_for waits for text to NOT be present when no_text option is provided" do
     client = Class.new { include Selenium::Client::Idiomatic }.new
-    client.expects(:wait_for_no_text).with("some text", nil)
-    client.wait_for :wait_for => :no_text, :text => "some text"
+    client.expects(:wait_for_no_text).with("some text", "a_locator", nil)
+    client.wait_for :wait_for => :no_text, :element => 'a_locator', :text => "some text"
   end
 
-  test "wait_for waits for no text with explicit timeout when one is provided" do
+  test "wait_for waits for no text with explicit timeout and locator when none are provided" do
     client = Class.new { include Selenium::Client::Idiomatic }.new
-    client.expects(:wait_for_no_text).with("some text", :the_timeout)
+    client.expects(:wait_for_no_text).with("some text", nil, :the_timeout)
     client.wait_for :wait_for => :no_text, :text => "some text",
                     :timeout_in_seconds => :the_timeout
   end

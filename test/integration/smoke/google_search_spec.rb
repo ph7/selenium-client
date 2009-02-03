@@ -19,6 +19,8 @@ describe "Google Search" do
     page.value("q").should eql("Selenium SeleniumHQ")
     page.click "btnG", :wait_for => :text, :text => "Selenium SeleniumHQ"
     page.wait_for :wait_for => :text, :locator => 'q', :text => "Selenium SeleniumHQ"
+    page.wait_for :wait_for => :no_text, :locator => 'q', :text => "Mercury"
+    page.wait_for :wait_for => :no_text, :text => "Gre sacdas asdcasd"
     page.title.should eql("Selenium SeleniumHQ - Google Search")
   end
 
