@@ -43,7 +43,7 @@ task :'ci:integration' => [ :clean, :'test:unit' ] do
 end
 
 file "target/iedoc.xml" do
-  has_unzip = system "unzipx -v"
+  has_unzip = system "unzip -v"
   if has_unzip
     sh "unzip -uj '#{SELENIUM_RC_JAR}' core/iedoc.xml -d target"
   else  # Windows support assumes Java is installed 
