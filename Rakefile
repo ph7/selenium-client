@@ -47,7 +47,7 @@ file "target/iedoc.xml" do
   if has_unzip
     sh "unzip -uj '#{SELENIUM_RC_JAR}' core/iedoc.xml -d target"
   else  # Windows support assumes Java is installed 
-    sh "jar xvf '#{SELENIUM_RC_JAR}' core/iedoc.xml"
+    sh "jar xvf \"#{SELENIUM_RC_JAR}\" core/iedoc.xml"
     FileUtils.mv "core/iedoc.xml", "target"
     FileUtils.rmdir "core"
   end
