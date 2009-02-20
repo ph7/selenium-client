@@ -19,6 +19,7 @@ module Selenium
           puts "Stopping Selenium Remote Control running at #{@host}:#{@port}..."
           remote_control = Selenium::RemoteControl::RemoteControl.new(@host, @port, @timeout_in_seconds)
           remote_control.stop
+          TCPSocket.wait_until_stopped :host => @host, :port => @port
           puts "Stopped Selenium Remote Control running at #{@host}:#{@port}"
         end
       end
