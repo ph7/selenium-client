@@ -4,23 +4,26 @@ require 'socket'
 class TCPSocket
   
   def self.wait_for_service(options)
-    TCPSocket.wait until TCPSocket.service_running?(options)
+    verbose_wait until listening_service?(options)
   end
   
-  def self.wait_until_stopped(options)
-    TCPSocket.wait while TCPSocket.service_running?(options)
+  def self.wait_for_service_termination(options)
+    verbose_wait while listening_service?(options)
   end
 
-  def self.service_running?(options)
+  def self.listening_service?(options)
     Timeout::timeout(options[:timeout] || 20) do
-      !!begin
-        TCPSocket.new(options[:host], options[:port])
+      begin
+        socket = TCPSocket.new(options[:host], options[:port])
+        socket.close unless socket.nil?
+        true
       rescue Errno::ECONNREFUSED
+        false
       end
     end
   end
 
-  def self.wait
+  def self.verbose_wait
     puts ".\n"
     sleep 2
   end
