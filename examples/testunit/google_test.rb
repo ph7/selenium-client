@@ -4,7 +4,7 @@
 #
 require "test/unit"
 require "rubygems"
-gem "selenium-client", ">=1.2.9"
+gem "selenium-client", ">=1.2.10"
 require "selenium/client"
 
 class ExampleTest < Test::Unit::TestCase
@@ -22,11 +22,11 @@ class ExampleTest < Test::Unit::TestCase
   def test_page_search
 		browser.open "/"
 		assert_equal "Google", browser.title
-		browser.type "q", "Selenium"
+		browser.type "q", "Selenium seleniumhq"
 		browser.click "btnG", :wait_for => :page
-		assert_equal "Selenium - Google Search", browser.title
-		assert_equal "Selenium", browser.field("q")
-		assert browser.text?("selenium.openqa.org")
+		assert_equal "Selenium seleniumhq - Google Search", browser.title
+		assert_equal "Selenium seleniumhq", browser.field("q")
+		assert browser.text?("seleniumhq.org")
 		assert browser.element?("link=Cached")
   end
     

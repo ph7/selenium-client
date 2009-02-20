@@ -1,6 +1,6 @@
 require 'rubygems'
 gem "rspec", "=1.1.12"
-gem "selenium-client", ">=1.2.9"
+gem "selenium-client", ">=1.2.10"
 require "selenium/client"
 require "selenium/rspec/spec_helper"
 
@@ -24,11 +24,13 @@ describe "Google Search" do
   it "can find Selenium" do    
     page.open "/"
     page.title.should eql("Google")
-    page.type "q", "Selenium"
+    page.type "q", "Selenium seleniumhq"
     page.click "btnG", :wait_for => :page
-    page.value("q").should eql("Selenium")
-    page.text?("selenium.openqa.org").should be_true
-    page.title.should eql("Selenium - Google Search")
+    page.value("q").should eql("Selenium seleniumhq")
+    page.text?("seleniumhq.org").should be_true
+    page.title.should eql("Selenium seleniumhq - Google Search")
+    page.text?("seleniumhq.org").should be_true
+		page.element?("link=Cached").should be_true		
   end
     
 end
