@@ -81,6 +81,12 @@ Selenium::Rake::RemoteControlStopTask.new do |rc|
   rc.timeout_in_seconds = 3 * 60
 end
 
+desc "Restart Selenium Remote Control"
+task :'selenium:rc:restart' do
+  Rake::Task[:"selenium:rc:stop"].execute [] rescue nil
+  Rake::Task[:"selenium:rc:start"].execute []
+end
+
 desc "Run all integration tests"
 Spec::Rake::SpecTask.new("test:integration") do |t|
     t.spec_files = FileList['test/integration/**/*_spec.rb'] - FileList['test/integration/**/dummy_project/*_spec.rb']
