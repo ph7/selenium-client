@@ -60,8 +60,10 @@ module Selenium
       #
       # * wait :wait_for => :page                                                   # will wait for a new page to load
       # * wait :wait_for => :popup, :window => 'a window id'                        # will wait for a new popup window to appear. Also selects the popup window for you provide `:select => true`
-      # * wait :wait_for => :ajax                                                   # will wait for all ajax requests to be completed (Prototype only)
-      # * wait :wait_for => :effects                                                # will wait for all Prototype effects to be rendered
+      # * wait :wait_for => :ajax                                                   # will wait for all ajax requests to be completed using semantics of default javascript framework
+      # * wait :wait_for => :ajax, :javascript_framework => :jquery                 # will wait for all ajax requests to be completed overriding default javascript framework
+      # * wait :wait_for => :effects                                                # will wait for all javascript effects to be rendered using semantics of default javascript framework
+      # * wait :wait_for => :effects, :javascript_framework => :prototype           # will wait for all javascript effects to be rendered overriding default javascript framework
       # * wait :wait_for => :element, :element => 'new_element_id'                  # will wait for an element to be present/appear
       # * wait :wait_for => :no_element, :element => 'new_element_id'               # will wait for an element to be not be present/disappear
       # * wait :wait_for => :text, :text => 'some text'                             # will wait for some text to be present/appear
@@ -76,7 +78,7 @@ module Selenium
         if options[:wait_for] == :page
           wait_for_page options[:timeout_in_seconds]
 	      elsif options[:wait_for] == :ajax
-	          wait_for_ajax options[:timeout_in_seconds]
+	          wait_for_ajax options
 	      elsif options[:wait_for] == :element
 	          wait_for_element options[:element], options[:timeout_in_seconds]
 	      elsif options[:wait_for] == :no_element
@@ -86,7 +88,7 @@ module Selenium
 	      elsif options[:wait_for] == :no_text
           wait_for_no_text options[:text], options[:element], options[:timeout_in_seconds]
 	      elsif options[:wait_for] == :effects
-	          wait_for_effects options[:timeout_in_seconds]
+	          wait_for_effects options
 	      elsif options[:wait_for] == :popup
 	          wait_for_popup options[:window], options[:timeout_in_seconds]
 	          select_window options[:window] if options[:select]
@@ -109,8 +111,10 @@ module Selenium
       #
       # * click :wait_for => :page                                                   # will wait for a new page to load
       # * click :wait_for => :popup, :window => 'a window id'                        # will wait for a new popup window to appear. Also selects the popup window for you provide `:select => true`
-      # * click :wait_for => :ajax                                                   # will wait for all ajax requests to be completed (Prototype only)
-      # * click :wait_for => :effects                                                # will wait for all Prototype effects to be rendered
+      # * click :wait_for => :ajax                                                   # will wait for all ajax requests to be completed using semantics of default javascript framework
+      # * click :wait_for => :ajax, :javascript_framework => :jquery                 # will wait for all ajax requests to be completed overriding default javascript framework
+      # * click :wait_for => :effects                                                # will wait for all javascript effects to be rendered using semantics of default javascript framework
+      # * click :wait_for => :effects, :javascript_framework => :prototype           # will wait for all javascript effects to be rendered overriding default javascript framework
       # * click :wait_for => :element, :element => 'new_element_id'                  # will wait for an element to be present/appear
       # * click :wait_for => :no_element, :element => 'new_element_id'               # will wait for an element to be not be present/disappear
       # * click :wait_for => :text, :text => 'some text'                             # will wait for some text to be present/appear
@@ -301,8 +305,10 @@ module Selenium
       #
       # * go_back :wait_for => :page                                                   # will wait for a new page to load
       # * go_back :wait_for => :popup, :window => 'a window id'                        # will wait for a new popup window to appear. Also selects the popup window for you provide `:select => true`
-      # * go_back :wait_for => :ajax                                                   # will wait for all ajax requests to be completed (Prototype only)
-      # * go_back :wait_for => :effects                                                # will wait for all Prototype effects to be rendered
+      # * go_back :wait_for => :ajax                                                   # will wait for all ajax requests to be completed using semantics of default javascript framework
+      # * go_back :wait_for => :ajax, :javascript_framework => :jquery                 # will wait for all ajax requests to be completed overriding default javascript framework
+      # * go_back :wait_for => :effects                                                # will wait for all javascript effects to be rendered using semantics of default javascript framework
+      # * go_back :wait_for => :effects, :javascript_framework => :prototype           # will wait for all javascript effects to be rendered overriding default javascript framework
       # * go_back :wait_for => :element, :element => 'new_element_id'                  # will wait for an element to be present/appear
       # * go_back :wait_for => :no_element, :element => 'new_element_id'               # will wait for an element to be not be present/disappear
       # * go_back :wait_for => :text, :text => 'some text'                             # will wait for some text to be present/appear

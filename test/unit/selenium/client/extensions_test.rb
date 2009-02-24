@@ -50,4 +50,77 @@ unit_tests do
     client.wait_for_no_text "some text", nil, :explicit_timeout
   end
   
+  test "javascript_framework_for :prototype returns JavascriptFrameworks::Prototype" do
+    client = Class.new { include Selenium::Client::Extensions }.new
+    assert_equal Selenium::Client::JavascriptFrameworks::Prototype, 
+                 client.javascript_framework_for(:prototype)
+  end
+
+  test "javascript_framework_for :jquery returns JavascriptFrameworks::JQuery" do
+    client = Class.new { include Selenium::Client::Extensions }.new
+    assert_equal Selenium::Client::JavascriptFrameworks::JQuery, 
+                 client.javascript_framework_for(:jquery)
+  end
+
+  test "javascript_framework_for raises for unsupported framework" do
+    client = Class.new { include Selenium::Client::Extensions }.new
+    assert_raises(RuntimeError) { client.javascript_framework_for(:unsupported_framework) }
+  end
+  
+  test "wait_for_ajax uses Ajax.activeRequestCount when default js framework is prototype" do
+    client = Class.new { include Selenium::Client::Extensions }.new
+    client.stubs(:default_javascript_framework).returns(:prototype)
+    client.expects(:wait_for_condition).with("selenium.browserbot.getCurrentWindow().Ajax.activeRequestCount == 0", anything)
+    client.wait_for_ajax
+  end
+
+  test "wait_for_ajax uses jQuery.active when default js framework is jQuery" do
+    client = Class.new { include Selenium::Client::Extensions }.new
+    client.stubs(:default_javascript_framework).returns(:jquery)
+    client.expects(:wait_for_condition).with("selenium.browserbot.getCurrentWindow().jQuery.active == 0", anything)
+    client.wait_for_ajax
+  end
+
+  test "wait_for_ajax can override default js framework" do
+    client = Class.new { include Selenium::Client::Extensions }.new
+    client.stubs(:default_javascript_framework).returns(:prototype)
+    client.expects(:wait_for_condition).with("selenium.browserbot.getCurrentWindow().jQuery.active == 0", anything)
+    client.wait_for_ajax :javascript_framework => :jquery    
+  end
+  
+  test "wait_for_ajax uses default timeout when none is provided" do
+    client = Class.new { include Selenium::Client::Extensions }.new
+    client.stubs(:default_javascript_framework).returns(:prototype)
+    client.expects(:wait_for_condition).with(anything, nil)
+    client.wait_for_ajax
+  end
+
+  test "wait_for_ajax uses explicit timeout when provided" do
+    client = Class.new { include Selenium::Client::Extensions }.new
+    client.stubs(:default_javascript_framework).returns(:prototype)
+    client.expects(:wait_for_condition).with(anything, :explicit_timeout)
+    client.wait_for_ajax :timeout_in_seconds => :explicit_timeout
+  end
+
+  test "wait_for_effect uses Effect.Queue.size() when default js framework is prototype" do
+    client = Class.new { include Selenium::Client::Extensions }.new
+    client.stubs(:default_javascript_framework).returns(:prototype)
+    client.expects(:wait_for_condition).with("selenium.browserbot.getCurrentWindow().Effect.Queue.size() == 0", anything)
+    client.wait_for_effects
+  end
+
+  test "wait_for_effects uses default timeout when none is provided" do
+    client = Class.new { include Selenium::Client::Extensions }.new
+    client.stubs(:default_javascript_framework).returns(:prototype)
+    client.expects(:wait_for_condition).with(anything, nil)
+    client.wait_for_effects
+  end
+  
+  test "wait_for_effects uses explicit timeout when provided" do
+    client = Class.new { include Selenium::Client::Extensions }.new
+    client.stubs(:default_javascript_framework).returns(:prototype)
+    client.expects(:wait_for_condition).with(anything, :explicit_timeout)
+    client.wait_for_effects :timeout_in_seconds => :explicit_timeout
+  end
+
 end

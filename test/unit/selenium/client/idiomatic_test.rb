@@ -93,13 +93,19 @@ unit_tests do
 
   test "wait_for waits for ajax to complete when ajax option is provided" do
     client = Class.new { include Selenium::Client::Idiomatic }.new
-    client.expects(:wait_for_ajax).with(nil)
+    client.expects(:wait_for_ajax)
     client.wait_for :wait_for => :ajax
+  end
+
+  test "wait_for waits for ajax to relays javascript framework override" do
+    client = Class.new { include Selenium::Client::Idiomatic }.new
+    client.expects(:wait_for_ajax).with(has_entry(:javascript_framework => :jquery))
+    client.wait_for :wait_for => :ajax, :javascript_framework => :jquery
   end
 
   test "wait_for waits for ajax with explicit timeout when one is provided" do
     client = Class.new { include Selenium::Client::Idiomatic }.new
-    client.expects(:wait_for_ajax).with(:the_timeout)
+    client.expects(:wait_for_ajax).with(has_entry(:timeout_in_seconds => :the_timeout))
     client.wait_for :wait_for => :ajax, :timeout_in_seconds => :the_timeout
   end
 
@@ -157,14 +163,20 @@ unit_tests do
 
   test "wait_for waits for effects to complete when effects option is provided" do
     client = Class.new { include Selenium::Client::Idiomatic }.new
-    client.expects(:wait_for_effects).with(nil)
+    client.expects(:wait_for_effects)
     client.wait_for :wait_for => :effects
   end
 
   test "wait_for waits for effects with explicit timeout when one is provided" do
     client = Class.new { include Selenium::Client::Idiomatic }.new
-    client.expects(:wait_for_effects).with(:the_timeout)
+    client.expects(:wait_for_effects).with(has_entry(:timeout_in_seconds => :the_timeout))
     client.wait_for :wait_for => :effects, :timeout_in_seconds => :the_timeout
+  end
+
+  test "wait_for waits for effects to relays javascript framework override" do
+    client = Class.new { include Selenium::Client::Idiomatic }.new
+    client.expects(:wait_for_effects).with(has_entry(:javascript_framework => :jquery))
+    client.wait_for :wait_for => :effects, :javascript_framework => :jquery
   end
 
   test "wait_for waits for popup to appear when popup option is provided" do

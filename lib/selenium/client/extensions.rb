@@ -8,15 +8,18 @@ module Selenium
 	    #
 	    # See http://davidvollbracht.com/2008/6/4/30-days-of-tech-day-3-waitforajax for
 	    # more background.
-      def wait_for_ajax(timeout_in_seconds=nil)
-	      wait_for_condition "selenium.browserbot.getCurrentWindow().Ajax.activeRequestCount == 0", timeout_in_seconds
+      def wait_for_ajax(options={})
+        framework = javascript_framework_for(options[:javascript_framework] || default_javascript_framework)
+	      wait_for_condition "selenium.browserbot.getCurrentWindow().#{framework.ajax_request_tracker} == 0", 
+	                         options[:timeout_in_seconds]
 	    end
 	
 	    # Wait for all Prototype effects to be processed (the wait in happenning browser side).
 	    #
 	    # Credits to http://github.com/brynary/webrat/tree/master
-			def wait_for_effects(timeout_in_seconds=nil)
-			  wait_for_condition "window.Effect.Queue.size() == 0", timeout_in_seconds
+			def wait_for_effects(options={})
+			  wait_for_condition "selenium.browserbot.getCurrentWindow().Effect.Queue.size() == 0", 
+			                     options[:timeout_in_seconds]
 			end
 			
 			# Wait for an element to be present (the wait in happenning browser side).
@@ -130,6 +133,17 @@ module Selenium
 
 		    wait_for_condition script, timeout_in_seconds
 		  end
+
+      def javascript_framework_for(framework_name)
+        case framework_name.to_sym
+        when :prototype
+          JavascriptFrameworks::Prototype
+        when :jquery
+          JavascriptFrameworks::JQuery
+        else
+          raise "Unsupported Javascript Framework: '#{framework_name}'"
+        end
+      end
 
     end
   end
