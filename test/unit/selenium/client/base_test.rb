@@ -2,9 +2,61 @@ require File.expand_path(File.dirname(__FILE__) + '/../../unit_test_helper')
 
 unit_tests do
   
+  test "Hash initializer sets the host" do
+    client_class = Class.new { include Selenium::Client::Base }
+    client = client_class.new :host => "the.host.com"
+    assert_equal "the.host.com", client.host
+  end
+
+  test "Hash initializer sets the port" do
+    client_class = Class.new { include Selenium::Client::Base }
+    client = client_class.new :port => 4000
+    assert_equal 4000, client.port
+  end
+
+  test "Hash initializer port can be specified as a string" do
+    client_class = Class.new { include Selenium::Client::Base }
+    client = client_class.new :port => "4000"
+    assert_equal 4000, client.port
+  end
+
+  test "Hash initializer sets the browser string" do
+    client_class = Class.new { include Selenium::Client::Base }
+    client = client_class.new :browser => "*safari"
+    assert_equal "*safari", client.browser_string
+  end
+
+  test "Hash initializer sets the browser url" do
+    client_class = Class.new { include Selenium::Client::Base }
+    client = client_class.new :url => "http://ph7spot.com"
+    assert_equal "http://ph7spot.com", client.browser_url
+  end
+
+  test "Hash initializer sets the default timeout" do
+    client_class = Class.new { include Selenium::Client::Base }
+    client = client_class.new :timeout_in_seconds => 24
+    assert_equal 24, client.default_timeout_in_seconds
+  end
+
+  test "Hash initializer sets the default timeout to 5 minutes when not explicitely set" do
+    client = Class.new { include Selenium::Client::Base }.new
+    assert_equal 5 * 60, client.default_timeout_in_seconds
+  end
+
+  test "Hash initializer sets the default javascript framework " do
+    client_class = Class.new { include Selenium::Client::Base }
+    client = client_class.new :javascript_framework => :jquery
+    assert_equal :jquery, client.default_javascript_framework
+  end
+
+  test "Hash initializer sets the default javascript framework to prototype when not explicitely set" do
+    client = Class.new { include Selenium::Client::Base }.new
+    assert_equal :prototype, client.default_javascript_framework
+  end
+
   test "default_timeout_in_seconds returns the client driver default timeout in seconds" do
-    client = Class.new { include Selenium::Client::Base }.new :host, :port, :browser, :url, :the_timeout
-    assert_equal :the_timeout, client.default_timeout_in_seconds
+    client = Class.new { include Selenium::Client::Base }.new :host, :port, :browser, :url, 24
+    assert_equal 24, client.default_timeout_in_seconds
   end
 
   test "default_timeout_in_seconds is 5 minutes by default" do
