@@ -141,7 +141,7 @@ module Selenium
         when :jquery
           JavascriptFrameworks::JQuery
         else
-          raise "Unsupported Javascript Framework: #{js_string framework_name}"
+          raise "Unsupported Javascript Framework: '#{framework_name}'"
         end
       end
 
