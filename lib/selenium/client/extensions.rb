@@ -27,7 +27,7 @@ module Selenium
 		    script = <<-EOS
 		    var element;
 		    try {
-		      element = selenium.browserbot.findElement('#{locator}');
+		      element = selenium.browserbot.findElement(#{js_string locator});
 		    } catch(e) {
 		      element = null;
 		    }
@@ -42,7 +42,7 @@ module Selenium
 		    script = <<-EOS
 		    var element;
 		    try {
-		      element = selenium.browserbot.findElement('#{locator}');
+		      element = selenium.browserbot.findElement(#{js_string locator});
 		    } catch(e) {
 		      element = null;
 		    }
@@ -65,7 +65,7 @@ module Selenium
   		    <<-EOS
               var text;
               try {
-                text = selenium.browserbot.getCurrentWindow().find('#{text}');
+                text = selenium.browserbot.getCurrentWindow().find(#{js_string text});
               } catch(e) {
                 text = null;
               }
@@ -75,11 +75,11 @@ module Selenium
   		    <<-EOS
   		        var element;
                 try {
-                  element = selenium.browserbot.getCurrentWindow().findElement('#{locator}');
+                  element = selenium.browserbot.getCurrentWindow().findElement(#{js_string locator});
                 } catch(e) {
                   element = null;
                 }
-                element != null && element.innerHTML == '#{text}'";
+                element != null && element.innerHTML == #{js_string text};
           EOS
         end          
 
@@ -99,7 +99,7 @@ module Selenium
 		      <<-EOS
               var text;
               try {
-                text = selenium.browserbot.getCurrentWindow().find('#{original_text}');
+                text = selenium.browserbot.getCurrentWindow().find(#{js_string original_text});
               } catch(e) {
                 text = false;
               }
@@ -110,12 +110,12 @@ module Selenium
               var element;
               
               try {
-                element = selenium.browserbot.findElement('#{locator}');
+                element = selenium.browserbot.findElement(#{js_string locator});
               } catch(e) {
                 element = null;
               }
               alert(element);
-              element != null && element.innerHTML != '#{original_text}'";
+              element != null && element.innerHTML != #{js_string original_text};
            EOS
 		    end
         wait_for_condition script, timeout_in_seconds
@@ -125,11 +125,11 @@ module Selenium
 		  def wait_for_field_value(locator, expected_value, timeout_in_seconds=nil)
 		    script = "var element;
 		              try {
-		                element = selenium.browserbot.findElement('#{locator}');
+		                element = selenium.browserbot.findElement(#{js_string locator});
 		              } catch(e) {
 		                element = null;
 		              }
-		              element != null && element.value == '#{expected_value}'";
+		              element != null && element.value == #{js_string expected_value};"
 
 		    wait_for_condition script, timeout_in_seconds
 		  end
@@ -141,8 +141,18 @@ module Selenium
         when :jquery
           JavascriptFrameworks::JQuery
         else
-          raise "Unsupported Javascript Framework: '#{framework_name}'"
+          raise "Unsupported Javascript Framework: #{js_string framework_name}"
         end
+      end
+
+
+      private
+      #-------------------------------------------------------------------------
+
+      # Returns a new string for use inside javascript code, using single quotes
+      def js_string(ruby_string)
+        escaped_single_quotes = ruby_string.gsub("'", %q<\\\'>)
+        return "#{js_string escaped_single_quotes}"
       end
 
     end
