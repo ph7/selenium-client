@@ -152,7 +152,7 @@ module Selenium
       # Returns a new string for use inside javascript code, using single quotes
       def js_string(ruby_string)
         escaped_single_quotes = ruby_string.gsub("'", %q<\\\'>)
-        return "#{js_string escaped_single_quotes}"
+        return "'#{escaped_single_quotes}'"
       end
 
     end
