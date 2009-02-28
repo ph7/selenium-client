@@ -80,13 +80,13 @@ module Selenium
 	      elsif options[:wait_for] == :ajax
 	          wait_for_ajax options
 	      elsif options[:wait_for] == :element
-	          wait_for_element options[:element], options[:timeout_in_seconds]
+	          wait_for_element options[:element], options
 	      elsif options[:wait_for] == :no_element
-	          wait_for_no_element options[:element], options[:timeout_in_seconds]
+	          wait_for_no_element options[:element], options
 	      elsif options[:wait_for] == :text
-	          wait_for_text options[:text], options[:element], options[:timeout_in_seconds]
+	          wait_for_text options[:text], options
 	      elsif options[:wait_for] == :no_text
-          wait_for_no_text options[:text], options[:element], options[:timeout_in_seconds]
+          wait_for_no_text options[:text], options
 	      elsif options[:wait_for] == :effects
 	          wait_for_effects options
 	      elsif options[:wait_for] == :popup

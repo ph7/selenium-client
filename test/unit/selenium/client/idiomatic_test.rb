@@ -111,52 +111,52 @@ unit_tests do
 
   test "wait_for waits for element to be present when element option is provided" do
     client = Class.new { include Selenium::Client::Idiomatic }.new
-    client.expects(:wait_for_element).with(:the_new_element_id, nil)
+    client.expects(:wait_for_element).with(:the_new_element_id, anything)
     client.wait_for :wait_for => :element, :element => :the_new_element_id
   end
 
   test "wait_for waits for element with explicit timeout when one is provided" do
     client = Class.new { include Selenium::Client::Idiomatic }.new
-    client.expects(:wait_for_element).with(:the_new_element_id, :the_timeout)
+    client.expects(:wait_for_element).with(:the_new_element_id, has_entry(:timeout_in_seconds => :the_timeout))
     client.wait_for :wait_for => :element, :element => :the_new_element_id,
                     :timeout_in_seconds => :the_timeout
   end
 
   test "wait_for waits for no element to be present when no_element option is provided" do
     client = Class.new { include Selenium::Client::Idiomatic }.new
-    client.expects(:wait_for_no_element).with(:the_new_element_id, nil)
+    client.expects(:wait_for_no_element).with(:the_new_element_id, has_entry(:element => :the_new_element_id))
     client.wait_for :wait_for => :no_element, :element => :the_new_element_id
   end
 
   test "wait_for waits for no element with explicit timeout when one is provided" do
     client = Class.new { include Selenium::Client::Idiomatic }.new
-    client.expects(:wait_for_no_element).with(:the_new_element_id, :the_timeout)
+    client.expects(:wait_for_no_element).with(:the_new_element_id, has_entry(:element => :the_new_element_id, :timeout_in_seconds => :the_timeout))
     client.wait_for :wait_for => :no_element, :element => :the_new_element_id,
                     :timeout_in_seconds => :the_timeout
   end
 
   test "wait_for waits for text to be present when text option is provided" do
     client = Class.new { include Selenium::Client::Idiomatic }.new
-    client.expects(:wait_for_text).with("some text", "a locator", nil)
+    client.expects(:wait_for_text).with("some text", has_entry(:element => "a locator", :text => "some text"))
     client.wait_for :wait_for => :text, :element => "a locator", :text => "some text"
   end
 
   test "wait_for waits for text with explicit timeout when one is provided" do
     client = Class.new { include Selenium::Client::Idiomatic }.new
-    client.expects(:wait_for_text).with("some text", nil, :the_timeout)
+    client.expects(:wait_for_text).with("some text", has_entry(:timeout_in_seconds => :the_timeout))
     client.wait_for :wait_for => :text, :text => "some text",
                     :timeout_in_seconds => :the_timeout
   end
 
   test "wait_for waits for text to NOT be present when no_text option is provided" do
     client = Class.new { include Selenium::Client::Idiomatic }.new
-    client.expects(:wait_for_no_text).with("some text", "a_locator", nil)
+    client.expects(:wait_for_no_text).with("some text", has_entry(:element => 'a_locator'))
     client.wait_for :wait_for => :no_text, :element => 'a_locator', :text => "some text"
   end
 
   test "wait_for waits for no text with explicit timeout and locator when none are provided" do
     client = Class.new { include Selenium::Client::Idiomatic }.new
-    client.expects(:wait_for_no_text).with("some text", nil, :the_timeout)
+    client.expects(:wait_for_no_text).with("some text", has_entry(:timeout_in_seconds => :the_timeout))
     client.wait_for :wait_for => :no_text, :text => "some text",
                     :timeout_in_seconds => :the_timeout
   end

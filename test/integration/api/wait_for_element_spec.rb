@@ -18,17 +18,17 @@ describe "Wait For (No) Element" do
   it "wait_for_element timeouts when element is not present" do
     page.open "http://localhost:4567/prototype.html"
     should_timeout do
-      page.wait_for_element "new-element", 2
+      page.wait_for_element "new-element", :timeout_in_seconds => 2
     end
     should_timeout do
-      page.wait_for_element "does-not-exists", 2
+      page.wait_for_element "does-not-exists", :timeout_in_seconds => 2
     end
   end
   
   it "wait_for_no_element timeouts when element is present" do
     page.open "http://localhost:4567/prototype.html"
     should_timeout do
-      page.wait_for_no_element "element-present-demo", 2
+      page.wait_for_no_element "element-present-demo", :timeout_in_seconds => 2
     end
   end
   
@@ -37,7 +37,7 @@ describe "Wait For (No) Element" do
     page.click "create-element-button", :wait_for => :element, :element => 'new-element'
     page.click "delete-element-button", :wait_for => :no_element, :element => 'new-element'
     should_timeout do
-      page.wait_for_element "new-element", 2
+      page.wait_for_element "new-element", :timeout_in_seconds => 2
     end
   end
   

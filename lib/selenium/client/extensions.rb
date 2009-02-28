@@ -23,15 +23,15 @@ module Selenium
 			end
 			
 			# Wait for an element to be present (the wait in happenning browser side).
-		  def wait_for_element(locator, timeout_in_seconds=nil)
+		  def wait_for_element(locator, options={})
 		    wait_for_condition find_element_script(locator, "element != null"), 
-		                       timeout_in_seconds
+		                       options[:timeout_in_seconds]
 		  end
 
 			# Wait for an element to NOT be present (the wait in happenning browser side).
-		  def wait_for_no_element(locator, timeout_in_seconds=nil)
+		  def wait_for_no_element(locator, options={})
 		    wait_for_condition find_element_script(locator, "element == null"), 
-		                       timeout_in_seconds
+		                       options[:timeout_in_seconds]
 		  end
 
 			# Wait for some text to be present (the wait in happenning browser side).
@@ -41,23 +41,12 @@ module Selenium
 			#
 			# If a non nil locator is provided, the text will be
 			# detected within the innerHTML of the element identified by the locator.			
-		  def wait_for_text(text, locator=nil, timeout_in_seconds=nil)
-		    script = case locator
-		    when nil:
-  		    <<-EOS
-              var text;
-              try {
-                text = selenium.browserbot.getCurrentWindow().find('#{quote_escaped(text)}');
-              } catch(e) {
-                text = null;
-              }
-              text != null;
-          EOS
-        else
-          find_element_script locator, "element != null && element.innerHTML == '#{quote_escaped(text)}'"
-        end          
+		  def wait_for_text(text, options={})
+        script = options[:element].nil? ?
+                 find_text_script(text, "text != null && text != false") :
+                 find_element_script(options[:element], "element != null && element.innerHTML == '#{quote_escaped(text)}'")
 
-		    wait_for_condition script, timeout_in_seconds
+		    wait_for_condition script, options[:timeout_in_seconds]
 		  end
 
 			# Wait for some text to NOT be present (the wait in happenning browser side).
@@ -67,22 +56,11 @@ module Selenium
 			#
 			# If a non nil locator is provided, the text will be
 			# detected within the innerHTML of the element identified by the locator.			
-		  def wait_for_no_text(original_text, locator=nil, timeout_in_seconds=nil)
-		    script = case locator
-		    when nil:
-		      <<-EOS
-              var text;
-              try {
-                text = selenium.browserbot.getCurrentWindow().find('#{quote_escaped(original_text)}');
-              } catch(e) {
-                text = false;
-              }
-              text == false;
-		      EOS
-		    else
-		      find_element_script locator, "element == null || element.innerHTML != '#{quote_escaped(original_text)}'"
-		    end
-        wait_for_condition script, timeout_in_seconds
+		  def wait_for_no_text(original_text, options={})
+        script = options[:element].nil? ?
+                 find_text_script(original_text, "(text == false || text == null)") :
+                 find_element_script(options[:element], "(element == null || element.innerHTML != '#{quote_escaped(original_text)}')")
+        wait_for_condition script, options[:timeout_in_seconds]
 		  end
 
 			# Wait for a field to get a specific value (the wait in happenning browser side).
@@ -109,20 +87,34 @@ module Selenium
         end
       end
 
-		  def find_element_script(locator, return_value)
-		    script = <<-EOS
-  		    var element;
-  		    try {
-  		      element = selenium.browserbot.findElement('#{quote_escaped(locator)}');
-  		    } catch(e) {
-  		      element = null;
-  		    }
-  		    #{return_value};
-		    EOS
-		  end
+      def find_element_script(locator, return_value)
+        script = <<-EOS
+          var element;
 
-      def quote_escaped(locator)
-        locator.gsub(/'/, %q<\\\'>)
+          try {
+            element = selenium.browserbot.findElement('#{quote_escaped(locator)}');
+          } catch(e) {
+            element = null;
+          }
+          #{return_value};
+        EOS
+      end
+
+      def find_text_script(text, return_value)
+        script = <<-EOS
+          var text;
+
+          try {
+            text = selenium.browserbot.getCurrentWindow().find('#{quote_escaped(text)}');
+          } catch(e) {
+            text = null;
+          }
+          #{return_value};
+        EOS
+      end
+
+      def quote_escaped(a_string)
+        a_string.gsub(/'/, %q<\\\'>)
       end
 
     end

@@ -15,7 +15,7 @@
       Event.observe(window, 'load', function() {
 
         Event.observe('create-element-button', 'click', function (event) {
-          $('element-present-demo').insert('<div id="new-element">We All Need Some Mojo</div>');
+          $('element-present-demo').insert('<div id="new-element">We All Need ' + 'Some Mojo</div>');
         });
 
         Event.observe('delete-element-button', 'click', function (event) {
