@@ -1,6 +1,7 @@
                    Selenium-Client gem ChangeLog
                    =============================
 
+
 1.2.11 (2008-02-27)
 ===================
 
@@ -46,6 +47,7 @@
  - Fixed various bugs in wait_for_xyz methods
  - API tests now rely on a demo application for integration testing of
    wait_for_xyz methods
+
 
 1.2.10 (2008-02-02)
 ===================
