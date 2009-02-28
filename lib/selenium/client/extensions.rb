@@ -66,17 +66,17 @@ module Selenium
 		  end
 
 			# Wait for a field to get a specific value (the wait in happenning browser side).
-		  def wait_for_field_value(locator, expected_value, timeout_in_seconds=nil)
-		    script = "var element;
-		              try {
-		                element = selenium.browserbot.findElement('#{quote_escaped(locator)}');
-		              } catch(e) {
-		                element = null;
-		              }
-		              element != null && element.value == '#{quote_escaped(locator)}';"
+      def wait_for_field_value(locator, expected_value, options={})
+        script = find_element_script(locator, 
+            "(element != null && element.value == '#{quote_escaped(expected_value)}')")
+        wait_for_condition script, options[:timeout_in_seconds]
+      end
 
-		    wait_for_condition script, timeout_in_seconds
-		  end
+      def wait_for_no_field_value(locator, expected_value, options={})
+        script = find_element_script(locator, 
+            "(element == null || element.value != '#{quote_escaped(expected_value)}')")
+        wait_for_condition script, options[:timeout_in_seconds]
+      end
 
       def javascript_framework_for(framework_name)
         case framework_name.to_sym

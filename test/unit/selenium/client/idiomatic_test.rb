@@ -205,6 +205,38 @@ unit_tests do
     client.wait_for :wait_for => :popup, :window => :the_window_id
   end
 
+  test "wait_for waits for field value when value option is provided" do
+    client = Class.new { include Selenium::Client::Idiomatic }.new
+    client.expects(:wait_for_field_value).with(:the_locator, :expected_value, anything)
+    client.wait_for :wait_for => :value, :element => :the_locator, :value => :expected_value
+  end
+  
+  test "wait_for for field value uses explicit timeout when provided" do
+    client = Class.new { include Selenium::Client::Idiomatic }.new
+    client.expects(:wait_for_field_value).with(:the_locator, 
+        :expected_value, 
+        has_entry(:timeout_in_seconds => :the_timeout))
+    client.wait_for :wait_for => :value, :element => :the_locator, 
+                                         :value => :expected_value, 
+                                         :timeout_in_seconds => :the_timeout
+  end
+
+  test "wait_for waits for no field value when value option is provided" do
+    client = Class.new { include Selenium::Client::Idiomatic }.new
+    client.expects(:wait_for_no_field_value).with(:the_locator, :expected_value, anything)
+    client.wait_for :wait_for => :no_value, :element => :the_locator, :value => :expected_value
+  end
+  
+  test "wait_for for no field value uses explicit timeout when provided" do
+    client = Class.new { include Selenium::Client::Idiomatic }.new
+    client.expects(:wait_for_no_field_value).with(:the_locator, 
+        :expected_value, 
+        has_entry(:timeout_in_seconds => :the_timeout))
+    client.wait_for :wait_for => :no_value, :element => :the_locator, 
+                                            :value => :expected_value, 
+                                            :timeout_in_seconds => :the_timeout
+  end
+  
   test "wait_for waits for some javascript to be true when condition option is provided" do
     client = Class.new { include Selenium::Client::Idiomatic }.new
     client.expects(:wait_for_condition).with("some javascript", nil)

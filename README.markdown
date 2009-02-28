@@ -42,6 +42,8 @@ Features
   * `click 'the_button_id', :wait_for => :no_text, :text => 'Disappearing Text'`
   * `click 'the_button_id', :wait_for => :no_text, :element => 'notification_box', :text => 'Disappearing Text'`
   * `click 'the_button_id', :wait_for => :effects`
+  * `click 'the_button_id', :wait_for => :value, :element => 'a_locator', :value => 'some value'`
+  * `click 'the_button_id', :wait_for => :no_value, :element => 'a_locator', :value => 'some value' # will wait for the field value of 'a_locator' to not be 'some value'`  
   * `click 'the_button_id', :wait_for => :condition, :javascript => "some arbitrary javascript expression"`
 
   Check out the `click`, `go_back` and `wait_for` methods of the [Idiomatic Module](http://selenium-client.rubyforge.org/classes/Selenium/Client/Idiomatic.html)
