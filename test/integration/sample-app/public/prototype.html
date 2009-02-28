@@ -1,0 +1,28 @@
+<htmL>
+<head>
+  <title>Prototype - Selenium Ruby Client Sample App</title>
+  <script type="application/x-javascript" src="/prototype-1.6.0.3.js"></script>
+</head>
+<body>
+  <h1 id="title">Prototype - Selenium Ruby Client Sample App</h1>
+
+  <div id="element-present-demo">
+    <h2>Element / Text Present</h2>
+    <input type="button" id="create-element-button" value="Create Mojo" />
+    <input type="button" id="delete-element-button" value="Destroy Mojo" />
+
+    <script type="text/javascript" language="javascript">  
+      Event.observe(window, 'load', function() {
+
+        Event.observe('create-element-button', 'click', function (event) {
+          $('element-present-demo').insert('<div id="new-element">We All Need Some Mojo</div>');
+        });
+
+        Event.observe('delete-element-button', 'click', function (event) {
+          $('new-element').remove();
+        });
+      });
+    </script>
+  </div>
+
+</body>

@@ -123,4 +123,14 @@ unit_tests do
     client.wait_for_effects :timeout_in_seconds => :explicit_timeout
   end
 
+  test "quote_escaped returns a locator has is when its does not include any single quote" do
+    client = Class.new { include Selenium::Client::Extensions }.new
+    assert_equal "the_locator", client.quote_escaped("the_locator")
+  end
+
+  test "quote_escaped escape single quotes" do
+    client = Class.new { include Selenium::Client::Extensions }.new
+    assert_equal "//div[@id=\\'demo-effect-appear\\']", client.quote_escaped("//div[@id='demo-effect-appear']")
+  end
+
 end

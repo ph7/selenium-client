@@ -24,32 +24,14 @@ module Selenium
 			
 			# Wait for an element to be present (the wait in happenning browser side).
 		  def wait_for_element(locator, timeout_in_seconds=nil)
-		    script = <<-EOS
-		    var element;
-		    try {
-		      element = selenium.browserbot.findElement(#{js_string locator});
-		    } catch(e) {
-		      element = null;
-		    }
-		    element != null;
-		    EOS
-
-		    wait_for_condition script, timeout_in_seconds
+		    wait_for_condition find_element_script(locator, "element != null"), 
+		                       timeout_in_seconds
 		  end
 
 			# Wait for an element to NOT be present (the wait in happenning browser side).
 		  def wait_for_no_element(locator, timeout_in_seconds=nil)
-		    script = <<-EOS
-		    var element;
-		    try {
-		      element = selenium.browserbot.findElement(#{js_string locator});
-		    } catch(e) {
-		      element = null;
-		    }
-		    element == null;
-		    EOS
-
-		    wait_for_condition script, timeout_in_seconds
+		    wait_for_condition find_element_script(locator, "element == null"), 
+		                       timeout_in_seconds
 		  end
 
 			# Wait for some text to be present (the wait in happenning browser side).
@@ -65,22 +47,14 @@ module Selenium
   		    <<-EOS
               var text;
               try {
-                text = selenium.browserbot.getCurrentWindow().find(#{js_string text});
+                text = selenium.browserbot.getCurrentWindow().find('#{quote_escaped(text)}');
               } catch(e) {
                 text = null;
               }
               text != null;
           EOS
         else
-  		    <<-EOS
-  		        var element;
-                try {
-                  element = selenium.browserbot.getCurrentWindow().findElement(#{js_string locator});
-                } catch(e) {
-                  element = null;
-                }
-                element != null && element.innerHTML == #{js_string text};
-          EOS
+          find_element_script locator, "element != null && element.innerHTML == '#{quote_escaped(text)}'"
         end          
 
 		    wait_for_condition script, timeout_in_seconds
@@ -99,24 +73,14 @@ module Selenium
 		      <<-EOS
               var text;
               try {
-                text = selenium.browserbot.getCurrentWindow().find(#{js_string original_text});
+                text = selenium.browserbot.getCurrentWindow().find('#{quote_escaped(original_text)}');
               } catch(e) {
                 text = false;
               }
               text == false;
 		      EOS
 		    else
-          <<-EOS
-              var element;
-              
-              try {
-                element = selenium.browserbot.findElement(#{js_string locator});
-              } catch(e) {
-                element = null;
-              }
-              alert(element);
-              element != null && element.innerHTML != #{js_string original_text};
-           EOS
+		      find_element_script locator, "element == null || element.innerHTML != '#{quote_escaped(original_text)}'"
 		    end
         wait_for_condition script, timeout_in_seconds
 		  end
@@ -125,11 +89,11 @@ module Selenium
 		  def wait_for_field_value(locator, expected_value, timeout_in_seconds=nil)
 		    script = "var element;
 		              try {
-		                element = selenium.browserbot.findElement(#{js_string locator});
+		                element = selenium.browserbot.findElement('#{quote_escaped(locator)}');
 		              } catch(e) {
 		                element = null;
 		              }
-		              element != null && element.value == #{js_string expected_value};"
+		              element != null && element.value == '#{quote_escaped(locator)}';"
 
 		    wait_for_condition script, timeout_in_seconds
 		  end
@@ -141,18 +105,24 @@ module Selenium
         when :jquery
           JavascriptFrameworks::JQuery
         else
-          raise "Unsupported Javascript Framework: #{js_string framework_name}"
+          raise "Unsupported Javascript Framework: #{framework_name}"
         end
       end
 
+		  def find_element_script(locator, return_value)
+		    script = <<-EOS
+  		    var element;
+  		    try {
+  		      element = selenium.browserbot.findElement('#{quote_escaped(locator)}');
+  		    } catch(e) {
+  		      element = null;
+  		    }
+  		    #{return_value};
+		    EOS
+		  end
 
-      private
-      #-------------------------------------------------------------------------
-
-      # Returns a new string for use inside javascript code, using single quotes
-      def js_string(ruby_string)
-        escaped_single_quotes = ruby_string.gsub("'", %q<\\\'>)
-        return "#{js_string escaped_single_quotes}"
+      def quote_escaped(locator)
+        locator.gsub(/'/, %q<\\\'>)
       end
 
     end

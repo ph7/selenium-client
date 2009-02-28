@@ -35,11 +35,13 @@ desc "Start a Selenium remote control, run all integration tests and stop the re
 task :'ci:integration' => [ :clean, :'test:unit' ] do
   Rake::Task[:"selenium:rc:stop"].execute [] rescue nil
   begin
+    Rake::Task[:"sample_app:restart"].execute []   
     Rake::Task[:"selenium:rc:start"].execute []
     Rake::Task[:"test:integration"].execute []
     Rake::Task[:"examples"].execute []
   ensure
     Rake::Task[:"selenium:rc:stop"].execute []
+    Rake::Task[:"sample_app:restart"].execute [] 
   end
 end
 
@@ -176,6 +178,25 @@ Spec::Rake::SpecTask.new("test:parallel") do |t|
     t.spec_opts << "--format=Selenium::RSpec::SeleniumTestReportFormatter:./target/report.html"
     t.spec_opts << "--format=progress"                
 end
+
+desc "Launch Sample App"
+task :'sample_app:start' do
+  Nautilus::Shell.new.run \
+      "\"#{File.expand_path(File.dirname(__FILE__) + '/test/integration/sample-app/sample_app.rb')}\"",
+      :background => true
+end
+
+desc "Stop Sample App"
+task :'sample_app:stop' do
+  Net::HTTP.get("localhost", '/shutdown', 4567)
+end
+
+desc "Restart Sample App"
+task :'sample_app:restart' do
+  Rake::Task[:"sample_app:stop"].execute([]) rescue nil
+  Rake::Task[:"sample_app:start"].execute []
+end
+
 
 specification = Gem::Specification.new do |s|
   s.name = "selenium-client"
