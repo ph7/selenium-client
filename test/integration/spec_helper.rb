@@ -29,7 +29,7 @@ Spec::Runner.configure do |config|
   def create_selenium_driver
     application_host = ENV['SELENIUM_APPLICATION_HOST'] || "localhost"
     application_port = ENV['SELENIUM_APPLICATION_PORT'] || "4567"
-    @selenium_driver = Selenium::SeleniumDriver.new \
+    @selenium_driver = Selenium::Client::Driver.new \
         :host => (ENV['SELENIUM_RC_HOST'] || "localhost"),
         :port => (ENV['SELENIUM_RC_PORT'] || 4444),
         :browser => (ENV['SELENIUM_BROWSER'] || "*firefox"),

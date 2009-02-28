@@ -127,9 +127,9 @@ module Selenium
       # * click :wait_for => :text, :element => 'a_locator', :text => 'some text'       # will wait for the content of 'a_locator' to be 'some text'
       # * click :wait_for => :no_text, :text => 'some text'                             # will wait for the text to be not be present/disappear
       # * click :wait_for => :no_text, :element => 'a_locator', :text => 'some text'    # will wait for the content of 'a_locator' to not be 'some text'
-      # * click :wait_for => :condition, :javascript => 'some expression'               # will wait for the javascript expression to be true
       # * click :wait_for => :value, :element => 'a_locator', :value => 'some value'    # will wait for the field value of 'a_locator' to be 'some value'
       # * click :wait_for => :no_value, :element => 'a_locator', :value => 'some value' # will wait for the field value of 'a_locator' to not be 'some value'
+      # * click :wait_for => :condition, :javascript => 'some expression'               # will wait for the javascript expression to be true
       #
       # Using options you can also define an explicit timeout (:timeout_in_seconds key). Otherwise the default driver timeout
       # is used.
