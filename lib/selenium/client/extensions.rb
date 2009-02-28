@@ -10,7 +10,7 @@ module Selenium
 	    # more background.
       def wait_for_ajax(options={})
         framework = javascript_framework_for(options[:javascript_framework] || default_javascript_framework)
-	      wait_for_condition "selenium.browserbot.getCurrentWindow().#{framework.ajax_request_tracker} == 0", 
+	      wait_for_condition window_script("#{framework.ajax_request_tracker} == 0"), 
 	                         options[:timeout_in_seconds]
 	    end
 	
@@ -18,7 +18,7 @@ module Selenium
 	    #
 	    # Credits to http://github.com/brynary/webrat/tree/master
 			def wait_for_effects(options={})
-			  wait_for_condition "selenium.browserbot.getCurrentWindow().Effect.Queue.size() == 0", 
+			  wait_for_condition window_script("Effect.Queue.size() == 0"), 
 			                     options[:timeout_in_seconds]
 			end
 			
@@ -44,7 +44,8 @@ module Selenium
 		  def wait_for_text(text, options={})
         script = options[:element].nil? ?
                  find_text_script(text, "text != null && text != false") :
-                 find_element_script(options[:element], "element != null && element.innerHTML == '#{quote_escaped(text)}'")
+                 find_element_script(options[:element], 
+                    "element != null && element.innerHTML == '#{quote_escaped(text)}'")
 
 		    wait_for_condition script, options[:timeout_in_seconds]
 		  end
@@ -59,7 +60,8 @@ module Selenium
 		  def wait_for_no_text(original_text, options={})
         script = options[:element].nil? ?
                  find_text_script(original_text, "(text == false || text == null)") :
-                 find_element_script(options[:element], "(element == null || element.innerHTML != '#{quote_escaped(original_text)}')")
+                 find_element_script(options[:element], 
+                    "(element == null || element.innerHTML != '#{quote_escaped(original_text)}')")
         wait_for_condition script, options[:timeout_in_seconds]
 		  end
 
@@ -111,6 +113,10 @@ module Selenium
           }
           #{return_value};
         EOS
+      end
+
+      def window_script(expression)
+        "selenium.browserbot.getCurrentWindow().#{expression};"
       end
 
       def quote_escaped(a_string)
