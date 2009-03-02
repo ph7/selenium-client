@@ -2,8 +2,6 @@ module Selenium
   module Client
     
 		# Driver constructor and session management commands
-		#
-		# Original code by Aslak Hellesoy and Darren Hobbs
     module Base
       include Selenium::Client::Protocol
       include Selenium::Client::GeneratedDriver
@@ -13,6 +11,29 @@ module Selenium
       attr_reader :host, :port, :browser_string, :browser_url, 
                   :default_timeout_in_seconds, :default_javascript_framework
   
+      #
+      # Create a new client driver
+      #
+      # Example:
+      #
+      # Selenium::Client::Driver.new \
+      #     :host => "localhost",
+      #     :port => 4444,
+      #     :browser => "*firefox",
+      #     :timeout_in_seconds => 10,
+      #     :url => "http://localhost:3000",
+      #
+      # You can also set the default javascript framework used for :wait_for
+      # AJAX and effects semantics (:prototype is the default value):
+      #
+      # Selenium::Client::Driver.new \
+      #     :host => "localhost",
+      #     :port => 4444,
+      #     :browser => "*firefox",
+      #     :timeout_in_seconds => 10,
+      #     :url => "http://localhost:3000",
+      #     :javascript_framework => :jquery
+      #
       def initialize(*args)
         if args[0].kind_of?(Hash)
           options = args[0]

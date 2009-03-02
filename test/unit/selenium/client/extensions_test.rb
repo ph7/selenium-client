@@ -5,7 +5,7 @@ unit_tests do
   test "wait_for_text waits for the innerHTML content of an element when a locator is provided" do
     client = Class.new { include Selenium::Client::Extensions }.new
     client.expects(:wait_for_condition).with(regexp_matches(/findElement\('a_locator'\)/), anything)
-    client.wait_for_text "some text", "a_locator"
+    client.wait_for_text "some text", :element => "a_locator"
   end
 
   test "wait_for_text waits for the page content when no locator is provided" do
@@ -23,13 +23,13 @@ unit_tests do
   test "wait_for_text uses explicit timeout when provided" do
     client = Class.new { include Selenium::Client::Extensions }.new
     client.expects(:wait_for_condition).with(anything, :explicit_timeout)
-    client.wait_for_text "some text", nil, :explicit_timeout
+    client.wait_for_text "some text", :timeout_in_seconds => :explicit_timeout
   end
 
   test "wait_for_no_text waits for the innerHTML content of an element when a locator is provided" do
     client = Class.new { include Selenium::Client::Extensions }.new
     client.expects(:wait_for_condition).with(regexp_matches(/findElement\('a_locator'\)/), anything)
-    client.wait_for_no_text "some text", "a_locator"
+    client.wait_for_no_text "some text", :element => "a_locator"
   end
 
   test "wait_for_no_text waits for the page content when no locator is provided" do
@@ -47,7 +47,7 @@ unit_tests do
   test "wait_for_no_text uses explicit timeout when provided" do
     client = Class.new { include Selenium::Client::Extensions }.new
     client.expects(:wait_for_condition).with(anything, :explicit_timeout)
-    client.wait_for_no_text "some text", nil, :explicit_timeout
+    client.wait_for_no_text "some text", :timeout_in_seconds => :explicit_timeout
   end
   
   test "javascript_framework_for :prototype returns JavascriptFrameworks::Prototype" do
@@ -70,21 +70,21 @@ unit_tests do
   test "wait_for_ajax uses Ajax.activeRequestCount when default js framework is prototype" do
     client = Class.new { include Selenium::Client::Extensions }.new
     client.stubs(:default_javascript_framework).returns(:prototype)
-    client.expects(:wait_for_condition).with("selenium.browserbot.getCurrentWindow().Ajax.activeRequestCount == 0", anything)
+    client.expects(:wait_for_condition).with("selenium.browserbot.getCurrentWindow().Ajax.activeRequestCount == 0;", anything)
     client.wait_for_ajax
   end
 
   test "wait_for_ajax uses jQuery.active when default js framework is jQuery" do
     client = Class.new { include Selenium::Client::Extensions }.new
     client.stubs(:default_javascript_framework).returns(:jquery)
-    client.expects(:wait_for_condition).with("selenium.browserbot.getCurrentWindow().jQuery.active == 0", anything)
+    client.expects(:wait_for_condition).with("selenium.browserbot.getCurrentWindow().jQuery.active == 0;", anything)
     client.wait_for_ajax
   end
 
   test "wait_for_ajax can override default js framework" do
     client = Class.new { include Selenium::Client::Extensions }.new
     client.stubs(:default_javascript_framework).returns(:prototype)
-    client.expects(:wait_for_condition).with("selenium.browserbot.getCurrentWindow().jQuery.active == 0", anything)
+    client.expects(:wait_for_condition).with("selenium.browserbot.getCurrentWindow().jQuery.active == 0;", anything)
     client.wait_for_ajax :javascript_framework => :jquery    
   end
   
@@ -105,7 +105,7 @@ unit_tests do
   test "wait_for_effect uses Effect.Queue.size() when default js framework is prototype" do
     client = Class.new { include Selenium::Client::Extensions }.new
     client.stubs(:default_javascript_framework).returns(:prototype)
-    client.expects(:wait_for_condition).with("selenium.browserbot.getCurrentWindow().Effect.Queue.size() == 0", anything)
+    client.expects(:wait_for_condition).with("selenium.browserbot.getCurrentWindow().Effect.Queue.size() == 0;", anything)
     client.wait_for_effects
   end
 
@@ -121,6 +121,52 @@ unit_tests do
     client.stubs(:default_javascript_framework).returns(:prototype)
     client.expects(:wait_for_condition).with(anything, :explicit_timeout)
     client.wait_for_effects :timeout_in_seconds => :explicit_timeout
+  end
+
+  test "wait_for_field_value uses provided locator" do
+    client = Class.new { include Selenium::Client::Extensions }.new
+    client.expects(:wait_for_condition).with(regexp_matches(/findElement\('a_locator'\)/), anything)
+    client.wait_for_field_value "a_locator", "a value"
+  end
+  
+  test "wait_for_field_value uses provided field value" do
+    client = Class.new { include Selenium::Client::Extensions }.new
+    client.expects(:wait_for_condition).with(regexp_matches(/element.value == 'a value'/), anything)
+    client.wait_for_field_value "a_locator", "a value"
+  end
+
+  test "wait_for_field_value uses explicit timeout when provided" do
+    client = Class.new { include Selenium::Client::Extensions }.new
+    client.expects(:wait_for_condition).with(anything, :the_timeout)
+    client.wait_for_field_value "a_locator", "a value", :timeout_in_seconds => :the_timeout
+  end
+
+  test "wait_for_no_field_value uses provided locator" do
+    client = Class.new { include Selenium::Client::Extensions }.new
+    client.expects(:wait_for_condition).with(regexp_matches(/findElement\('a_locator'\)/), anything)
+    client.wait_for_no_field_value "a_locator", "a value"
+  end
+  
+  test "wait_for_no_field_value uses provided field value" do
+    client = Class.new { include Selenium::Client::Extensions }.new
+    client.expects(:wait_for_condition).with(regexp_matches(/element.value != 'a value'/), anything)
+    client.wait_for_no_field_value "a_locator", "a value"
+  end
+
+  test "wait_for_no_field_value uses explicit timeout when provided" do
+    client = Class.new { include Selenium::Client::Extensions }.new
+    client.expects(:wait_for_condition).with(anything, :the_timeout)
+    client.wait_for_no_field_value "a_locator", "a value", :timeout_in_seconds => :the_timeout
+  end
+
+  test "quote_escaped returns a locator has is when its does not include any single quote" do
+    client = Class.new { include Selenium::Client::Extensions }.new
+    assert_equal "the_locator", client.quote_escaped("the_locator")
+  end
+
+  test "quote_escaped escape single quotes" do
+    client = Class.new { include Selenium::Client::Extensions }.new
+    assert_equal "//div[@id=\\'demo-effect-appear\\']", client.quote_escaped("//div[@id='demo-effect-appear']")
   end
 
 end

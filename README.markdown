@@ -42,6 +42,8 @@ Features
   * `click 'the_button_id', :wait_for => :no_text, :text => 'Disappearing Text'`
   * `click 'the_button_id', :wait_for => :no_text, :element => 'notification_box', :text => 'Disappearing Text'`
   * `click 'the_button_id', :wait_for => :effects`
+  * `click 'the_button_id', :wait_for => :value, :element => 'a_locator', :value => 'some value'`
+  * `click 'the_button_id', :wait_for => :no_value, :element => 'a_locator', :value => 'some value' # will wait for the field value of 'a_locator' to not be 'some value'`  
   * `click 'the_button_id', :wait_for => :condition, :javascript => "some arbitrary javascript expression"`
 
   Check out the `click`, `go_back` and `wait_for` methods of the [Idiomatic Module](http://selenium-client.rubyforge.org/classes/Selenium/Client/Idiomatic.html)
@@ -76,11 +78,17 @@ Plain API
     # Sample Ruby script using the Selenium client API
     #
     require "rubygems"
-    gem "selenium-client", ">=1.2.10"
+    gem "selenium-client", ">=1.2.11"
     require "selenium/client"
     
     begin
-      @browser = Selenium::Client::Driver.new("localhost", 4444, "*firefox", "http://www.google.com", 10000);
+      @browser = Selenium::Client::Driver.new \
+          :host => "localhost", 
+          :port => 4444, 
+          :browser => "*firefox", 
+          :url => "http://www.google.com", 
+          :timeout_in_second => 60
+    
       @browser.start_new_browser_session
     	@browser.open "/"
     	@browser.type "q", "Selenium seleniumhq.org"
@@ -89,6 +97,7 @@ Plain API
     ensure
       @browser.close_current_browser_session    
     end
+
  
 Writing Tests
 =============
@@ -102,14 +111,20 @@ Writing Tests
     #
     require "test/unit"
     require "rubygems"
-    gem "selenium-client", ">=1.2.10"
+    gem "selenium-client", ">=1.2.11"
     require "selenium/client"
     
     class ExampleTest < Test::Unit::TestCase
     	attr_reader :browser
     
       def setup
-        @browser = Selenium::Client::Driver.new "localhost", 4444, "*firefox", "http://www.google.com", 10000
+        @browser = Selenium::Client::Driver.new \
+            :host => "localhost", 
+            :port => 4444, 
+            :browser => "*firefox", 
+            :url => "http://www.google.com", 
+            :timeout_in_second => 60
+    
         browser.start_new_browser_session
       end
     
@@ -134,7 +149,7 @@ Writing Tests
 
     require 'rubygems'
     gem "rspec", "=1.1.12"
-    gem "selenium-client", ">=1.2.10"
+    gem "selenium-client", ">=1.2.11"
     require "selenium/client"
     require "selenium/rspec/spec_helper"
     
@@ -143,7 +158,12 @@ Writing Tests
     	alias :page :selenium_driver
     
       before(:all) do
-          @selenium_driver = Selenium::Client::Driver.new "localhost", 4444, "*firefox", "http://www.google.com", 10000    
+          @selenium_driver = Selenium::Client::Driver.new \
+              :host => "localhost", 
+              :port => 4444, 
+              :browser => "*firefox", 
+              :url => "http://www.google.com", 
+              :timeout_in_second => 60
       end
     
       before(:each) do
