@@ -267,7 +267,23 @@ Contribute and Join the Fun!
 * We also have a [continuous integration server](http://xserve.openqa.org:8080/view/Ruby%20Client)
 
 
+Core Team
+=========
+
+* Philippe Hanrigou (`ph7`): Current Maintainer and main contributor
+* Aslak Hellesoy and Darren Hobbs : Original version of the Selenium Ruby driver
+
+Contributors
+============
   
+* Aaron Tinio (`aptinio`):
+
+  - Patch for more robust Selenium RC shutdown
+  - Patch to support locator including single quotes in `wait_for_...` methods
+
+* Rick Lee-Morlang (`rleemorlang`):
+   - Patch for incremental calls to `wait_for_text`
+   - Regex support in `wait_for_text`
+
   
- 
  
