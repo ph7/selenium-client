@@ -64,11 +64,28 @@ describe "Wait For (No) Text" do
   it "wait_for_text can handle quotes and double quotes in its locator definition" do
     page.open "http://localhost:4567/prototype.html"
     page.wait_for_text "Prototype - Selenium Ruby Client Sample App", 
-                       :locator => "//h1[@id='title']"
+                       :element => "//h1[@id='title']"
     page.wait_for_no_text "Some With A ' Single Quote"
     page.click "create-element-button", :wait_for => :text, 
                                         :text => "We All Need Some Mojo", 
                                         :element => "//div[@id='new-element']"
+  end
+  
+  it "should find arbitrary strings anywhere in the page regardless of search order" do
+    page.open "http://localhost:4567/prototype.html"
+    page.wait_for_text "Sample App"
+    page.wait_for_text "Ruby Client"
+  end
+  
+  it "should support matching text using regular expressions" do
+    page.open "http://localhost:4567/prototype.html"
+    page.wait_for_text /Sample App/
+    page.wait_for_text /Selenium.*Client/, 
+                       :element => "//h1[@id='title']"
+    page.wait_for_no_text /^Selenium.*Client$/, 
+                       :element => "//h1[@id='title']"
+    page.wait_for_text /here/, :element => "dangerous-characters"
+    page.wait_for_text /' \/ \\/, :element => "dangerous-characters"
   end
   
 end
