@@ -30,16 +30,16 @@ describe "Wait For (No) Text" do
   
   it "wait_for_no_text timeouts when element is present" do
     page.open "http://localhost:4567/prototype.html"
-    # should_timeout do
-    #   page.wait_for_no_text "Prototype - Selenium Ruby Client Sample App", 
-    #                         :timeout_in_seconds => 2
-    # end
+    should_timeout do
+      page.wait_for_no_text "Prototype - Selenium Ruby Client Sample App", 
+                            :timeout_in_seconds => 2
+    end
     should_timeout do
       page.wait_for_no_text "Prototype - Selenium Ruby Client Sample App",
                             :element => "title", :timeout_in_seconds => 2
     end
   end
-
+  
   it "wait_for_text detects dynamics changes in the DOM" do
     page.open "http://localhost:4567/prototype.html"
     page.click "create-element-button", :wait_for => :text, 
@@ -60,7 +60,7 @@ describe "Wait For (No) Text" do
       page.wait_for_text "We All Need Some Mojo", :timeout_in_seconds => 2
     end
   end
-
+  
   it "wait_for_text can handle quotes and double quotes in its locator definition" do
     page.open "http://localhost:4567/prototype.html"
     page.wait_for_text "Prototype - Selenium Ruby Client Sample App", 
@@ -71,19 +71,20 @@ describe "Wait For (No) Text" do
                                         :element => "//div[@id='new-element']"
   end
   
-  it "should find arbitrary strings anywhere in the page regardless of search order" do
+  it "wait_for_text support incremental searches anywhere in the page" do
     page.open "http://localhost:4567/prototype.html"
     page.wait_for_text "Sample App"
     page.wait_for_text "Ruby Client"
   end
   
-  it "should support matching text using regular expressions" do
+  it "wait_for_text support matching text using regular expressions" do
     page.open "http://localhost:4567/prototype.html"
     page.wait_for_text /Sample App/
+    page.wait_for_text /Sample.*App/
     page.wait_for_text /Selenium.*Client/, 
                        :element => "//h1[@id='title']"
     page.wait_for_no_text /^Selenium.*Client$/, 
-                       :element => "//h1[@id='title']"
+                          :element => "//h1[@id='title']"
     page.wait_for_text /here/, :element => "dangerous-characters"
     page.wait_for_text /' \/ \\/, :element => "dangerous-characters"
   end
