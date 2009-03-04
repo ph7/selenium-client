@@ -184,6 +184,7 @@ task :'sample_app:start' do
   Nautilus::Shell.new.run \
       "\"#{File.expand_path(File.dirname(__FILE__) + '/test/integration/sample-app/sample_app.rb')}\"",
       :background => true
+  TCPSocket.wait_for_service :host => "localhost", :port => 4567
 end
 
 desc "Stop Sample App"

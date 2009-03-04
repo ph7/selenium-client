@@ -2,12 +2,21 @@
                    =============================
 
 
-1.2.11 (2008-02-28)
+1.2.13 (2008-03-05)
+===================
+
+ - Patch for incremental calls to `wait_for_text`
+ - Regex support in `wait_for_text`
+
+  => TODO need to update documentation with wait_for_text regexp support
+  
+  
+1.2.12 (2009-02-28)
 ===================
 
  - Packaging generated driver that was left out in 1.2.11 packaging
 
-1.2.11 (2008-02-27)
+1.2.11 (2009-02-27)
 ===================
 
  - More idiomatic hash-based constructor for the client driver:
@@ -54,7 +63,7 @@
    wait_for_xyz methods
 
 
-1.2.10 (2008-02-02)
+1.2.10 (2009-02-02)
 ===================
 
  - Upgraded RSpec support to 1.1.12
