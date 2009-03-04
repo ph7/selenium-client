@@ -260,12 +260,12 @@ Contribute and Join the Fun!
   envision!
   
 * I recommend cloning the selenium-client [reference repository](http://github.com/ph7/selenium-client/tree/master)
-  I you are more of a SVN guy, the same code also lives at [OpenQA](http://svn.openqa.org/svn/selenium-rc/trunk/clients/ruby)
   
 * You can also check out the [RubyForge page](http://rubyforge.org/projects/selenium-client) and the [RDoc](http://selenium-client.rubyforge.org)
   
 * We also have a [continuous integration server](http://xserve.openqa.org:8080/view/Ruby%20Client)
 
+* Stories live in [Pivotal Tracker](https://www.pivotaltracker.com/projects/6280)
 
 Core Team
 =========
