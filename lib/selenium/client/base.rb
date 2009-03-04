@@ -9,30 +9,41 @@ module Selenium
       include Selenium::Client::Idiomatic
 
       attr_reader :host, :port, :browser_string, :browser_url, 
-                  :default_timeout_in_seconds, :default_javascript_framework
+                  :default_timeout_in_seconds, :default_javascript_framework,
+                  :auto_highlighting
   
       #
       # Create a new client driver
       #
-      # Example:
+      # ==== Example:
       #
-      # Selenium::Client::Driver.new \
+      #   Selenium::Client::Driver.new \ 
       #     :host => "localhost",
       #     :port => 4444,
       #     :browser => "*firefox",
       #     :timeout_in_seconds => 10,
       #     :url => "http://localhost:3000",
       #
-      # You can also set the default javascript framework used for :wait_for
-      # AJAX and effects semantics (:prototype is the default value):
+      # ==== Options:
       #
-      # Selenium::Client::Driver.new \
+      # [<tt>:javascript_framework</tt>]
+      #     set the default javascript framework used for <tt>:wait_for</tt>
+      #     AJAX and effects semantics (<tt>:prototype</tt> is the default value)
+      #
+      # [<tt>:auto_highlighting</tt>]
+      #     turns on automatic highlighting of elements
+      #     (default value: <tt>false</tt>)
+      #
+      # ==== Example:
+      #
+      #   Selenium::Client::Driver.new \ 
       #     :host => "localhost",
       #     :port => 4444,
       #     :browser => "*firefox",
       #     :timeout_in_seconds => 10,
       #     :url => "http://localhost:3000",
-      #     :javascript_framework => :jquery
+      #     :javascript_framework => :jquery,
+      #     :auto_highlighting => true,
       #
       def initialize(*args)
         if args[0].kind_of?(Hash)
@@ -43,6 +54,7 @@ module Selenium
           @browser_url = options[:url]
           @default_timeout_in_seconds = (options[:timeout_in_seconds] || 300).to_i
           @default_javascript_framework = options[:javascript_framework] || :prototype
+          @auto_highlighting = options[:auto_highlighting] || false
         else
           @host = args[0]
           @port = args[1].to_i
@@ -50,6 +62,7 @@ module Selenium
           @browser_url = args[3]
           @default_timeout_in_seconds = (args[4] || 300).to_i
           @default_javascript_framework = :prototype
+          @auto_highlighting = false
         end
 
         @extension_js = ""
