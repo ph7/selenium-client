@@ -278,8 +278,8 @@ Contributors
   
 * Aaron Tinio (`aptinio`):
 
-  - Patch for more robust Selenium RC shutdown
-  - Patch to support locator including single quotes in `wait_for_...` methods
+   - Patch for more robust Selenium RC shutdown
+   - Patch to support locator including single quotes in `wait_for_...` methods
 
 * Rick Lee-Morlang (`rleemorlang`):
    - Patch for incremental calls to `wait_for_text`
