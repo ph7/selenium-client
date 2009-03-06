@@ -9,7 +9,8 @@ Spec::Runner.configure do |config|
 
   config.prepend_after(:each) do
     begin 
-      Selenium::RSpec::SeleniumTestReportFormatter.capture_system_state(selenium_driver, self) if execution_error
+      failed = execution_error && !execution_error.instance_of?(ExamplePendingError)
+      Selenium::RSpec::SeleniumTestReportFormatter.capture_system_state(selenium_driver, self) if failed
       if selenium_driver.session_started?
         selenium_driver.set_context "Ending example '#{self.description}'"
       end
