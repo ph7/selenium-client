@@ -8,9 +8,10 @@ require File.expand_path(File.dirname(__FILE__) + "/reporting/selenium_test_repo
 Spec::Runner.configure do |config|
 
   config.prepend_after(:each) do
-    begin 
-      failed = execution_error && !execution_error.instance_of?(ExamplePendingError)
-      Selenium::RSpec::SeleniumTestReportFormatter.capture_system_state(selenium_driver, self) if failed
+    begin
+      Selenium::RSpec::SeleniumTestReportFormatter.capture_system_state(selenium_driver, self) unless
+        [NilClass, Spec::Example::NotYetImplementedError, Spec::Example::ExamplePendingError].include? execution_error.class
+      
       if selenium_driver.session_started?
         selenium_driver.set_context "Ending example '#{self.description}'"
       end
