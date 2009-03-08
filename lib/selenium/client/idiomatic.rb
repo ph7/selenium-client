@@ -67,8 +67,10 @@ module Selenium
       # * wait :wait_for => :element, :element => 'new_element_id'                     # will wait for an element to be present/appear
       # * wait :wait_for => :no_element, :element => 'new_element_id'                  # will wait for an element to be not be present/disappear
       # * wait :wait_for => :text, :text => 'some text'                                # will wait for some text to be present/appear
+      # * wait :wait_for => :text, :text => /A Regexp/                                 # will wait for some text to be present/appear
       # * wait :wait_for => :text, :element => 'a_locator', :text => 'some text'       # will wait for the content of 'a_locator' to be 'some text'
       # * wait :wait_for => :no_text, :text => 'some text'                             # will wait for the text to be not be present/disappear
+      # * wait :wait_for => :no_text, :text => /A Regexp/                              # will wait for the text to be not be present/disappear
       # * wait :wait_for => :no_text, :element => 'a_locator', :text => 'some text'    # will wait for the content of 'a_locator' to not be 'some text'
       # * wait :wait_for => :value, :element => 'a_locator', :value => 'some value'    # will wait for the field value of 'a_locator' to be 'some value'
       # * wait :wait_for => :no_value, :element => 'a_locator', :value => 'some value' # will wait for the field value of 'a_locator' to not be 'some value'
@@ -124,8 +126,10 @@ module Selenium
       # * click "a_locator", :wait_for => :element, :element => 'new_element_id'                     # will wait for an element to be present/appear
       # * click "a_locator", :wait_for => :no_element, :element => 'new_element_id'                  # will wait for an element to be not be present/disappear
       # * click "a_locator", :wait_for => :text, :text => 'some text'                                # will wait for some text to be present/appear
+      # * click "a_locator", :wait_for => :text, :text => /A Regexp/                                 # will wait for some text to be present/appear
       # * click "a_locator", :wait_for => :text, :element => 'a_locator', :text => 'some text'       # will wait for the content of 'a_locator' to be 'some text'
       # * click "a_locator", :wait_for => :no_text, :text => 'some text'                             # will wait for the text to be not be present/disappear
+      # * click "a_locator", :wait_for => :no_text, :text => /A Regexp/                              # will wait for the text to be not be present/disappear
       # * click "a_locator", :wait_for => :no_text, :element => 'a_locator', :text => 'some text'    # will wait for the content of 'a_locator' to not be 'some text'
       # * click "a_locator", :wait_for => :value, :element => 'a_locator', :value => 'some value'    # will wait for the field value of 'a_locator' to be 'some value'
       # * click "a_locator", :wait_for => :no_value, :element => 'a_locator', :value => 'some value' # will wait for the field value of 'a_locator' to not be 'some value'
@@ -320,8 +324,10 @@ module Selenium
       # * go_back :wait_for => :element, :element => 'new_element_id'                     # will wait for an element to be present/appear
       # * go_back :wait_for => :no_element, :element => 'new_element_id'                  # will wait for an element to be not be present/disappear
       # * go_back :wait_for => :text, :text => 'some text'                                # will wait for some text to be present/appear
+      # * go_back "a_locator", :wait_for => :text, :text => /A Regexp/                    # will wait for some text to be present/appear
       # * go_back :wait_for => :text, :element => 'a_locator', :text => 'some text'       # will wait for the content of 'a_locator' to be 'some text'
       # * go_back :wait_for => :no_text, :text => 'some text'                             # will wait for the text to be not be present/disappear
+      # * go_back "a_locator", :wait_for => :no_text, :text => /A Regexp/                 # will wait for the text to be not be present/disappear
       # * go_back :wait_for => :no_text, :element => 'a_locator', :text => 'some text'    # will wait for the content of 'a_locator' to not be 'some text'
       # * go_back :wait_for => :condition, :javascript => 'some expression'               # will wait for the javascript expression to be true
       # * go_back :wait_for => :value, :element => 'a_locator', :value => 'some value'    # will wait for the field value of 'a_locator' to be 'some value'

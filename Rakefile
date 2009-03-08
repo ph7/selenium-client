@@ -240,3 +240,5 @@ desc "Publish RDoc on Rubyforge website"
 task :'rdoc:publish' => :rdoc do
   sh "scp -r doc/* #{ENV['USER']}@rubyforge.org:/var/www/gforge-projects/selenium-client"
 end
+
+task :package => [ "lib/selenium/client/generated_driver.rb" ]
