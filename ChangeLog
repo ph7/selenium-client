@@ -2,6 +2,12 @@
                    =============================
 
 
+1.2.14 (2008-03-08)
+===================
+
+ - Fixing packaging problem
+ - Removed warnings when running unit tests
+
 1.2.13 (2008-03-05)
 ===================
 
