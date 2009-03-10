@@ -38,8 +38,10 @@ Features
   * `click 'the_button_id', :wait_for => :element, :element => 'new_element_id'`
   * `click 'the_button_id', :wait_for => :no_element, :element => 'disappearing_element_id'`
   * `click 'the_button_id', :wait_for => :text, :text => 'New Text'`
+  * `click 'the_button_id', :wait_for => :text, :text => /A Regexp/`
   * `click 'the_button_id', :wait_for => :text, :element => 'notification_box', :text => 'New Text'`
   * `click 'the_button_id', :wait_for => :no_text, :text => 'Disappearing Text'`
+  * `click 'the_button_id', :wait_for => :no_text, :text => /A Regexp/`
   * `click 'the_button_id', :wait_for => :no_text, :element => 'notification_box', :text => 'Disappearing Text'`
   * `click 'the_button_id', :wait_for => :effects`
   * `click 'the_button_id', :wait_for => :value, :element => 'a_locator', :value => 'some value'`
@@ -78,7 +80,7 @@ Plain API
     # Sample Ruby script using the Selenium client API
     #
     require "rubygems"
-    gem "selenium-client", ">=1.2.11"
+    gem "selenium-client", ">=1.2.13"
     require "selenium/client"
     
     begin
@@ -111,7 +113,7 @@ Writing Tests
     #
     require "test/unit"
     require "rubygems"
-    gem "selenium-client", ">=1.2.11"
+    gem "selenium-client", ">=1.2.13"
     require "selenium/client"
     
     class ExampleTest < Test::Unit::TestCase
@@ -149,7 +151,7 @@ Writing Tests
 
     require 'rubygems'
     gem "rspec", "=1.1.12"
-    gem "selenium-client", ">=1.2.11"
+    gem "selenium-client", ">=1.2.13"
     require "selenium/client"
     require "selenium/rspec/spec_helper"
     
@@ -260,12 +262,12 @@ Contribute and Join the Fun!
   envision!
   
 * I recommend cloning the selenium-client [reference repository](http://github.com/ph7/selenium-client/tree/master)
-  I you are more of a SVN guy, the same code also lives at [OpenQA](http://svn.openqa.org/svn/selenium-rc/trunk/clients/ruby)
   
 * You can also check out the [RubyForge page](http://rubyforge.org/projects/selenium-client) and the [RDoc](http://selenium-client.rubyforge.org)
   
 * We also have a [continuous integration server](http://xserve.openqa.org:8080/view/Ruby%20Client)
 
+* Stories live in [Pivotal Tracker](https://www.pivotaltracker.com/projects/6280)
 
 Core Team
 =========
@@ -277,9 +279,8 @@ Contributors
 ============
   
 * Aaron Tinio (`aptinio`):
-
-  - Patch for more robust Selenium RC shutdown
-  - Patch to support locator including single quotes in `wait_for_...` methods
+   - Patch for more robust Selenium RC shutdown
+   - Patch to support locator including single quotes in `wait_for_...` methods
 
 * Rick Lee-Morlang (`rleemorlang`):
    - Patch for incremental calls to `wait_for_text`

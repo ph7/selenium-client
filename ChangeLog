@@ -2,14 +2,22 @@
                    =============================
 
 
+1.2.14 (2008-03-08)
+===================
+
+ - Fixing packaging problem
+ - Removed warnings when running unit tests
+
 1.2.13 (2008-03-05)
 ===================
 
- - Patch for incremental calls to `wait_for_text`
- - Regex support in `wait_for_text`
+ - Patch for incremental calls to `wait_for_text` (Thank you Rick Lee-Morlang)
 
-  => TODO need to update documentation with wait_for_text regexp support
-  
+ - Regular expression support in `wait_for_text` (Thank you Rick Lee-Morlang)
+
+    click "a_locator", :wait_for => :text, :text => /Some.*ing/
+
+ - Set read and open timeout on HTTP connection to Remote Control
   
 1.2.12 (2009-02-28)
 ===================

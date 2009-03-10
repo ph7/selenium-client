@@ -57,8 +57,8 @@ unit_tests do
 
   test "find_element adds a script to find an element" do
     builder = Selenium::Client::JavascriptExpressionBuilder.new
-    assert_match /element\s+=\s+selenium.browserbot.findElement\('a_locator'\);/m, 
-                 builder.find_element('a_locator').script
+    assert_match(/element\s+=\s+selenium.browserbot.findElement\('a_locator'\);/m, 
+                 builder.find_element('a_locator').script)
   end
   
   test "javascript_framework_for :prototype returns JavascriptFrameworks::Prototype" do

@@ -17,7 +17,7 @@ unit_tests do
   test "wait_for_text waits for the page content regexp when no locator is provided" do
     client = Class.new { include Selenium::Client::Extensions }.new
     client.expects(:wait_for_condition).with(regexp_matches(%r{document.body.innerHTML.match\(/some text/\)}m), anything)
-    client.wait_for_text /some text/
+    client.wait_for_text(/some text/)
   end
   
   test "wait_for_text uses default timeout when none is provided" do
@@ -41,7 +41,7 @@ unit_tests do
   test "wait_for_no_text waits for the page content for regexp when no locator is provided" do
     client = Class.new { include Selenium::Client::Extensions }.new
     client.expects(:wait_for_condition).with(regexp_matches(%r{document.body.innerHTML.match\(/some text/\)}m), anything)
-    client.wait_for_no_text /some text/
+    client.wait_for_no_text(/some text/)
   end
   
   test "wait_for_no_text waits for the page content when no locator is provided" do

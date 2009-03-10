@@ -202,7 +202,7 @@ end
 specification = Gem::Specification.new do |s|
   s.name = "selenium-client"
   s.summary = "Official Ruby Client for Selenium RC."
-  s.version = "1.2.12"
+  s.version = "1.2.15"
   s.author = "OpenQA"
   s.email = 'selenium-client@rubyforge.org'
   s.homepage = "http://selenium-client.rubyforge.com"
@@ -240,3 +240,5 @@ desc "Publish RDoc on Rubyforge website"
 task :'rdoc:publish' => :rdoc do
   sh "scp -r doc/* #{ENV['USER']}@rubyforge.org:/var/www/gforge-projects/selenium-client"
 end
+
+task :package => [ :'test:unit' ]

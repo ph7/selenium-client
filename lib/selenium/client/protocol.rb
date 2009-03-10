@@ -87,6 +87,8 @@ module Selenium
       def http_post(data)
         # puts "Requesting ---> #{data.inspect}"
         http = Net::HTTP.new(@host, @port)
+        http.open_timeout = default_timeout_in_seconds
+        http.read_timeout = default_timeout_in_seconds
         response = http.post('/selenium-server/driver/', data, HTTP_HEADERS)
         # puts "RESULT: #{response.inspect}\n"       
         [ response.body[0..1], response.body[3..-1] ]
