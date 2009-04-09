@@ -6,7 +6,7 @@
 require "digest/md5"
 require "base64"
 require "rubygems"
-gem "rspec", "1.1.12"
+gem "rspec", "1.2.2"
 require "spec"
 require 'spec/runner/formatter/html_formatter'
 require File.expand_path(File.dirname(__FILE__) + "/file_path_strategy")
@@ -87,9 +87,10 @@ module Selenium
       protected
         
       def include_example_group_description(example)
-        def example.description
-          self.class.description.to_s + " :: " + super
-        end
+        #NOOP ?
+        # def example.description
+        #   self.class.description.to_s + " :: " + super
+        # end
       end
   
     end

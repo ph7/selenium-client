@@ -9,7 +9,7 @@ require 'rake/gempackagetask'
 require 'rake/rdoctask'
 
 require 'rubygems'
-gem "rspec", "1.1.12"
+gem "rspec", "1.2.2"
 require 'spec/rake/spectask'
 require 'selenium/rake/tasks'
 
