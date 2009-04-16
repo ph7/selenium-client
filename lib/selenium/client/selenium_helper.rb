@@ -23,13 +23,18 @@ module Selenium
       end
 
       # Passes all calls to missing methods to @selenium
+      # Passes all calls to missing methods to @selenium
       def method_missing(method_name, *args)
-        if args.empty?
-            @selenium.send(method_name)
+        if @selenium.respond_to?(method_name)
+          if args.empty?
+              @selenium.send(method_name)
+          else
+              @selenium.send(method_name, *args)
+          end
         else
-            @selenium.send(method_name, *args)
+          super
         end
-      end      
+      end                  
     end
     
   end
