@@ -21,19 +21,19 @@ module Selenium
         end
 
         def relative_file_path_for_html_capture(example)
-          "#{relative_dir}/example_#{example_hash(example)}.html"
+          "#{relative_dir}/example_#{example.reporting_uid}.html"
         end
 
         def relative_file_path_for_system_screenshot(example)
-          "#{relative_dir}/example_#{example_hash(example)}_system_screenshot.png"
+          "#{relative_dir}/example_#{example.reporting_uid}_system_screenshot.png"
         end
 
         def relative_file_path_for_page_screenshot(example)
-          "#{relative_dir}/example_#{example_hash(example)}_page_screenshot.png"
+          "#{relative_dir}/example_#{example.reporting_uid}_page_screenshot.png"
         end
 
         def relative_file_path_for_remote_control_logs(example)
-          "#{relative_dir}/example_#{example_hash(example)}_remote_control.log"
+          "#{relative_dir}/example_#{example.reporting_uid}_remote_control.log"
         end
 
         def file_path_for_html_capture(example)
@@ -59,12 +59,7 @@ module Selenium
           the_file_path
         end
 
-        def example_hash(example)
-          # backtrace is not reliable anymore using the implementation proc          
-          implementation = example.instance_variable_get :'@_implementation'
-          Digest::MD5.hexdigest implementation.inspect
-        end
-      
+       
       end
       
     end      
