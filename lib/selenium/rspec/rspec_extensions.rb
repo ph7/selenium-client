@@ -7,10 +7,17 @@ require 'spec/example/example_group'
 # Monkey-patch RSpec Example Group so that we can track whether an
 # example already failed or not in an after(:each) block
 #
-# useful to only capture Selenium screenshots when a test fails  
+# Useful to only capture Selenium screenshots when a test fails  
 #
-# Only changed execution_error to be an instance variable (in lieu of 
-# a local variable).
+# * Changed execution_error to be an instance variable (in lieu of 
+#   a local variable).
+#
+# * Introduced an unique id (example_uid) that is the same for 
+#   a real Example (passed in after(:each) when screenshot is 
+#   taken) as well as the corresponding ExampleProxy 
+#   (passed to the HTML formatter). This unique id gives us
+#   a way to correlate file names between generation and 
+#   reporting time.
 #
 module Spec
   module Example
@@ -20,6 +27,7 @@ module Spec
 
       def execute(run_options, instance_variables) # :nodoc:
         puts caller unless caller(0)[1] =~ /example_group_methods/
+        @_proxy.options[:actual_example] = self
         run_options.reporter.example_started(@_proxy)
         set_instance_variables_from_hash(instance_variables)
         
@@ -41,8 +49,22 @@ module Spec
         run_options.reporter.example_finished(@_proxy.update(description), @execution_error)
         success = @execution_error.nil? || ExamplePendingError === @execution_error
       end
-      
+
+      def reporting_uid
+          # backtrace is not reliable anymore using the implementation proc          
+          Digest::MD5.hexdigest @_implementation.inspect
+      end
+ 
     end
+
+    class ExampleProxy
+
+      def reporting_uid
+        options[:actual_example].reporting_uid
+      end
+
+    end
+
   end
 end
 
