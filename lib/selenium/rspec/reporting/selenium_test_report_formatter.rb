@@ -18,14 +18,19 @@ module Selenium
       
     class SeleniumTestReportFormatter < Spec::Runner::Formatter::HtmlFormatter
 
+      def initialize(options, output)
+        super
+        raise "Unexpected output type #{output.inspect}" unless output.kind_of?(String)
+        @@file_path_strategy = Selenium::RSpec::Reporting::FilePathStrategy.new(output)
+      end
+
       def start(example_count)
         super
         # ensure there's at least 1 example group header (normally 0 with deep_test)
         # prevents js and html validity errors
         example_group = Object.new
         def example_group.description; ""; end
-        add_example_group(example_group)
-        @@file_path_strategy = Selenium::RSpec::Reporting::FilePathStrategy.new(@where)
+        example_group_started example_group
       end  
   
       def move_progress
@@ -41,7 +46,7 @@ module Selenium
         super
       end
   
-      def example_pending(example, message, pending_caller)
+      def example_pending(example_proxy, message, deprecated_pending_location=nil)
         include_example_group_description example
         super
       end

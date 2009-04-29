@@ -14,7 +14,7 @@ require 'spec/rake/spectask'
 require 'selenium/rake/tasks'
 
 CLEAN.include("COMMENTS")
-CLEAN.include('lib/selenium/client/generated_driver.rb', '**/*.log', "target", "pkg")
+CLEAN.include('lib/selenium/client/generated_driver.rb', '**/*.log', "target", "pkg", "test/integration/reporting/dummy_project/target")
 
 if ENV["SELENIUM_RC_JAR"]
 	# User override
