@@ -51,8 +51,8 @@ module Spec
       end
 
       def reporting_uid
-          # backtrace is not reliable anymore using the implementation proc          
-          Digest::MD5.hexdigest @_implementation.inspect
+        # backtrace is not reliable anymore using the implementation proc          
+        Digest::MD5.hexdigest @_implementation.inspect
       end
  
     end

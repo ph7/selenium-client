@@ -4,6 +4,7 @@ require File.expand_path(File.dirname(__FILE__) + "/../../vendor/mocha-0.9.4/lib
 require File.expand_path(File.dirname(__FILE__) + "/../../vendor/dust-0.1.6/lib/dust")
 require File.expand_path(File.dirname(__FILE__) + "/../../lib/selenium")
 require File.expand_path(File.dirname(__FILE__) + "/../../lib/selenium/rspec/reporting/file_path_strategy")
+require File.expand_path(File.dirname(__FILE__) + "/../../lib/selenium/rspec/rspec_extensions")
 
 Test::Unit::TestCase.class_eval do
   
