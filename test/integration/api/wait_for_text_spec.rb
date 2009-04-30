@@ -88,5 +88,6 @@ describe "Wait For (No) Text" do
     page.wait_for_text /here/, :element => "dangerous-characters"
     page.wait_for_text /' \/ \\/, :element => "dangerous-characters"
   end
-  
+
+    
 end
