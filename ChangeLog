@@ -8,15 +8,19 @@
  - Upgraded RSpec support to 1.2.6
 
  - Fixed method_missing in selenium_helper to only delegate to methods 
-   that @selenium responds to (Thank you Paul Boone)
+   that @selenium responds to. Thank you Paul Boone.
    
  - If you do not explicitly specify the path to selenium remote control jar
    it will be "auto-discovered" in `vendor` directory using the following
    path : `vendor/selenium-remote-control/selenium-server*-standalone.jar`
 
  - Added the ability to redirect output to a log file, when
-   launching Selenium Remote Control with the Rake task (Thank you Adam Greene)
+   launching Selenium Remote Control with the Rake task.
+   Thank you Adam Greene.
 
+ - Fixed screenshot capture under Windows (i.e. Corrupted image files).
+   Thank you Aaron Tinio.
+ 
 1.2.14 (2008-03-08)
 ===================
 
