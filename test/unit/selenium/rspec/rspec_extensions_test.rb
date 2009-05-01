@@ -34,4 +34,53 @@ unit_tests do
     assert_nil example.execution_error
   end
 
+  test "actual_failure? returns false when execution_error is nil" do
+    example_class = Class.new { include Spec::Example::ExampleMethods }
+    example = example_class.new(:a_proxy) do puts "some implementation" end
+    example.instance_variable_set(:@execution_error, nil)
+    
+    assert_false example.actual_failure?
+  end
+
+  test "actual_failure? returns true when execution_error is a StandardError" do
+    example_class = Class.new { include Spec::Example::ExampleMethods }
+    example = example_class.new(:a_proxy) do puts "some implementation" end
+    example.instance_variable_set(:@execution_error, StandardError.new)
+    
+    assert_true example.actual_failure?
+  end
+
+  test "actual_failure? returns false when execution_error is an ExamplePendingError" do
+    example_class = Class.new { include Spec::Example::ExampleMethods }
+    example = example_class.new(:a_proxy) do puts "some implementation" end
+    example.instance_variable_set(:@execution_error, Spec::Example::ExamplePendingError.new)
+    
+    assert_false example.actual_failure?
+  end
+
+  test "actual_failure? returns false when execution_error is an NotYetImplementedError" do
+    example_class = Class.new { include Spec::Example::ExampleMethods }
+    example = example_class.new(:a_proxy) do puts "some implementation" end
+    example.instance_variable_set(:@execution_error, Spec::Example::NotYetImplementedError.new)
+    
+    assert_false example.actual_failure?
+  end
+
+  test "actual_failure? returns false when execution_error is a PendingExampleFixedError" do
+    example_class = Class.new { include Spec::Example::ExampleMethods }
+    example = example_class.new(:a_proxy) do puts "some implementation" end
+    example.instance_variable_set(:@execution_error, Spec::Example::PendingExampleFixedError.new)
+    
+    assert_false example.actual_failure?
+  end
+
+  test "actual_failure? returns false when execution_error is a NoDescriptionError" do
+    example_class = Class.new { include Spec::Example::ExampleMethods }
+    example = example_class.new(:a_proxy) do puts "some implementation" end
+    example.instance_variable_set(:@execution_error, 
+                                 Spec::Example::NoDescriptionError.new(nil, nil))
+    
+    assert_false example.actual_failure?
+  end
+
 end

@@ -50,6 +50,19 @@ module Spec
         success = @execution_error.nil? || ExamplePendingError === @execution_error
       end
 
+      def actual_failure?
+        case execution_error
+        when nil
+          false
+        when Spec::Example::ExamplePendingError, 
+             Spec::Example::PendingExampleFixedError,
+             Spec::Example::NoDescriptionError
+          false
+        else
+          true
+        end
+      end
+
       def reporting_uid
         # backtrace is not reliable anymore using the implementation proc          
         Digest::MD5.hexdigest @_implementation.inspect

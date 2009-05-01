@@ -298,12 +298,13 @@ Contributors
 ============
   
 * Aaron Tinio (`aptinio`):
-   - Patch for more robust Selenium RC shutdown
-   - Patch to support locator including single quotes in `wait_for_...` methods
-   - Fixed screenshot capture under Windows (Corrupted image files)
+   - More robust Selenium RC shutdown
+   - Support for locator including single quotes in `wait_for_...` methods
+   - Do not capture system state on execution errors for pending examples
+     (ExamplePendingError, NotYetImplementedError)
 
 * Rick Lee-Morlang (`rleemorlang`):
-   - Patch for incremental calls to `wait_for_text`
+   - Fix for incremental calls to `wait_for_text`
    - Regex support in `wait_for_text`
   
 * [Paul Boone](http://www.mindbucket.com) (`paulboone`)
