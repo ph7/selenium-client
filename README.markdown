@@ -283,6 +283,10 @@ Contribute and Join the Fun!
 * We also have a [continuous integration server](http://xserve.openqa.org:8080/view/Ruby%20Client)
 
 * Stories live in [Pivotal Tracker](https://www.pivotaltracker.com/projects/6280)
+* To build, run `rake clean default package`. You can then install the
+generated gem with `sudo gem install pkg/*.gem`
+* You can also run all integration tests with `rake ci:integration`
+
 
 Core Team
 =========
@@ -300,7 +304,6 @@ Contributors
 * Rick Lee-Morlang (`rleemorlang`):
    - Patch for incremental calls to `wait_for_text`
    - Regex support in `wait_for_text`
-
   
 * [Paul Boone](http://www.mindbucket.com) (`paulboone`)
    - Fixed method_missing in selenium_helper to only delegate to methods 

@@ -57,8 +57,11 @@ file "target/iedoc.xml" do
   end
 end
 
-desc "Generate driver from iedoc.xml"
-file "lib/selenium/client/generated_driver.rb" => [ "target/iedoc.xml" ] do
+task :clean_driver_build do
+  rm 'lib/selenium/client/generated_driver.rb'
+end
+
+file "lib/selenium/client/generated_driver.rb" => [ :clean_driver_build, "target/iedoc.xml" ] do
   sh "ant generate-sources"
 end
 
@@ -67,7 +70,6 @@ Rake::TestTask.new(:'test:unit') do |t|
   t.test_files = FileList['test/unit/**/*_test.rb']
   t.warning = true
 end
-task :"test:unit" => "lib/selenium/client/generated_driver.rb"
 
 Selenium::Rake::RemoteControlStartTask.new do |rc|
   rc.port = 4444
@@ -223,7 +225,14 @@ Rake::GemPackageTask.new(specification) do |package|
 end
 
 desc "Build the RubyGem"
-task :gem
+task :gem => "lib/selenium/client/generated_driver.rb"
+
+desc "Create a gemspec file"
+task :make_spec do
+  File.open("#{specification.name}.gemspec", "w") do |file|
+    file.puts specification.to_ruby
+  end
+end
  
 desc "Generate documentation"
 Rake::RDocTask.new("rdoc") do |rdoc|
