@@ -308,3 +308,8 @@ Contributors
 * [Paul Boone](http://www.mindbucket.com) (`paulboone`)
    - Fixed method_missing in selenium_helper to only delegate to methods 
      that @selenium responds to
+
+* [Adam Greene](http://blog.sweetspot.dm) (`skippy`)
+   - Added the ability to redirect output to a log file, when
+     launching Selenium Remote Control with the Rake task
+   

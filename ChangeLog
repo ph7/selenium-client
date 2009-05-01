@@ -14,6 +14,9 @@
    it will be "auto-discovered" in `vendor` directory using the following
    path : `vendor/selenium-remote-control/selenium-server*-standalone.jar`
 
+ - Added the ability to redirect output to a log file, when
+   launching Selenium Remote Control with the Rake task (Thank you Adam Greene)
+
 1.2.14 (2008-03-08)
 ===================
 
