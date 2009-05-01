@@ -6,8 +6,13 @@
 ===================
 
  - Upgraded RSpec support to 1.2.6
+
  - Fixed method_missing in selenium_helper to only delegate to methods 
    that @selenium responds to (Thank you Paul Boone)
+   
+ - If you do not explicitly specify the path to selenium remote control jar
+   it will be "auto-discovered" in `vendor` directory using the following
+   path : `vendor/selenium-remote-control/selenium-server*-standalone.jar`
 
 1.2.14 (2008-03-08)
 ===================

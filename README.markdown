@@ -219,8 +219,12 @@ Start/Stop a Selenium Remote Control Server
       rc.port = 4444
       rc.timeout_in_seconds = 3 * 60
     end
-    
- Check out [RemoteControlStartTask](http://selenium-client.rubyforge.org/classes/Selenium/Rake/RemoteControlStartTask.html) and [RemoteControlStopTask](http://selenium-client.rubyforge.org/classes/Selenium/Rake/RemoteControlStopTask.html) for more 
+
+  If you do not explicitly specify the path to selenium remote control jar
+  it will be "auto-discovered" in `vendor` directory using the following
+  path : `vendor/selenium-remote-control/selenium-server*-standalone.jar`
+
+  Check out [RemoteControlStartTask](http://selenium-client.rubyforge.org/classes/Selenium/Rake/RemoteControlStartTask.html) and [RemoteControlStopTask](http://selenium-client.rubyforge.org/classes/Selenium/Rake/RemoteControlStopTask.html) for more 
 details. 
 
 State-of-the-Art RSpec Reporting
