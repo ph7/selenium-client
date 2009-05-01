@@ -1,5 +1,5 @@
 require "rubygems"
-gem "rspec", "=1.2.4"
+gem "rspec", "=1.2.6"
 require 'spec'
 require 'spec/example/example_group'
 
@@ -26,8 +26,8 @@ module Spec
       attr_reader :execution_error
 
       def execute(run_options, instance_variables) # :nodoc:
-        puts caller unless caller(0)[1] =~ /example_group_methods/
         @_proxy.options[:actual_example] = self
+        
         run_options.reporter.example_started(@_proxy)
         set_instance_variables_from_hash(instance_variables)
         

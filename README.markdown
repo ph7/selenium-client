@@ -10,6 +10,7 @@ Mission
  With screenshots, HTML snapshopts and log captures,
  investigating test failures becomes a breeze.
  
+
 Install It
 ==========
 
@@ -150,7 +151,7 @@ Writing Tests
  If BDD is more your style, here is how you can achieve the same thing  using RSpec:
 
     require 'rubygems'
-    gem "rspec", "=1.2.4"
+    gem "rspec", "=1.2.6"
     gem "selenium-client", ">=1.2.13"
     require "selenium/client"
     require "selenium/rspec/spec_helper"
@@ -254,16 +255,26 @@ Grid](http://selenium-grid.openqa.org))
     require "selenium/client"
     require "selenium/rspec/spec_helper"
 
+Other Resources
+===============
+
+* Report bugs at http://github.com/ph7/selenium-client/issues
+* Browse API at http://selenium-client.rubyforge.org
+
 
 Contribute and Join the Fun!
 ============================
 
-  We welcome new features, add-ons, bug fixes, example, documentation, etc. Make the gem work the way you
-  envision!
+  We welcome new features, add-ons, bug fixes, example, documentation, 
+  etc. Make the gem work the way you envision!
+
+* Report bugs at http://github.com/ph7/selenium-client/issues
   
-* I recommend cloning the selenium-client [reference repository](http://github.com/ph7/selenium-client/tree/master)
+* I recommend cloning the selenium-client 
+  [reference repository](http://github.com/ph7/selenium-client/tree/master)
   
-* You can also check out the [RubyForge page](http://rubyforge.org/projects/selenium-client) and the [RDoc](http://selenium-client.rubyforge.org)
+* You can also check out the [RubyForge page](http://rubyforge.org/projects/selenium-client) 
+  and the [RDoc](http://selenium-client.rubyforge.org)
   
 * We also have a [continuous integration server](http://xserve.openqa.org:8080/view/Ruby%20Client)
 
@@ -287,4 +298,6 @@ Contributors
    - Regex support in `wait_for_text`
 
   
- 
+* [Paul Boone](http://www.mindbucket.com) (`paulboone`)
+   - Fixed method_missing in selenium_helper to only delegate to methods 
+     that @selenium responds to

@@ -5,7 +5,9 @@
 1.2.15 (2008-04-?)
 ===================
 
- - Upgraded RSpec support to 1.2.4
+ - Upgraded RSpec support to 1.2.6
+ - Fixed method_missing in selenium_helper to only delegate to methods 
+   that @selenium responds to (Thank you Paul Boone)
 
 1.2.14 (2008-03-08)
 ===================
