@@ -3,9 +3,12 @@ module Selenium
     module Reporting
       
       class FilePathStrategy
-      
+        attr_reader :final_report_file_path
+
+        REPORT_DEFAULT_FILE_PATH = File.join(Dir::tmpdir, "selenium_test_report", "index.html")
+
         def initialize(final_report_file_path)
-          @final_report_file_path = final_report_file_path
+          @final_report_file_path = final_report_file_path || REPORT_DEFAULT_FILE_PATH
           @relative_dir = nil
         end
 

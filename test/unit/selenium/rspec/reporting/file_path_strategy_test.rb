@@ -2,6 +2,17 @@ require File.expand_path(File.dirname(__FILE__) + '/../../../unit_test_helper')
 
 unit_tests do
   
+  test "final_report_file_path is the path provided in the constructor when not nil" do
+    strategy = Selenium::RSpec::Reporting::FilePathStrategy.new "/some/dir/a_final_report.html"
+    assert_equal "/some/dir/a_final_report.html", strategy.final_report_file_path
+  end
+
+  test "final_report_file_path default to a temporary path when the path provided in the constructor is nil" do
+    strategy = Selenium::RSpec::Reporting::FilePathStrategy.new nil
+    assert_match /tmp|temp|\.Trash/, strategy.final_report_file_path
+    assert_match /index.html$/, strategy.final_report_file_path
+  end
+
   test "base_report_dir is resource/<name of the report> under the final report base directory" do
     strategy = Selenium::RSpec::Reporting::FilePathStrategy.new "/some/dir/a_final_report.html"
     assert_equal File.expand_path("/some/dir"), strategy.base_report_dir

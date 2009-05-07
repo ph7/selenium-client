@@ -25,6 +25,9 @@
    actual failure (ExamplePendingError , PendingExampleFixedError, 
    NoDescriptionError). Thank you Aaron Tinio.
  
+ - No system capture error messages when running Selenium RSpec examples
+   from TextMate (Default report file path to a temporary file).
+
 1.2.14 (2008-03-08)
 ===================
 
