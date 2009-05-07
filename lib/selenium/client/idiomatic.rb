@@ -410,6 +410,20 @@ module Selenium
         string_array_command "getAllWindowTitles"
       end
 
+      # Returns a string representation of the network traffic seen by the
+      # browser, including headers, AJAX requests, status codes, and timings.
+      # When this function is called, the traffic log is cleared, so the
+      # returned content is only the traffic seen since the last call.
+      #
+      # The network traffic is returned in the format it was requested. Valid
+      # values are: :json, :xml, or :plain.
+      def browser_network_traffic(format = :plain)
+        raise "format must be :plain, :json, or :xml"   \
+            unless [:plain, :json, :xml].include?(format)
+              
+        remote_control_command "captureNetworkTraffic", [format]
+      end
+
     end
   
   end

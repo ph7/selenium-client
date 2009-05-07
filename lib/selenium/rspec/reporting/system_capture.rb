@@ -34,6 +34,11 @@ module Selenium
           rescue Exception => e
             STDERR.puts "WARNING: Could not capture system screenshot: #{e}"
           end
+          begin
+            retrieve_browser_network_traffic
+          rescue Exception => e
+            STDERR.puts "WARNING: Could not capture browser network traffic: #{e}"
+          end
         end
 
         def capture_html_snapshot
@@ -63,6 +68,11 @@ module Selenium
         def retrieve_remote_control_logs
           logs = @selenium_driver.retrieve_last_remote_control_logs
           File.open(@file_path_strategy.file_path_for_remote_control_logs(@example), "w") { |f| f.write logs }
+        end
+
+        def retrieve_browser_network_traffic
+          logs = @selenium_driver.browser_network_traffic
+          File.open(@file_path_strategy.file_path_for_browser_network_traffic(@example), "w") { |f| f.write logs }
         end
         
       end

@@ -20,6 +20,7 @@
 
  - Fixed screenshot capture under Windows (i.e. Corrupted image files).
    Thank you Aaron Tinio.
+
    
  - Do not capture system state on execution errors that do not indicate an 
    actual failure (ExamplePendingError , PendingExampleFixedError, 
@@ -27,6 +28,12 @@
  
  - No system capture error messages when running Selenium RSpec examples
    from TextMate (Default report file path to a temporary file).
+
+ - Added support for `browser_network_traffic` method which returns a string
+   representation of the network traffic seen by the browser (in XML, JSON or
+   pain text format), including headers, AJAX requests, status codes, and
+   timings. When this function is called, the traffic log is cleared, so the
+   returned content is only the traffic seen since the last call.
 
 1.2.14 (2008-03-08)
 ===================

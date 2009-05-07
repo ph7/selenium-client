@@ -5,6 +5,7 @@
 #
 require "digest/md5"
 require "base64"
+require 'tmpdir'
 require "rubygems"
 gem "rspec", "1.2.6"
 require "spec"

@@ -39,6 +39,10 @@ module Selenium
           "#{relative_dir}/example_#{example.reporting_uid}_remote_control.log"
         end
 
+        def relative_file_path_for_browser_network_traffic(example)
+          "#{relative_dir}/example_#{example.reporting_uid}_browser_network_traffic.log"
+        end
+
         def file_path_for_html_capture(example)
           file_path relative_file_path_for_html_capture(example)
         end
@@ -53,6 +57,10 @@ module Selenium
 
         def file_path_for_remote_control_logs(example)
           file_path relative_file_path_for_remote_control_logs(example)
+        end
+
+        def file_path_for_browser_network_traffic(example)
+          file_path relative_file_path_for_browser_network_traffic(example)
         end
 
         def file_path(relative_file_path)

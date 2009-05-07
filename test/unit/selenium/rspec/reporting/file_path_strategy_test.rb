@@ -9,8 +9,8 @@ unit_tests do
 
   test "final_report_file_path default to a temporary path when the path provided in the constructor is nil" do
     strategy = Selenium::RSpec::Reporting::FilePathStrategy.new nil
-    assert_match /tmp|temp|\.Trash/, strategy.final_report_file_path
-    assert_match /index.html$/, strategy.final_report_file_path
+    assert_match(/tmp|temp|\.Trash/, strategy.final_report_file_path)
+    assert_match(/index.html$/, strategy.final_report_file_path)
   end
 
   test "base_report_dir is resource/<name of the report> under the final report base directory" do
@@ -113,6 +113,15 @@ unit_tests do
     strategy.expects(:file_path).with("resources/a_final_report/example_the_hash_remote_control.log")\
             .returns(:the_absolute_file_path)    
     assert_equal :the_absolute_file_path, strategy.file_path_for_remote_control_logs(example)
+  end
+
+  test "file_path_for_browser_network_traffic return the absolute file path for the log file" do
+    strategy = Selenium::RSpec::Reporting::FilePathStrategy.new "a_final_report.html"
+    example = stub_everything(:reporting_uid => "the_hash")
+
+    strategy.expects(:file_path).with("resources/a_final_report/example_the_hash_browser_network_traffic.log")\
+            .returns(:the_absolute_file_path)    
+    assert_equal :the_absolute_file_path, strategy.file_path_for_browser_network_traffic(example)
   end
   
 end
