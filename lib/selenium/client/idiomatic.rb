@@ -417,11 +417,16 @@ module Selenium
       #
       # The network traffic is returned in the format it was requested. Valid
       # values are: :json, :xml, or :plain.
+      # 
+      # Warning: For browser_network_traffic to work you need to start your 
+      # browser session with the option "captureNetworkTraffic=true", which 
+      # will force ALL traffic to go to the Remote Control proxy even for
+      # more efficient browser modes like `*firefox` and `*safari`.
       def browser_network_traffic(format = :plain)
         raise "format must be :plain, :json, or :xml"   \
             unless [:plain, :json, :xml].include?(format)
               
-        remote_control_command "captureNetworkTraffic", [format]
+        remote_control_command "captureNetworkTraffic", [format.to_s]
       end
 
     end

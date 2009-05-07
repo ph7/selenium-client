@@ -98,28 +98,4 @@ unit_tests do
     end
   end
 
-  test "capture_system_state retrieves browser network traffic" do
-    capture = Selenium::RSpec::Reporting::SystemCapture.new nil, nil, nil
-    capture.stubs(:retrieve_remote_control_logs)
-    capture.stubs(:capture_html_snapshot)
-    capture.stubs(:capture_page_screenshot)
-    capture.stubs(:capture_system_screenshot)
-    
-    capture.expects(:retrieve_browser_network_traffic)
-    capture.capture_system_state
-  end
-
-  test "capture_system_state print error message when browser network traffic cannot be retrieved" do
-    capture = Selenium::RSpec::Reporting::SystemCapture.new nil, nil, nil
-    capture.stubs(:retrieve_remote_control_logs)
-    capture.stubs(:capture_html_snapshot)
-    capture.stubs(:capture_page_screenshot)
-    capture.stubs(:capture_system_screenshot)
-        
-    capture.expects(:retrieve_browser_network_traffic).raises(StandardError.new("the error message"))
-    assert_stderr_match %r{WARNING: Could not capture browser network traffic: the error message$} do 
-      capture.capture_system_state
-    end
-  end
-
 end

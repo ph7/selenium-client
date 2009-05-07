@@ -67,15 +67,5 @@ describe "System Capture" do
 	    pending "No in page screenshot support for '#{selenium_driver.browser_string}' yet"  
     end
   end
-
-  it "Retrieves browser network traffic on local file system when session is started" do
-    FileUtils.rm_rf "/tmp/selenium_ruby_client"
-    example  = stub('example',:reporting_uid => 123)
-    strategy = Selenium::RSpec::Reporting::FilePathStrategy.new "/tmp/selenium_ruby_client/test_report.html"
-    system_capture = Selenium::RSpec::Reporting::SystemCapture.new selenium_driver, example, strategy
-    system_capture.retrieve_browser_network_traffic
-    
-    File.exists?("/tmp/selenium_ruby_client/resources/test_report/example_123_browser_network_traffic.log").should be_true
-  end
   
 end

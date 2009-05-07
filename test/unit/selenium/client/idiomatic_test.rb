@@ -423,13 +423,13 @@ unit_tests do
 
   test "browser_network_traffic returns the result of the captureNetworkTraffic command" do
     client = Class.new { include Selenium::Client::Idiomatic }.new
-    client.expects(:remote_control_command).with("captureNetworkTraffic", [:json]).returns(:the_value)
+    client.expects(:remote_control_command).with("captureNetworkTraffic", ["json"]).returns(:the_value)
     assert_equal :the_value, client.browser_network_traffic(:json)
   end
 
   test "browser_network_traffic format default to plain" do
     client = Class.new { include Selenium::Client::Idiomatic }.new
-    client.expects(:remote_control_command).with("captureNetworkTraffic", [:plain]).returns(:the_value)
+    client.expects(:remote_control_command).with("captureNetworkTraffic", ["plain"]).returns(:the_value)
     assert_equal :the_value, client.browser_network_traffic
   end
 

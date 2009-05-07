@@ -25,6 +25,7 @@ module Spec
 
       attr_reader :execution_error
 
+      remove_method :execute
       def execute(run_options, instance_variables) # :nodoc:
         @_proxy.options[:actual_example] = self
         

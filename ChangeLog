@@ -2,7 +2,7 @@
                    =============================
 
 
-1.2.15 (2008-04-?)
+1.2.15 (2008-05-?)
 ===================
 
  - Upgraded RSpec support to 1.2.6
@@ -34,6 +34,9 @@
    pain text format), including headers, AJAX requests, status codes, and
    timings. When this function is called, the traffic log is cleared, so the
    returned content is only the traffic seen since the last call.
+
+ - Add support for browser session specific options when starting a new 
+   session (used to trigger capture of browser network traffic). 
 
 1.2.14 (2008-03-08)
 ===================
