@@ -67,9 +67,33 @@ unit_tests do
   test "start_new_browser_session executes a getNewBrowserSession command with the browser string an url" do
     client = Class.new { include Selenium::Client::Base }.new :host, :port, :the_browser, :the_url
     client.stubs(:remote_control_command)
-    client.expects(:string_command).with("getNewBrowserSession", [:the_browser, :the_url, ""])
+    client.expects(:string_command).with("getNewBrowserSession", [:the_browser, :the_url, "", ""])
     client.start_new_browser_session
 	end
+
+  test "start_new_browser_session submit the javascript extension when previously defined" do
+    client = Class.new { include Selenium::Client::Base }.new :host, :port, :the_browser, :the_url
+    client.javascript_extension = :the_javascript_extension
+    client.stubs(:remote_control_command)
+    client.expects(:string_command).with("getNewBrowserSession", [:the_browser, :the_url, :the_javascript_extension, ""])
+    client.start_new_browser_session
+  end
+
+  test "start_new_browser_session submit an option when provided" do
+    client = Class.new { include Selenium::Client::Base }.new :host, :port, :the_browser, :the_url
+    client.javascript_extension = :the_javascript_extension
+    client.stubs(:remote_control_command)
+    client.expects(:string_command).with("getNewBrowserSession", [:the_browser, :the_url, :the_javascript_extension, "captureNetworkTraffic=true"])
+    client.start_new_browser_session(:captureNetworkTraffic => true)
+  end
+
+  test "start_new_browser_session submit multiple options when provided" do
+    client = Class.new { include Selenium::Client::Base }.new :host, :port, :the_browser, :the_url
+    client.javascript_extension = :the_javascript_extension
+    client.stubs(:remote_control_command)
+    client.expects(:string_command).with("getNewBrowserSession", [:the_browser, :the_url, :the_javascript_extension, "captureNetworkTraffic=true;quack=false"])
+    client.start_new_browser_session(:captureNetworkTraffic => true, :quack => false)
+  end
 
   test "start_new_browser_session sets the current sessionId with getNewBrowserSession response" do
     client = Class.new { include Selenium::Client::Base }.new :host, :port, :the_browser, :the_url
@@ -77,14 +101,6 @@ unit_tests do
     client.stubs(:string_command).with("getNewBrowserSession", any_parameters).returns("the new session id")
     client.start_new_browser_session
     assert_equal client.session_id, "the new session id"
-	end
-
-  test "start_new_browser_session sumbimte the javascript extension when previously defined" do
-    client = Class.new { include Selenium::Client::Base }.new :host, :port, :the_browser, :the_url
-    client.javascript_extension = :the_javascript_extension
-    client.stubs(:remote_control_command)
-    client.expects(:string_command).with("getNewBrowserSession", [:the_browser, :the_url, :the_javascript_extension])
-    client.start_new_browser_session
 	end
 
   test "start_new_browser_session sets remote control timeout to the driver default timeout" do

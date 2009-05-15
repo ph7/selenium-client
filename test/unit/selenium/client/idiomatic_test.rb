@@ -420,5 +420,38 @@ unit_tests do
     client.expects(:string_array_command).with("getAllWindowTitles").returns(:the_value)
     assert_equal :the_value, client.all_window_titles
   end
+
+  test "browser_network_traffic returns the result of the captureNetworkTraffic command" do
+    client = Class.new { include Selenium::Client::Idiomatic }.new
+    client.expects(:remote_control_command).with("captureNetworkTraffic", ["json"]).returns(:the_value)
+    assert_equal :the_value, client.browser_network_traffic(:json)
+  end
+
+  test "browser_network_traffic format default to plain" do
+    client = Class.new { include Selenium::Client::Idiomatic }.new
+    client.expects(:remote_control_command).with("captureNetworkTraffic", ["plain"]).returns(:the_value)
+    assert_equal :the_value, client.browser_network_traffic
+  end
+
+  test "browser_network_traffic raises when format is nil" do
+    client = Class.new { include Selenium::Client::Idiomatic }.new
+    assert_raise(RuntimeError) { client.browser_network_traffic(nil) }
+  end
+
+  test "browser_network_traffic raises when format is not :plain, :json or :xml" do
+    client = Class.new { include Selenium::Client::Idiomatic }.new
+    assert_raise(RuntimeError) { client.browser_network_traffic(:random_format) }
+  end
+
+  test "browser_xpath_library= invokes the useXpathLibrary command" do
+    client = Class.new { include Selenium::Client::Idiomatic }.new
+    client.expects(:remote_control_command).with("useXpathLibrary", ["ajaxslt"]).returns(:the_value)
+    client.browser_xpath_library = :ajaxslt
+  end
+
+  test "browser_xpath_library= raises whe library name is not :ajaxslt, :javascript-xpath, or :default" do
+    client = Class.new { include Selenium::Client::Idiomatic }.new
+    assert_raises(RuntimeError) { client.browser_xpath_library = :random_library }
+  end
   
 end

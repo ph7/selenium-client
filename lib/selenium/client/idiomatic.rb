@@ -410,6 +410,38 @@ module Selenium
         string_array_command "getAllWindowTitles"
       end
 
+      # Returns a string representation of the network traffic seen by the
+      # browser, including headers, AJAX requests, status codes, and timings.
+      # When this function is called, the traffic log is cleared, so the
+      # returned content is only the traffic seen since the last call.
+      #
+      # The network traffic is returned in the format it was requested. Valid
+      # values are: :json, :xml, or :plain.
+      # 
+      # Warning: For browser_network_traffic to work you need to start your 
+      # browser session with the option "captureNetworkTraffic=true", which 
+      # will force ALL traffic to go to the Remote Control proxy even for
+      # more efficient browser modes like `*firefox` and `*safari`.
+      def browser_network_traffic(format = :plain)
+        raise "format must be :plain, :json, or :xml"   \
+            unless [:plain, :json, :xml].include?(format)
+              
+        remote_control_command "captureNetworkTraffic", [format.to_s]
+      end
+
+      # Allows choice of a specific XPath libraries for Xpath evualuation
+      # in the browser (e.g. to resolve XPath locators).
+      #
+      # `library_name' can be:
+      #     * :ajaxslt          : Google's library
+      #     * :javascript-xpath : Cybozu Labs' faster library
+      #     * :default          : Selenium default library.
+      def browser_xpath_library=(library_name)
+        raise "library name must be :ajaxslt, :javascript-xpath, or :default"   \
+            unless [:ajaxslt, :'javascript-xpath', :default].include?(library_name)
+        remote_control_command "useXpathLibrary", [library_name.to_s]
+      end
+
     end
   
   end

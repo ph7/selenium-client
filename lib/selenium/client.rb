@@ -6,7 +6,8 @@ require 'net/http'
 require 'uri'
 require 'cgi'
 require "digest/md5"
-require "fileutils"
+require 'fileutils'
+require 'tmpdir'
 require File.expand_path(File.dirname(__FILE__) + '/../tcp_socket_extension')
 require File.expand_path(File.dirname(__FILE__) + '/../nautilus/shell')
 require File.expand_path(File.dirname(__FILE__) + '/command_error')

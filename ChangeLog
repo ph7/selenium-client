@@ -2,6 +2,45 @@
                    =============================
 
 
+1.2.15 (2008-05-13)
+===================
+
+ - Upgraded RSpec support to 1.2.6
+
+ - Fixed method_missing in selenium_helper to only delegate to methods 
+   that @selenium responds to. Thank you Paul Boone.
+   
+ - If you do not explicitly specify the path to selenium remote control jar
+   it will be "auto-discovered" in `vendor` directory using the following
+   path : `vendor/selenium-remote-control/selenium-server*-standalone.jar`
+
+ - Added the ability to redirect output to a log file, when
+   launching Selenium Remote Control with the Rake task.
+   Thank you Adam Greene.
+
+ - Fixed screenshot capture under Windows (i.e. Corrupted image files).
+   Thank you Aaron Tinio.
+
+   
+ - Do not capture system state on execution errors that do not indicate an 
+   actual failure (ExamplePendingError , PendingExampleFixedError, 
+   NoDescriptionError). Thank you Aaron Tinio.
+ 
+ - No system capture error messages when running Selenium RSpec examples
+   from TextMate (Default report file path to a temporary file).
+
+ - Added support for `browser_network_traffic` method which returns a string
+   representation of the network traffic seen by the browser (in XML, JSON or
+   pain text format), including headers, AJAX requests, status codes, and
+   timings. When this function is called, the traffic log is cleared, so the
+   returned content is only the traffic seen since the last call.
+
+ - Added support for browser session specific options when starting a new 
+   session (used to trigger capture of browser network traffic). 
+
+ - Added a more idiomatic `browser_xpath_library=` method to
+   use a custom xpath library for browser-side xpath evaluations.
+ 
 1.2.14 (2008-03-08)
 ===================
 

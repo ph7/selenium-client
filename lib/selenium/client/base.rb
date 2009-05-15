@@ -73,8 +73,16 @@ module Selenium
         not @session_id.nil?
       end
 
-      def start_new_browser_session
-        result = string_command "getNewBrowserSession", [@browser_string, @browser_url, @extension_js]
+      # Starts a new browser session (launching a new browser matching 
+      # configuration provided at driver creation time).
+      #
+      # Browser session specific option can also be provided. e.g.
+      #
+      #    driver.start_new_browser_session(:captureNetworkTraffic => true)
+      #
+      def start_new_browser_session(options={})
+        options_as_string = options.collect {|key,value| "#{key.to_s}=#{value.to_s}"}.sort.join(";")
+        result = string_command "getNewBrowserSession", [@browser_string, @browser_url, @extension_js, options_as_string]
         @session_id = result
         # Consistent timeout on the remote control and driver side.
         # Intuitive and this is what you want 90% of the time

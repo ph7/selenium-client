@@ -10,6 +10,7 @@ Mission
  With screenshots, HTML snapshopts and log captures,
  investigating test failures becomes a breeze.
  
+
 Install It
 ==========
 
@@ -80,7 +81,7 @@ Plain API
     # Sample Ruby script using the Selenium client API
     #
     require "rubygems"
-    gem "selenium-client", ">=1.2.13"
+    gem "selenium-client", ">=1.2.15"
     require "selenium/client"
     
     begin
@@ -113,7 +114,7 @@ Writing Tests
     #
     require "test/unit"
     require "rubygems"
-    gem "selenium-client", ">=1.2.13"
+    gem "selenium-client", ">=1.2.15"
     require "selenium/client"
     
     class ExampleTest < Test::Unit::TestCase
@@ -150,8 +151,8 @@ Writing Tests
  If BDD is more your style, here is how you can achieve the same thing  using RSpec:
 
     require 'rubygems'
-    gem "rspec", "=1.1.12"
-    gem "selenium-client", ">=1.2.13"
+    gem "rspec", "=1.2.6"
+    gem "selenium-client", ">=1.2.15"
     require "selenium/client"
     require "selenium/rspec/spec_helper"
     
@@ -218,8 +219,12 @@ Start/Stop a Selenium Remote Control Server
       rc.port = 4444
       rc.timeout_in_seconds = 3 * 60
     end
-    
- Check out [RemoteControlStartTask](http://selenium-client.rubyforge.org/classes/Selenium/Rake/RemoteControlStartTask.html) and [RemoteControlStopTask](http://selenium-client.rubyforge.org/classes/Selenium/Rake/RemoteControlStopTask.html) for more 
+
+  If you do not explicitly specify the path to selenium remote control jar
+  it will be "auto-discovered" in `vendor` directory using the following
+  path : `vendor/selenium-remote-control/selenium-server*-standalone.jar`
+
+  Check out [RemoteControlStartTask](http://selenium-client.rubyforge.org/classes/Selenium/Rake/RemoteControlStartTask.html) and [RemoteControlStopTask](http://selenium-client.rubyforge.org/classes/Selenium/Rake/RemoteControlStopTask.html) for more 
 details. 
 
 State-of-the-Art RSpec Reporting
@@ -254,20 +259,34 @@ Grid](http://selenium-grid.openqa.org))
     require "selenium/client"
     require "selenium/rspec/spec_helper"
 
+Other Resources
+===============
+
+* Report bugs at http://github.com/ph7/selenium-client/issues
+* Browse API at http://selenium-client.rubyforge.org
+
 
 Contribute and Join the Fun!
 ============================
 
-  We welcome new features, add-ons, bug fixes, example, documentation, etc. Make the gem work the way you
-  envision!
+  We welcome new features, add-ons, bug fixes, example, documentation, 
+  etc. Make the gem work the way you envision!
+
+* Report bugs at http://github.com/ph7/selenium-client/issues
   
-* I recommend cloning the selenium-client [reference repository](http://github.com/ph7/selenium-client/tree/master)
+* I recommend cloning the selenium-client 
+  [reference repository](http://github.com/ph7/selenium-client/tree/master)
   
-* You can also check out the [RubyForge page](http://rubyforge.org/projects/selenium-client) and the [RDoc](http://selenium-client.rubyforge.org)
+* You can also check out the [RubyForge page](http://rubyforge.org/projects/selenium-client) 
+  and the [RDoc](http://selenium-client.rubyforge.org)
   
 * We also have a [continuous integration server](http://xserve.openqa.org:8080/view/Ruby%20Client)
 
 * Stories live in [Pivotal Tracker](https://www.pivotaltracker.com/projects/6280)
+* To build, run `rake clean default package`. You can then install the
+generated gem with `sudo gem install pkg/*.gem`
+* You can also run all integration tests with `rake ci:integration`
+
 
 Core Team
 =========
@@ -279,12 +298,20 @@ Contributors
 ============
   
 * Aaron Tinio (`aptinio`):
-   - Patch for more robust Selenium RC shutdown
-   - Patch to support locator including single quotes in `wait_for_...` methods
+   - More robust Selenium RC shutdown
+   - Support for locator including single quotes in `wait_for_...` methods
+   - Do not capture system state on execution errors for pending examples
+     (ExamplePendingError, NotYetImplementedError)
 
 * Rick Lee-Morlang (`rleemorlang`):
-   - Patch for incremental calls to `wait_for_text`
+   - Fix for incremental calls to `wait_for_text`
    - Regex support in `wait_for_text`
-
   
- 
+* [Paul Boone](http://www.mindbucket.com) (`paulboone`)
+   - Fixed method_missing in selenium_helper to only delegate to methods 
+     that @selenium responds to
+
+* [Adam Greene](http://blog.sweetspot.dm) (`skippy`)
+   - Added the ability to redirect output to a log file, when
+     launching Selenium Remote Control with the Rake task
+   

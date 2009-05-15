@@ -1,5 +1,5 @@
 require 'rubygems'
-gem 'rspec', "1.1.12"
+gem 'rspec', "1.2.6"
 require File.expand_path(File.dirname(__FILE__) + "/../../lib/selenium")
 require File.expand_path(File.dirname(__FILE__) + "/../../lib/selenium/rspec/spec_helper")
 
@@ -33,7 +33,7 @@ Spec::Runner.configure do |config|
         :host => (ENV['SELENIUM_RC_HOST'] || "localhost"),
         :port => (ENV['SELENIUM_RC_PORT'] || 4444),
         :browser => (ENV['SELENIUM_BROWSER'] || "*firefox"),
-        :timeout_in_seconds => (ENV['SELENIUM_RC_TIMEOUT'] || 10),
+        :timeout_in_seconds => (ENV['SELENIUM_RC_TIMEOUT'] || 20),
         :url => "http://#{application_host}:#{application_port}"
   end
   
