@@ -3,7 +3,6 @@ module Selenium
 
     # Convenience methods not explicitely part of the protocol
     module Extensions
-
 	
 	    # These for all Ajax request to finish (Only works if you are using prototype, the wait in happenning browser side)
 	    #
@@ -14,7 +13,6 @@ module Selenium
 	      wait_for_condition builder.no_pending_ajax_requests.script, 
 	                         options[:timeout_in_seconds]
 	    end
-
 	
 	    # Wait for all Prototype effects to be processed (the wait in happenning browser side).
 	    #
@@ -24,7 +22,6 @@ module Selenium
 			  wait_for_condition builder.no_pending_effects.script,
 			                     options[:timeout_in_seconds]
 			end
-
 			
 			# Wait for an element to be present (the wait in happenning browser side).
 		  def wait_for_element(locator, options={})
