@@ -10,11 +10,7 @@ module Selenium
       def remote_control_command(verb, args=[])
         timeout(@default_timeout_in_seconds) do
           status, response = http_post(http_request_for(verb, args))
-          if status == "OK"
-            auto_highlight(args) if @auto_highlighting
-          else
-            raise Selenium::CommandError, response
-          end
+          raise Selenium::CommandError, response unless status == "OK"          
           response
         end
       end
@@ -92,14 +88,6 @@ module Selenium
         response = http.post('/selenium-server/driver/', data, HTTP_HEADERS)
         # puts "RESULT: #{response.body.inspect}\n"
         [ response.body[0..1], response.body[3..-1] ]
-      end
-
-      def auto_highlight(args)
-        http_post(http_request_for('highlight', [args.first])) if
-          !args.empty? &&
-          # bypass remote_control_command by using http_post(http_request_for(...))
-          http_post(http_request_for('isElementPresent', [args.first])).last == 'true' &&
-          http_post(http_request_for('isConfirmationPresent', [])).last == 'false'
       end
      
     end
