@@ -24,7 +24,7 @@ elsif not Dir[File.dirname(__FILE__) + "/../../selenium-server/target/selenium-s
 	SELENIUM_RC_JAR = Dir[File.dirname(__FILE__) + "/../../selenium-server/target/selenium-server-*-standalone.jar"].first
 else
 	# Bundled version
-	SELENIUM_RC_JAR = Dir[File.dirname(__FILE__) + "/vendor/selenium-remote-control/selenium-server-*-standalone.jar"].first
+	SELENIUM_RC_JAR = Dir[File.dirname(__FILE__) + "/vendor/selenium-remote-control/selenium-server-*.jar"].first
 end
 
 raise "Invalid Selenium RC jar : '#{SELENIUM_RC_JAR}" unless File.exists?(SELENIUM_RC_JAR)
