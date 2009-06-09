@@ -1,6 +1,9 @@
                    Selenium-Client gem ChangeLog
                    =============================
 
+1.2.16 (?)
+==========
+ - Upgraded Selenium RC support to 1.0 (official release)
 
 1.2.15 (2008-05-13)
 ===================
