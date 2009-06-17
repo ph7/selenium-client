@@ -3,7 +3,11 @@ module Spartan
   # Avoid polluting Object namespace with internal utility methods
   module Internals
     def self.definition_file_path(&block)
-      eval "__FILE__", block.binding
+      if block.respond_to?(:source_location)    # Ruby 1.9
+        block.source_location.first
+      else
+        eval "__FILE__", block.binding
+      end
     end
 
     def self.camelize(underscored)
