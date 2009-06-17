@@ -64,7 +64,7 @@ end
 
 desc "Run unit tests"
 Rake::TestTask.new(:'test:unit') do |t|
-  t.test_files = FileList['test/unit/**/*_test.rb']
+  t.test_files = FileList['test/unit/**/*_tests.rb']
   t.warning = true
 end
 task :"test:unit" => "lib/selenium/client/generated_driver.rb"
