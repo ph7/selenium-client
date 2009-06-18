@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>org.seleniumhq.selenium.client-drivers</groupId>
-        <version>1.0-SNAPSHOT</version>
+        <version>1.0.2-SNAPSHOT</version>
         <artifactId>selenium-client-drivers</artifactId>
     </parent>
     <groupId>org.seleniumhq.selenium.client-drivers</groupId>
@@ -60,7 +60,7 @@
                 <plugins>
                     <plugin>
                         <artifactId>maven-antrun-plugin</artifactId>
-                        <version>1.2-SNAPSHOT</version>
+                        <version>1.3</version>
                         <executions>
                             <execution>
                                 <id>test</id>
@@ -82,9 +82,9 @@
                         </executions>
                         <dependencies>
                             <dependency>
-                                <groupId>ant</groupId>
+                                <groupId>org.apache.ant</groupId>
                                 <artifactId>ant-trax</artifactId>
-                                <version>1.6.5</version>
+                                <version>1.7.1</version>
                             </dependency>
                         </dependencies>
                     </plugin>
@@ -96,7 +96,7 @@
         <plugins>
             <plugin>
                 <artifactId>maven-antrun-plugin</artifactId>
-                <version>1.2-SNAPSHOT</version>
+                <version>1.3</version>
                 <executions>
                     <execution>
                         <id>generate-sources</id>
@@ -133,9 +133,9 @@
                 </executions>
                 <dependencies>
                     <dependency>
-                        <groupId>ant</groupId>
+                        <groupId>org.apache.ant</groupId>
                         <artifactId>ant-trax</artifactId>
-                        <version>1.6.5</version>
+                        <version>1.7.1</version>
                     </dependency>
                 </dependencies>
             </plugin>
