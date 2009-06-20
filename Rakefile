@@ -83,6 +83,7 @@ Selenium::Rake::RemoteControlStopTask.new do |rc|
   rc.port = 4444
   rc.timeout_in_seconds = 3 * 60
   rc.wait_until_stopped = true
+  rc.shutdown_command = "shutDown"
 end
 
 desc "Restart Selenium Remote Control"

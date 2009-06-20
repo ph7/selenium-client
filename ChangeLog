@@ -3,7 +3,18 @@
 
 1.2.16 (?)
 ==========
- - Upgraded Selenium RC support to 1.0 (official release)
+
+ - Upgraded Selenium RC support to 1.0.1 (official release)
+
+ - Changed default Selenium RC shutdown command to `shutDownSeleniumServer`
+   per Selenium RC 1.0 changes breaking backward compatibility :-(
+   Shutdown method can be overriden when defining the rake task, e.g.
+
+    Selenium::Rake::RemoteControlStopTask.new do |rc|
+      rc.shutdown_method = "shutDown"
+    end
+
+ - 1.9 compatibility?
 
 1.2.15 (2008-05-13)
 ===================
