@@ -9,7 +9,9 @@ module Selenium
       include Selenium::Client::Idiomatic
 
       attr_reader :host, :port, :browser_string, :browser_url, 
-                  :default_timeout_in_seconds, :default_javascript_framework
+                  :default_timeout_in_seconds, 
+                  :default_javascript_framework,
+                  :highlight_located_element
   
       #
       # Create a new client driver
@@ -34,6 +36,15 @@ module Selenium
       #     :url => "http://localhost:3000",
       #     :javascript_framework => :jquery
       #
+      # You can also enables automatic highlighting of located elements
+      # by passing the highlight_located_element option, e.g.
+      #
+      # Selenium::Client::Driver.new \
+      #     :host => "localhost",
+      #     :port => 4444,
+      #     :browser => "*firefox",
+      #     :highlight_located_element => true
+      #
       def initialize(*args)
         if args[0].kind_of?(Hash)
           options = args[0]
@@ -43,6 +54,7 @@ module Selenium
           @browser_url = options[:url]
           @default_timeout_in_seconds = (options[:timeout_in_seconds] || 300).to_i
           @default_javascript_framework = options[:javascript_framework] || :prototype
+          @highlight_located_element = options[:highlight_located_element] || false
         else
           @host = args[0]
           @port = args[1].to_i
@@ -50,6 +62,7 @@ module Selenium
           @browser_url = args[3]
           @default_timeout_in_seconds = (args[4] || 300).to_i
           @default_javascript_framework = :prototype
+          @highlight_located_element = false
         end
 
         @extension_js = ""

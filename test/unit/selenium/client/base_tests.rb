@@ -177,5 +177,20 @@ unit_tests do
     assert_false client.chrome_backend?
   end
 
+  test "Hash initializer sets highlight_located_element" do
+    client_class = Class.new { include Selenium::Client::Base }
+    client = client_class.new :highlight_located_element => true
+    assert_true client.highlight_located_element
+  end
+
+  test "basic initializer sets highlight_located_element to false by default" do
+    client = Class.new { include Selenium::Client::Base }.new
+    assert_false client.highlight_located_element
+  end
+
+  test "Hash initializer sets highlight_located_element to false by default" do
+    client = Class.new { include Selenium::Client::Base }.new :host => :a_host
+    assert_false client.highlight_located_element
+  end
     
 end
