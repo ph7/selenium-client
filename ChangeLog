@@ -15,6 +15,13 @@
     end
 
  - Ruby 1.9.1 compatibility
+ 
+ - Added support for turning on/off automatic hightlighting of the element 
+   driven or inspected by Selenium. Useful when recording videos. Thank
+   you Aaron Tinio. See the `highlight_located_element` option when
+   creating the driver and the `highlight_located_element=` method on
+   the driver for more details.
+ 
 
 1.2.15 (2009-05-13)
 ===================
