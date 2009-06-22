@@ -9,41 +9,41 @@ module Selenium
       include Selenium::Client::Idiomatic
 
       attr_reader :host, :port, :browser_string, :browser_url, 
-                  :default_timeout_in_seconds, :default_javascript_framework,
-                  :should_highlight_located_element
+                  :default_timeout_in_seconds, 
+                  :default_javascript_framework,
+                  :highlight_located_element_by_default
   
       #
       # Create a new client driver
       #
-      # ==== Example:
+      # Example:
       #
-      #   Selenium::Client::Driver.new \ 
+      # Selenium::Client::Driver.new \
       #     :host => "localhost",
       #     :port => 4444,
       #     :browser => "*firefox",
       #     :timeout_in_seconds => 10,
       #     :url => "http://localhost:3000",
       #
-      # ==== Options:
+      # You can also set the default javascript framework used for :wait_for
+      # AJAX and effects semantics (:prototype is the default value):
       #
-      # [<tt>:javascript_framework</tt>]
-      #     set the default javascript framework used for <tt>:wait_for</tt>
-      #     AJAX and effects semantics (<tt>:prototype</tt> is the default value)
-      #
-      # [<tt>:should_highlight_located_element</tt>]
-      #     enables automatic highlighting of located elements
-      #     (default value: <tt>false</tt>)
-      #
-      # ==== Example:
-      #
-      #   Selenium::Client::Driver.new \ 
+      # Selenium::Client::Driver.new \
       #     :host => "localhost",
       #     :port => 4444,
       #     :browser => "*firefox",
       #     :timeout_in_seconds => 10,
       #     :url => "http://localhost:3000",
-      #     :javascript_framework => :jquery,
-      #     :should_highlight_located_element => true,
+      #     :javascript_framework => :jquery
+      #
+      # You can also enables automatic highlighting of located elements
+      # by passing the highlight_located_element option, e.g.
+      #
+      # Selenium::Client::Driver.new \
+      #     :host => "localhost",
+      #     :port => 4444,
+      #     :browser => "*firefox",
+      #     :highlight_located_element => true
       #
       def initialize(*args)
         if args[0].kind_of?(Hash)
@@ -54,7 +54,7 @@ module Selenium
           @browser_url = options[:url]
           @default_timeout_in_seconds = (options[:timeout_in_seconds] || 300).to_i
           @default_javascript_framework = options[:javascript_framework] || :prototype
-          @should_highlight_located_element = options[:should_highlight_located_element] || false
+          @highlight_located_element_by_default = options[:highlight_located_element] || false
         else
           @host = args[0]
           @port = args[1].to_i
@@ -62,7 +62,7 @@ module Selenium
           @browser_url = args[3]
           @default_timeout_in_seconds = (args[4] || 300).to_i
           @default_javascript_framework = :prototype
-          @should_highlight_located_element = false
+          @highlight_located_element_by_default = false
         end
 
         @extension_js = ""
@@ -86,8 +86,8 @@ module Selenium
         @session_id = result
         # Consistent timeout on the remote control and driver side.
         # Intuitive and this is what you want 90% of the time
-        self.remote_control_timeout_in_seconds = @default_timeout_in_seconds
-        self.should_highlight_located_element = @should_highlight_located_element
+        self.remote_control_timeout_in_seconds = @default_timeout_in_seconds         
+        self.highlight_located_element = true if highlight_located_element_by_default
       end
       
       def close_current_browser_session
@@ -109,16 +109,8 @@ module Selenium
 
       def javascript_extension=(new_javascript_extension)
         @extension_js = new_javascript_extension
-	    end
-	
-      def set_extension_js(new_javascript_extension)
-	      javascript_extension = new_javascript_extension
       end
-
-      def should_highlight_located_element=(enabled)
-        self.get_eval "selenium.browserbot.shouldHighlightLocatedElement = #{enabled}"
-        @should_highlight_located_element = enabled
-      end
+	    alias :set_extension_js :javascript_extension=
       
     end
   

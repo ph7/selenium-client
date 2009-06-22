@@ -366,9 +366,9 @@ module Selenium
       # 'optionsString' is options for the cookie. Currently supported options include 'path', 'max_age' and 'domain'.
       # the optionsString's format is "path=/path/, max_age=60, domain=.foo.com". The order of options are irrelevant, the unit      of the value of 'max_age' is second.  Note that specifying a domain that isn't a subset of the current domain will      usually fail.
       def create_cookie(name_value_pair, options="")
-	      if options.kind_of? Hash
+        if options.kind_of? Hash
 		      options = options.keys.collect {|key| "#{key}=#{options[key]}" }.sort.join(", ")
-		    end
+        end
         remote_control_command "createCookie", [name_value_pair,options,]
       end
 
@@ -386,10 +386,10 @@ module Selenium
       # 'name' is the name of the cookie to be deleted
       # 'optionsString' is options for the cookie. Currently supported options include 'path', 'domain'      and 'recurse.' The optionsString's format is "path=/path/, domain=.foo.com, recurse=true".      The order of options are irrelevant. Note that specifying a domain that isn't a subset of      the current domain will usually fail.
       def delete_cookie(name, options="")
-	      if options.kind_of? Hash
+        if options.kind_of? Hash
 		      ordered_keys = options.keys.sort {|a,b| a.to_s <=> b.to_s }
 		      options = ordered_keys.collect {|key| "#{key}=#{options[key]}" }.join(", ")
-		    end
+        end
         remote_control_command "deleteCookie", [name,options,]
       end
 
@@ -442,7 +442,31 @@ module Selenium
         remote_control_command "useXpathLibrary", [library_name.to_s]
       end
 
+      #
+      # Turn on/off the automatic hightlighting of the element driven or
+      # inspected by Selenium core. Useful when recording videos
+      #
+      def highlight_located_element=(enabled)
+        boolean = (true == enabled)
+        js_eval "selenium.browserbot.shouldHighlightLocatedElement = #{boolean}"
+      end
+
+      # Get execution delay in milliseconds, i.e. a pause delay following 
+      # each selenium operation. By default, there is no such delay 
+      # (value is 0).
+      def execution_delay
+        string_command "getSpeed"
+      end
+
+      # Set the execution delay in milliseconds, i.e. a pause delay following
+      # each selenium operation. By default, there is no such delay.
+      #
+      # Setting an execution can be useful to troubleshoot of capture videos
+      def execution_delay=(delay_in_milliseconds)
+        remote_control_command "setSpeed", [delay_in_milliseconds]
+      end
+
     end
-  
+
   end
 end

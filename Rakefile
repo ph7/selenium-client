@@ -64,7 +64,7 @@ end
 
 desc "Run unit tests"
 Rake::TestTask.new(:'test:unit') do |t|
-  t.test_files = FileList['test/unit/**/*_test.rb']
+  t.test_files = FileList['test/unit/**/*_tests.rb']
   t.warning = true
 end
 task :"test:unit" => "lib/selenium/client/generated_driver.rb"
@@ -202,7 +202,7 @@ end
 specification = Gem::Specification.new do |s|
   s.name = "selenium-client"
   s.summary = "Official Ruby Client for Selenium RC."
-  s.version = "1.2.16"
+  s.version = "1.2.17"
   s.author = "OpenQA"
   s.email = 'selenium-client@rubyforge.org'
   s.homepage = "http://selenium-client.rubyforge.com"
