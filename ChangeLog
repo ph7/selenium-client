@@ -1,6 +1,11 @@
                    selenium-client gem ChangeLog
                    =============================
 
+1.2.17 (2009-07-?)
+==================
+
+ - Fixed bug in with timeouts specified as a string (SRC-692)
+
 1.2.16 (2009-06-21)
 ===================
 

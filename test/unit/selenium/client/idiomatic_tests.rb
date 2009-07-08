@@ -33,6 +33,12 @@ unit_tests do
     client.wait_for_page
   end
 
+  test "wait_for_page wait for a page to load, can take a string timeout for backward compatibility" do
+    client = Class.new { include Selenium::Client::Idiomatic }.new
+    client.expects(:remote_control_command).with("waitForPageToLoad", [2000,])
+    client.wait_for_page "2"
+  end
+
   test "wait_for_page_to_load is an alias for wait_for_page providing easy transition to people used to the old API" do
     client = Class.new { include Selenium::Client::Idiomatic }.new
     client.expects(:remote_control_command).with("waitForPageToLoad", [24000,])
@@ -57,6 +63,12 @@ unit_tests do
     client.expects(:remote_control_command).with("waitForPopUp", [:the_window_id, 3000]).returns(:the_value)
     assert_equal :the_value, client.wait_for_popup(:the_window_id, 3)
   end
+
+  test "wait_for_popup timeout can be specified as a string for backward compatibility" do
+    client = Class.new { include Selenium::Client::Idiomatic }.new
+    client.expects(:remote_control_command).with("waitForPopUp", [:the_window_id, 5000]).returns(:the_value)
+    assert_equal :the_value, client.wait_for_popup(:the_window_id, "5")
+  end
   
   test "wait_for_popup use default timeout when none is specified" do
     client = Class.new { include Selenium::Client::Idiomatic }.new
@@ -77,6 +89,13 @@ unit_tests do
     client.expects(:remote_control_command).with("waitForCondition", ["some javascript", 24000,])
     client.stubs(:default_timeout_in_seconds).returns(7)
     client.wait_for_condition "some javascript", 24
+  end
+
+  test "wait_for_condition timeout can be specified as a string for backward compatibility" do
+    client = Class.new { include Selenium::Client::Idiomatic }.new
+    client.expects(:remote_control_command).with("waitForCondition", ["some javascript", 64000,])
+    client.stubs(:default_timeout_in_seconds).returns(7)
+    client.wait_for_condition "some javascript", "64"
   end
   
   test "wait_for does nothing when no options are given" do
