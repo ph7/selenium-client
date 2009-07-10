@@ -25,6 +25,10 @@ module Selenium
       def visible(locator)
         append "selenium.isVisible('#{quote_escaped(locator)}')"
       end
+
+      def not_visible(locator)
+        append "!selenium.isVisible('#{quote_escaped(locator)}')"
+      end
       
       def find_element(locator)
         append  <<-EOS

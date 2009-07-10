@@ -23,19 +23,19 @@ module Selenium
 			                     options[:timeout_in_seconds]
 			end
 			
-			# Wait for an element to be present (the wait happens in the browser).
-		  def wait_for_element(locator, options={})
-		    builder = JavascriptExpressionBuilder.new 
-		    builder.find_element(locator).append("element != null;")
-		    wait_for_condition builder.script, options[:timeout_in_seconds]
-		  end
+      # Wait for an element to be present (the wait happens in the browser).
+      def wait_for_element(locator, options={})
+        builder = JavascriptExpressionBuilder.new 
+        builder.find_element(locator).append("element != null;")
+        wait_for_condition builder.script, options[:timeout_in_seconds]
+      end
 
-			# Wait for an element to NOT be present (the wait happens in the browser).
-		  def wait_for_no_element(locator, options={})
-		    builder = JavascriptExpressionBuilder.new 
-		    builder.find_element(locator).append("element == null;")
-		    wait_for_condition builder.script, options[:timeout_in_seconds]
-		  end
+      # Wait for an element to NOT be present (the wait happens in the browser).
+      def wait_for_no_element(locator, options={})
+        builder = JavascriptExpressionBuilder.new 
+        builder.find_element(locator).append("element == null;")
+        wait_for_condition builder.script, options[:timeout_in_seconds]
+      end
 
 			# Wait for some text to be present (the wait is happening browser side).
 			#
@@ -82,13 +82,14 @@ module Selenium
         wait_for_condition builder.script, options[:timeout_in_seconds]
       end
 
-			# Wait for a field to get a specific value (the wait happens in the browser).
+      # Wait for a field to get a specific value (the wait happens in the browser).
       def wait_for_field_value(locator, expected_value, options={})
         builder = JavascriptExpressionBuilder.new 
         builder.find_element(locator).element_value_is(expected_value)
         wait_for_condition builder.script, options[:timeout_in_seconds]
       end
 
+      # Wait for a field to not have a specific value (the wait happens in the browser).
       def wait_for_no_field_value(locator, expected_value, options={})
         builder = JavascriptExpressionBuilder.new 
         builder.find_element(locator).element_value_is_not(expected_value)
@@ -99,6 +100,12 @@ module Selenium
       def wait_for_visible(locator, options={})
         builder = JavascriptExpressionBuilder.new 
         wait_for_condition builder.visible(locator).script, options[:timeout_in_seconds]
+      end
+
+      # Wait for something to not be visible (the wait happens in the browser).
+      def wait_for_not_visible(locator, options={})
+        builder = JavascriptExpressionBuilder.new 
+        wait_for_condition builder.not_visible(locator).script, options[:timeout_in_seconds]
       end
 
       def active_javascript_framework(options)
