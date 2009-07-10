@@ -154,4 +154,15 @@ unit_tests do
     client.wait_for_no_field_value "a_locator", "a value", :timeout_in_seconds => :the_timeout
   end
 
+  test "wait_for_visible uses provided locator" do
+    client = Class.new { include Selenium::Client::Extensions }.new
+    client.expects(:wait_for_visible).with(regexp_matches(/selenium.isVisible('a_locator')/), anything)
+    client.wait_for_visible "a_locator"
+  end
+  
+  test "wait_for_visible uses explicit timeout when provided" do
+    client = Class.new { include Selenium::Client::Extensions }.new
+    client.expects(:wait_for_visible).with(anything, :the_timeout)
+    client.wait_for_visible "a_locator", :timeout_in_seconds => :the_timeout
+  end
 end

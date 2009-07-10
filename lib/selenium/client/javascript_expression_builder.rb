@@ -22,6 +22,10 @@ module Selenium
 			  append window_script("Effect.Queue.size() == 0")
 			end
 
+      def visible(locator)
+        append "selenium.isVisible('#{quote_escaped(locator)}')"
+      end
+      
       def find_element(locator)
         append  <<-EOS
           var element;
