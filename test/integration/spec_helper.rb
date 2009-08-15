@@ -18,14 +18,6 @@ Spec::Runner.configure do |config|
     end
   end
 
-  def selenium_driver
-    @selenium_driver
-  end
-    
-  def page
-    @selenium_driver
-  end
-
   def create_selenium_driver
     application_host = ENV['SELENIUM_APPLICATION_HOST'] || "localhost"
     application_port = ENV['SELENIUM_APPLICATION_PORT'] || "4567"
@@ -41,6 +33,11 @@ Spec::Runner.configure do |config|
     selenium_driver.start_new_browser_session
     selenium_driver.set_context "Starting example '#{self.description}'"
   end
+
+  def selenium_driver
+    @selenium_driver
+  end
+  alias :page :selenium_driver
 
   def should_timeout
     begin
