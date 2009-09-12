@@ -109,7 +109,7 @@ module Selenium
       end
 
       def quote_escaped(a_string)
-        a_string.gsub(/'/, %q<\\\'>)
+        a_string.gsub(/\\/, "\\\\\\").gsub(/'/, %q<\\\'>)
       end
     end
   end
