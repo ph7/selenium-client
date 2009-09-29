@@ -10,3 +10,4 @@ lib/selenium/client/generated_driver.rb
 *.iws
 .DS_Store
 tmtags
+.tmtags

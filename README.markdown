@@ -322,3 +322,7 @@ Contributors
 * [Eliot Sykes](http://blog.eliotsykes.com) (`eliotsykes`)
    - wait_for_visibility [patch](http://github.com/eliotsykes/selenium-client/commit/4c7f3d01aa75a6b1917fbf71335b0069392ed546)
 
+* [Frederik Fix](http://github.com/derfred)(`derfred`)
+   - Fix escaping bug when dealing with embedded regexes such as
+     "webratlink=evalregex:/Pastry Lovers \\(Organizer\\)/"
+     [patch](http://github.com/derfred/selenium-client/commit/4342cbb39d1a92b8db8f26ee0dc6c1a8f3287737)

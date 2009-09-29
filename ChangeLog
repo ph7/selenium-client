@@ -5,6 +5,9 @@
 ==================
 
  - Fixed bug in with timeouts specified as a string (SRC-692)
+ - Fix escaping bug when dealing with embedded regexes such as
+   "webratlink=evalregex:/Pastry Lovers \\(Organizer\\)/"
+   Thank you Frederik Fix
 
 1.2.16 (2009-06-21)
 ===================
