@@ -22,6 +22,14 @@ module Selenium
 			  append window_script("Effect.Queue.size() == 0")
 			end
 
+      def visible(locator)
+        append "selenium.isVisible('#{quote_escaped(locator)}')"
+      end
+
+      def not_visible(locator)
+        append "!selenium.isVisible('#{quote_escaped(locator)}')"
+      end
+      
       def find_element(locator)
         append  <<-EOS
           var element;
@@ -101,7 +109,7 @@ module Selenium
       end
 
       def quote_escaped(a_string)
-        a_string.gsub(/'/, %q<\\\'>)
+        a_string.gsub(/\\/, "\\\\\\").gsub(/'/, %q<\\\'>)
       end
     end
   end

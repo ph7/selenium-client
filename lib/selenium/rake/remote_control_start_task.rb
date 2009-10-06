@@ -28,11 +28,13 @@ module Selenium
                     :log_to
       attr_reader :jar_file
 
+      JAR_FILE_PATTERN = "vendor/selenium-remote-control/selenium-server-*.jar"
+
       def initialize(name = :'selenium:rc:start')
         @name = name
         @port = 4444
         @timeout_in_seconds = 5
-        project_specific_jar = Dir["vendor/selenium-remote-control/selenium-server*-standalone.jar"].first
+        project_specific_jar = Dir[JAR_FILE_PATTERN].first
         @jar_file = project_specific_jar
         @additional_args = []
         @background = false
@@ -49,6 +51,7 @@ module Selenium
         desc "Launch Selenium Remote Control"
         task @name do
           puts "Starting Selenium Remote Control at 0.0.0.0:#{@port}..."
+          raise "Could not find jar file '#{@jar_file}'. Expected it under #{JAR_FILE_PATTERN}" unless @jar_file && File.exists?(@jar_file)
           remote_control = Selenium::RemoteControl::RemoteControl.new("0.0.0.0", @port, :timeout => @timeout_in_seconds)
           remote_control.jar_file = @jar_file
           remote_control.additional_args = @additional_args

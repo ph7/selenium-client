@@ -46,7 +46,9 @@ Features
   * `click 'the_button_id', :wait_for => :no_text, :element => 'notification_box', :text => 'Disappearing Text'`
   * `click 'the_button_id', :wait_for => :effects`
   * `click 'the_button_id', :wait_for => :value, :element => 'a_locator', :value => 'some value'`
-  * `click 'the_button_id', :wait_for => :no_value, :element => 'a_locator', :value => 'some value' # will wait for the field value of 'a_locator' to not be 'some value'`  
+  * `click 'the_button_id', :wait_for => :no_value, :element => 'a_locator', :value => 'some value'`
+  * `click 'the_button_id', :wait_for => :visible, :element => 'a_locator'`
+  * `click 'the_button_id', :wait_for => :not_visible, :element => 'a_locator'`
   * `click 'the_button_id', :wait_for => :condition, :javascript => "some arbitrary javascript expression"`
 
   Check out the `click`, `go_back` and `wait_for` methods of the [Idiomatic Module](http://selenium-client.rubyforge.org/classes/Selenium/Client/Idiomatic.html)
@@ -151,7 +153,7 @@ Writing Tests
  If BDD is more your style, here is how you can achieve the same thing  using RSpec:
 
     require 'rubygems'
-    gem "rspec", "=1.2.6"
+    gem "rspec", "=1.2.8"
     gem "selenium-client", ">=1.2.16"
     require "selenium/client"
     require "selenium/rspec/spec_helper"
@@ -316,4 +318,11 @@ Contributors
 * [Adam Greene](http://blog.sweetspot.dm) (`skippy`)
    - Added the ability to redirect output to a log file, when
      launching Selenium Remote Control with the Rake task
-   
+
+* [Eliot Sykes](http://blog.eliotsykes.com) (`eliotsykes`)
+   - wait_for_visibility [patch](http://github.com/eliotsykes/selenium-client/commit/4c7f3d01aa75a6b1917fbf71335b0069392ed546)
+
+* [Frederik Fix](http://github.com/derfred)(`derfred`)
+   - Fix escaping bug when dealing with embedded regexes such as
+     "webratlink=evalregex:/Pastry Lovers \\(Organizer\\)/"
+     [patch](http://github.com/derfred/selenium-client/commit/4342cbb39d1a92b8db8f26ee0dc6c1a8f3287737)

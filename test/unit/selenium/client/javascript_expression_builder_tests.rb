@@ -36,7 +36,13 @@ unit_tests do
     assert_equal "//div[@id=\\'demo-effect-appear\\']", 
                  builder.quote_escaped("//div[@id='demo-effect-appear']")
   end
-  
+
+  test "quote_escaped escapes backslashes" do
+    builder = Selenium::Client::JavascriptExpressionBuilder.new
+    assert_equal "webratlink=evalregex:/Pastry Lovers \\\\(Organizer\\\\)/", 
+                 builder.quote_escaped("webratlink=evalregex:/Pastry Lovers \\(Organizer\\)/")
+  end
+
   test "text_match matches on entire string when pattern is a string" do
     builder = Selenium::Client::JavascriptExpressionBuilder.new
     assert_equal "element.innerHTML == 'some text'", 
@@ -60,7 +66,13 @@ unit_tests do
     assert_match(/element\s+=\s+selenium.browserbot.findElement\('a_locator'\);/m, 
                  builder.find_element('a_locator').script)
   end
-  
+
+  test "find_element should handle embedded evalregex locators" do
+    builder = Selenium::Client::JavascriptExpressionBuilder.new
+    assert_match(/element\s+=\s+selenium.browserbot.findElement\('webratlink=evalregex:\/Pastry Lovers \\\\\(Organizer\\\\\)\/'\);/m, 
+                 builder.find_element("webratlink=evalregex:/Pastry Lovers \\(Organizer\\)/").script)
+  end
+
   test "javascript_framework_for :prototype returns JavascriptFrameworks::Prototype" do
     builder = Selenium::Client::JavascriptExpressionBuilder.new
     assert_equal Selenium::Client::JavascriptFrameworks::Prototype, 

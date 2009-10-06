@@ -42,8 +42,8 @@ module Selenium
       # * 'timeout_in_seconds' is a timeout in seconds, after which this 
       #   command will return with an error
       def wait_for_page(timeout_in_seconds=nil)
-        actual_timeout = timeout_in_seconds || default_timeout_in_seconds
-        remote_control_command "waitForPageToLoad", [actual_timeout * 1000,]
+        remote_control_command "waitForPageToLoad", 
+            [actual_timeout_in_milliseconds(timeout_in_seconds),]
       end
       alias_method :wait_for_page_to_load, :wait_for_page
 
@@ -52,8 +52,8 @@ module Selenium
       # window_id is the JavaScript window "name" of the window that will appear (not the text of the title bar)
       # timeout_in_seconds is a timeout in seconds, after which the action will return with an error
       def wait_for_popup(window_id, timeout_in_seconds=nil)
-        actual_timeout = timeout_in_seconds || default_timeout_in_seconds
-        remote_control_command "waitForPopUp", [window_id, actual_timeout * 1000 ,]
+        remote_control_command "waitForPopUp", 
+            [window_id, actual_timeout_in_milliseconds(timeout_in_seconds) ,]
       end
 
       # Flexible wait semantics. ait is happening browser side. Useful for testing AJAX application.
@@ -74,6 +74,8 @@ module Selenium
       # * wait :wait_for => :no_text, :element => 'a_locator', :text => 'some text'    # will wait for the content of 'a_locator' to not be 'some text'
       # * wait :wait_for => :value, :element => 'a_locator', :value => 'some value'    # will wait for the field value of 'a_locator' to be 'some value'
       # * wait :wait_for => :no_value, :element => 'a_locator', :value => 'some value' # will wait for the field value of 'a_locator' to not be 'some value'
+      # * wait :wait_for => :visible, :element => 'a_locator'                          # will wait for element to be visible
+      # * wait :wait_for => :not_visible, :element => 'a_locator'                      # will wait for element to not be visible
       # * wait :wait_for => :condition, :javascript => 'some expression'               # will wait for the javascript expression to be true
       #
       # Using options you can also define an explicit timeout (:timeout_in_seconds key). Otherwise the default driver timeout
@@ -100,6 +102,10 @@ module Selenium
             wait_for_field_value options[:element], options[:value], options
         elsif options[:wait_for] == :no_value
             wait_for_no_field_value options[:element], options[:value], options
+        elsif options[:wait_for] == :visible
+            wait_for_visible options[:element], options
+        elsif options[:wait_for] == :not_visible
+            wait_for_not_visible options[:element], options
 	      elsif options[:wait_for] == :condition
 	          wait_for_condition options[:javascript], options[:timeout_in_seconds]
         end
@@ -133,6 +139,8 @@ module Selenium
       # * click "a_locator", :wait_for => :no_text, :element => 'a_locator', :text => 'some text'    # will wait for the content of 'a_locator' to not be 'some text'
       # * click "a_locator", :wait_for => :value, :element => 'a_locator', :value => 'some value'    # will wait for the field value of 'a_locator' to be 'some value'
       # * click "a_locator", :wait_for => :no_value, :element => 'a_locator', :value => 'some value' # will wait for the field value of 'a_locator' to not be 'some value'
+      # * click "a_locator", :wait_for => :visible, :element => 'a_locator'                          # will wait for element to be visible
+      # * click "a_locator", :wait_for => :not_visible, :element => 'a_locator'                      # will wait for element to not be visible
       # * click "a_locator", :wait_for => :condition, :javascript => 'some expression'               # will wait for the javascript expression to be true
       #
       # Using options you can also define an explicit timeout (:timeout_in_seconds key). Otherwise the default driver timeout
@@ -284,7 +292,7 @@ module Selenium
       #
       # Actions that require waiting include "open" and the "waitFor*" actions.
       def remote_control_timeout_in_seconds=(timeout_in_seconds)
-          remote_control_command "setTimeout", [timeout_in_seconds * 1000,]
+        remote_control_command "setTimeout", [actual_timeout_in_milliseconds(timeout_in_seconds),]
       end
 
       # Returns the text from a cell of a table. The cellAddress syntax
@@ -308,7 +316,8 @@ module Selenium
       # * 'script' is the JavaScript snippet to run
       # * 'timeout_in_seconds' is a timeout in seconds, after which this command will return with an error
       def wait_for_condition(script, timeout_in_seconds = nil)
-        remote_control_command "waitForCondition", [script, (timeout_in_seconds || default_timeout_in_seconds) * 1000,]
+        remote_control_command "waitForCondition", 
+            [script, actual_timeout_in_milliseconds(timeout_in_seconds),]
       end
 
       # Simulates the user clicking the "back" button on their browser.
@@ -331,6 +340,8 @@ module Selenium
       # * go_back :wait_for => :no_text, :element => 'a_locator', :text => 'some text'    # will wait for the content of 'a_locator' to not be 'some text'
       # * go_back :wait_for => :condition, :javascript => 'some expression'               # will wait for the javascript expression to be true
       # * go_back :wait_for => :value, :element => 'a_locator', :value => 'some value'    # will wait for the field value of 'a_locator' to be 'some value'
+      # * go_back :wait_for => :visible, :element => 'a_locator'                          # will wait for element to be visible
+      # * go_back :wait_for => :not_visible, :element => 'a_locator'                      # will wait for element to not be visible
       # * go_back :wait_for => :no_value, :element => 'a_locator', :value => 'some value' # will wait for the field value of 'a_locator' to not be 'some value'
       #
       # Using options you can also define an explicit timeout (:timeout_in_seconds key). Otherwise the default driver timeout
@@ -466,6 +477,11 @@ module Selenium
         remote_control_command "setSpeed", [delay_in_milliseconds]
       end
 
+      def actual_timeout_in_milliseconds(timeout_in_seconds)
+        actual_timeout = (timeout_in_seconds || 
+                          default_timeout_in_seconds).to_i
+        actual_timeout * 1000
+      end
     end
 
   end
