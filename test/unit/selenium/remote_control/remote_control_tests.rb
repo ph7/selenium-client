@@ -91,5 +91,10 @@ unit_tests do
     Net::HTTP.expects(:get).with(:a_host, '/selenium-server/driver/?cmd=shutDown', :a_port)
     remote_control.stop
   end
-    
+  
+  test "additional_args includes selenium flag and path to firefox profile" do
+    remote_control = Selenium::RemoteControl::RemoteControl.new(:a_host, :a_port, :firefox_profile => firefox_profile_path)
+    assert_equal firefox_profile_path, remote_control.firefox_profile
+  end
+  
 end

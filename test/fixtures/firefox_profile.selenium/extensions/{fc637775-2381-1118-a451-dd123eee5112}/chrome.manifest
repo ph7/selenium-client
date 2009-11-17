@@ -1,0 +1,4 @@
+content	soa	content/
+locale	soa	en-US	locale/en-US/
+skin	soa	classic/1.0	skin/
+overlay	chrome://browser/content/browser.xul	chrome://soa/content/overlay.xul

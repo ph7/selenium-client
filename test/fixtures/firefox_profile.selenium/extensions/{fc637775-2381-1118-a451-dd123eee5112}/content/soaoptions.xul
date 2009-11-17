@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://soa/skin/overlay.css" type="text/css"?>
+<!DOCTYPE prefwindow SYSTEM "chrome://soa/locale/prefwindow.dtd">
+
+
+
+<prefwindow id="StayOnlinePrefsID" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" 
+title="StayOnline" 
+onload="soa.OptionsLoad()"
+onclose="soa.OptionsClose()"
+buttons="," 
+>
+
+	<script type='application/x-javascript' src='chrome://soa/content/soa.js'></script>
+
+
+	<script type="application/x-javascript">  
+	  <![CDATA[
+	  ]]>
+	</script>
+
+
+
+  <prefpane id="pane1" label="AskForSanitize">
+    <preferences>
+      <preference id="StayOnlineEnabledPref" name="extensions.soa.enabled" type="bool"/>
+    </preferences>
+
+
+
+
+  </prefpane>
+
+
+
+
+</prefwindow>
+

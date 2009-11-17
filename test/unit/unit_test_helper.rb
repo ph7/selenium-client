@@ -27,6 +27,11 @@ Test::Unit::TestCase.class_eval do
     Object.send :remove_const, :STDERR
     Object.const_set :STDERR, original_stderr
   end
+  
+  def firefox_profile_path
+    File.expand_path(File.dirname(__FILE__) + "/../fixtures/firefox_profile.selenium")
+  end
+  
 
 end
   
