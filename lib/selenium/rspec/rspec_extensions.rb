@@ -1,5 +1,5 @@
 require "rubygems"
-gem "rspec", "=1.2.8"
+gem "rspec", ">=1.2.8"
 require 'spec'
 require 'spec/example/example_group'
 

@@ -153,7 +153,7 @@ Writing Tests
  If BDD is more your style, here is how you can achieve the same thing  using RSpec:
 
     require 'rubygems'
-    gem "rspec", "=1.2.8"
+    gem "rspec", ">=1.2.8"
     gem "selenium-client", ">=1.2.16"
     require "selenium/client"
     require "selenium/rspec/spec_helper"
