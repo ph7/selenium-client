@@ -11,7 +11,7 @@ module Selenium
         timeout(@default_timeout_in_seconds) do
           status, response = http_post(http_request_for(verb, args))
           raise Selenium::CommandError, response unless status == "OK"          
-          response
+          response[3..-1] # strip "OK," from response
         end
       end
       
@@ -81,13 +81,21 @@ module Selenium
       end
             
       def http_post(data)
-        # puts "Requesting ---> #{data.inspect}"
+        start = Time.now
+        called_from = caller.detect{|line| line !~ /(selenium-client|vendor|usr\/lib\/ruby|\(eval\))/i}
         http = Net::HTTP.new(@host, @port)
         http.open_timeout = default_timeout_in_seconds
         http.read_timeout = default_timeout_in_seconds
         response = http.post('/selenium-server/driver/', data, HTTP_HEADERS)
-        # puts "RESULT: #{response.body.inspect}\n"
-        [ response.body[0..1], response.body[3..-1] ]
+        if response.body !~ /^OK/
+          puts "#{start} selenium-client received failure from selenium server:"
+          puts "requested:"
+          puts "\t" + CGI::unescape(data.split('&').join("\n\t"))
+          puts "received:"
+          puts "\t#{response.body.inspect}"
+          puts "\tcalled from #{called_from}"
+        end
+        [ response.body[0..1], response.body ]
       end
      
     end
