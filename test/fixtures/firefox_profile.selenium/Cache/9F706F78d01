@@ -1,314 +1,0 @@
-<?xml version="1.0" encoding="utf-8" ?><addons>
-<addon>
-        <name>ScrapBook</name>
-    <type id='1'>Extension</type>
-    <guid>{53A03D43-5363-4669-8190-99061B2DEBA5}</guid>
-    <version>1.3.5</version>
-    <status id='4'>Public</status>
-    <authors>
-          <author>Gomita</author>
-    </authors>      
-    <summary>Helps you to save Web pages and organize the collection.</summary>
-    <description>ScrapBook is a Firefox extension, which helps you to save Web pages and easily manage collections. Key features are lightness, speed, accuracy and multi-language support. Major features are:* Save Web page* Save snippet of Web page* Save Web site* Organize the collection in the same way as Bookmarks* Full text search and quick filtering search of the collection* Editing of the collected Web page* Text/HTML edit feature resembling Opera&#39;s Notes</description>
-    <icon>https://addons.mozilla.org/en-US/firefox/images/addon_icon/427/1252846376</icon>
-    <compatible_applications>
-        <application>
-            <name>Firefox</name>
-            <application_id>1</application_id>
-            <min_version>3.0</min_version>
-            <max_version>3.5.*</max_version>
-            <appID>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</appID>
-             </application>
-         </compatible_applications>      
-        <all_compatible_os>
-            <os>ALL</os>        </all_compatible_os>
-        <eula></eula>
-    <thumbnail>https://addons.mozilla.org/en-US/firefox/images/t/17387/1195666192</thumbnail>
-    <rating>5</rating>
-    <learnmore>https://addons.mozilla.org/addon/427?src=api</learnmore>
-             <install hash='sha256:c121fe9699f2967e270593bae54fbf2c12848b515f65a1ac0e482ef6b33106ac'
-              os='ALL'>https://addons.mozilla.org/downloads/file/64462/scrapbook-1.3.5-fx.xpi?src=api</install>          
-         </addon>
-<addon>
-        <name>WiseStamp - Email signature</name>
-    <type id='1'>Extension</type>
-    <guid>wisestamp@wisestamp.com</guid>
-    <version>1.2.2</version>
-    <status id='4'>Public</status>
-    <authors>
-          <author>The WiseStamp Team</author>
-    </authors>      
-    <summary>☛WiseStamp- Empower your email signatures in Gmail, Google Apps, Yahoo! Mail, Hotmail or AOL...✔Multiple signatures ✔Auto insert ✔Add IM &amp; Social profiles (Twitter, Facebook, Digg, LinkedIn...) ✔Add Feeds ✔Easily add Logo or HTML &amp; more...Get it now!</summary>
-    <description>Empower your webmail signatures in Gmail, Google Apps, Yahoo!, Hotmail, and AOL.WiseStamp is a signature creator that includes many exciting and improved webmail signature features such as:New Features:✔ Add your personal feeds (rss)- Automatically Share blog posts, bookmarks, videos, social feeds or daily quotes in your signature.✔ Renaming signaturesFeatures:✔ Personally designed signatures ✔ Easy setup and configuration interface✔ Automatic signature insertion✔ Multiple email signatures (Business and Personal) ✔ Add logo or image to signature ✔ Easily link to social services - links &amp; Profiles + icons ✔ Easily include IM (Instant Messaging) ID&#39;s + icons And more..✔ Signature Rich Text editor (WYSIWYG Editor - choose color and font) ✔ Supports all webmail functions - Compose Mail, Reply, and Forward.✔ Preview while editing Signature✔ Simple control- switch signature on/off ✔ Support for special characters ✔ Option to treat each signature as HTML ✔ Full Ltr &amp; Rtl language support ✔ Add your personal signature to any online Html supported page (Google Docs, etc.) ✔ Supports Firefox 2 &amp; Firefox 3 !! Useful Links:☛ Learn more at www.wisestamp.com☛ FAQ Troubleshooting &amp; Support- http://www.wisestamp.com/usage-faq☛ Get more feed idea&#39;s for your signature at- www.wisestamp.com/get-more-feed-ideasWe currently support:Amazon, Bebo, Blogger, del.icio.us, DeviantART, Digg, Ebay, Facebook, Flickr, Flixster, Friendfeed, Google, Google Wave, Linkedin, Livejournal, Meetup, MyBlogLog, MySpace, Netflix, Netvibes, Orkut, Photobucket, Picasa, Plaxo, Plurk, Reddit, Seesmic, Slideshare, Stumbleupon, Technorati, Tumblr, Twitter, Typepad, Upcoming, Vimeo, VisualCV, Wordpress, Xanga, Xing, Yahoo, Yedda, Yelp, Youtube.See full updated list:☛ http://www.wisestamp.com/features#Social_services</description>
-    <icon>https://addons.mozilla.org/en-US/firefox/images/addon_icon/8206/1255874263</icon>
-    <compatible_applications>
-        <application>
-            <name>Firefox</name>
-            <application_id>1</application_id>
-            <min_version>2.0</min_version>
-            <max_version>3.6a1pre</max_version>
-            <appID>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</appID>
-             </application>
-         </compatible_applications>      
-        <all_compatible_os>
-            <os>ALL</os><os>ALL</os>        </all_compatible_os>
-        <eula></eula>
-    <thumbnail>https://addons.mozilla.org/en-US/firefox/images/t/23711/1216646885</thumbnail>
-    <rating>5</rating>
-    <learnmore>https://addons.mozilla.org/addon/8206?src=api</learnmore>
-             <install hash='sha256:04a833ef2bbb9cc828b12958ce7eae87cb39645507a3c37ab4d1b7f0d42aa9e9'
-              os='ALL'>https://addons.mozilla.org/downloads/file/57343/wisestamp-1.2.2-fx.xpi?src=api</install>          
-         </addon>
-<addon>
-        <name>Video DownloadHelper</name>
-    <type id='1'>Extension</type>
-    <guid>{b9db16a4-6edc-47ec-a1f4-b86292ed211d}</guid>
-    <version>4.6.4</version>
-    <status id='4'>Public</status>
-    <authors>
-          <author>mig</author>
-    </authors>      
-    <summary>The easy way to download and convert Web videos from hundreds of YouTube-like sites.This works also for audio and picture galleries.</summary>
-    <description>DownloadHelper is a tool for web content extraction. Its purpose is to capture video and image files from many sites.Just surf the Web as you are used to, when DownloadHelper detects it can do something for you, the icon gets animated and a menu allows you to download files by simply clicking an itemFor instance, if you go to a YouTube page, you&#39;ll be able to download the video directly on your file system. It also works with MySpace, Google videos, DailyMotion, Porkolt, iFilm, DreamHost and others.Since version 3.1, you can setup the extension to automatically convert the downloaded movies to your preferred video format.When you are on a page containing links to images or movies, you can download some or all of them at once. Moving the mouse over the items in the menu will highlights the links directly in the page to make sure they are the ones you want to pick up.DownloadHelper also allows you to download files one by one, so that you keep bandwidth to surf for other stuff to download.To modify your preferences, like changing the download directory, right-click on the icon and choose &quot;Preferences&quot;.When you first install the extension, your browser is redirected to a welcome page with links to a user manual at http://www.downloadhelper.net/manual.php and a faq at http://www.downloadhelper.net/faq.phpThis does not change your homepage setting and the welcome page won&#39;t appear anymore.Support can be obtained from http://www.downloadhelper.net/support.php</description>
-    <icon>https://addons.mozilla.org/en-US/firefox/images/addon_icon/3006/1255131993</icon>
-    <compatible_applications>
-        <application>
-            <name>Firefox</name>
-            <application_id>1</application_id>
-            <min_version>1.5</min_version>
-            <max_version>3.6.*</max_version>
-            <appID>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</appID>
-             </application>
-         </compatible_applications>      
-        <all_compatible_os>
-            <os>ALL</os><os>ALL</os><os>ALL</os>        </all_compatible_os>
-        <eula></eula>
-    <thumbnail>https://addons.mozilla.org/en-US/firefox/images/t/25993/1221482458</thumbnail>
-    <rating>5</rating>
-    <learnmore>https://addons.mozilla.org/addon/3006?src=api</learnmore>
-             <install hash='sha256:d27f32ef185b6dbc250b4a2ccc4d70a8c53b152a63b6e44d4b9653f6d98d3ed4'
-              os='ALL'>https://addons.mozilla.org/downloads/file/66332/downloadhelper-4.6.4-fx.xpi?src=api</install>          
-         </addon>
-<addon>
-        <name>WebMail Notifier</name>
-    <type id='1'>Extension</type>
-    <guid>{37fa1426-b82d-11db-8314-0800200c9a66}</guid>
-    <version>1.5.3</version>
-    <status id='4'>Public</status>
-    <authors>
-          <author>Byungwook Kang</author>
-    </authors>      
-    <summary>WebMail Notifier checks your webmail accounts and notifies the number of unread emails...Supports : gmail, yahoo, hotmail, daum, naver, empas, nate and more </summary>
-    <description>WebMail Notifier checks your webmail accounts and notifies the number of unread emails.You can use multiple accounts in a same host.Currently supports - mail.google.com(Gmail &amp; Google Apps) - mail.yahoo.com (yahoo.com, ymail.com, rocketmail.com, yahoo.co.jp) - mail.live.com(hotmail.com, msn.com, live.com) - www.daum.net(hanmail) - www.naver.com - www.nate.com(nate.com, empas.com)Below sites are supported by user script. - aol.com(icqmail.com) - facebook.com(facebook notification) - mail.qq.com - www.fastmail.fm - www.gmx.net - mail.lycos.com - www.orkut.com - freemail.web.de - poczta.fm(poczta.interia.pl)If you want other webmail provider, you can make your own script.You can find user script examples here.http://tobwithu.tistory.com/category/WebMailNotifier</description>
-    <icon>https://addons.mozilla.org/en-US/firefox/images/addon_icon/4490/1255828372</icon>
-    <compatible_applications>
-        <application>
-            <name>Firefox</name>
-            <application_id>1</application_id>
-            <min_version>1.5</min_version>
-            <max_version>3.7a1pre</max_version>
-            <appID>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</appID>
-             </application>
-         </compatible_applications>      
-        <all_compatible_os>
-            <os>ALL</os><os>ALL</os><os>ALL</os><os>ALL</os>        </all_compatible_os>
-        <eula></eula>
-    <thumbnail>https://addons.mozilla.org/en-US/firefox/images/t/15233/1184587092</thumbnail>
-    <rating>4</rating>
-    <learnmore>https://addons.mozilla.org/addon/4490?src=api</learnmore>
-             <install hash='sha256:552bf6082f403febe7c8cc95579f1caf93ccd7435a6de3cc3c155e99d9ac16a8'
-              os='ALL'>https://addons.mozilla.org/downloads/file/66411/webmail_notifier-1.5.3-fx.xpi?src=api</install>          
-         </addon>
-<addon>
-        <name>SkipScreen</name>
-    <type id='1'>Extension</type>
-    <guid>SkipScreen@SkipScreen</guid>
-    <version>0.1.10042009</version>
-    <status id='4'>Public</status>
-    <authors>
-          <author>Skipscreen</author>
-    </authors>      
-    <summary>Skips unnecessary pages on sites like Rapidshare, Megaupload, zShare, Mediafire, and more.  Try it out, or watch a demo at skipscreen.comSkipScreen will be tenaciously maintained and improving all the time.  Why click through ad-laden pages and wait for countdowns when your computer can do it for you?  </summary>
-    <description>UPDATE: Mediafire.com tried to take us down, but Mozilla didn&#39;t cave.  Awesome.  Thanks EFF, and thanks to everyone who left a supportive review!  Read more: http://bit.ly/nCVHr   How it started: http://bit.ly/t0EzQ  Follow us: @skipscreenWherever you need to click through ads or wait for countdowns, SkipScreen will be there to make your life easier.  SkipScreen automatically clicks through the hoops to get to the content you want.SkipScreen will be tenaciously maintained and improving all the time.  We&#39;re starting with some of the most popular sites.  But if there&#39;s a site whose superfluous pages and delays annoy you, please tell us!Supported sites:* Rapidshare.com  * zShare.net* MediaFire.com * Megaupload.com* Sharebee.com* Depositfiles.com* Sendspace.com* Divshare.com* Linkbucks.com* Uploaded.to* Hotfiles.com* 4shared.com* Limelinx.com* Link-Protector.comAnd many more on the way!  Example download links for testing (all sharing friendly): http://tinyurl.com/cepo8b</description>
-    <icon>https://addons.mozilla.org/en-US/firefox/images/addon_icon/11243/1257907735</icon>
-    <compatible_applications>
-        <application>
-            <name>Firefox</name>
-            <application_id>1</application_id>
-            <min_version>3.0</min_version>
-            <max_version>3.7a1pre</max_version>
-            <appID>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</appID>
-             </application>
-         </compatible_applications>      
-        <all_compatible_os>
-            <os>ALL</os><os>ALL</os><os>ALL</os><os>ALL</os><os>ALL</os>        </all_compatible_os>
-        <eula></eula>
-    <thumbnail>https://addons.mozilla.org/en-US/firefox/images/t/30983/1238511992</thumbnail>
-    <rating>5</rating>
-    <learnmore>https://addons.mozilla.org/addon/11243?src=api</learnmore>
-             <install hash='sha256:2f6f01c9c7625a8ab2e7e54b25f5686e707482db9109e70c173ee9f0e3460f38'
-              os='ALL'>https://addons.mozilla.org/downloads/file/69475/skipscreen-0.1.10042009-fx.xpi?src=api</install>          
-         </addon>
-<addon>
-        <name>Download Statusbar</name>
-    <type id='1'>Extension</type>
-    <guid>{D4DD63FA-01E4-46a7-B6B1-EDAB7D6AD389}</guid>
-    <version>0.9.6.5</version>
-    <status id='4'>Public</status>
-    <authors>
-          <author>Devon Jensen</author>
-    </authors>      
-    <summary>View and manage downloads from a tidy statusbar - without the download window getting in the way of your web browsing.</summary>
-    <description>Despite its compact size, Download Statusbar packs in more useful features than the standard download window. The fully customizable interface auto-hides when not in use, allowing full control without interruption.  Be sure to check out the preview images!Firefox 2 users - click the &quot;See All Versions&quot; link and use version 0.9.6.3 </description>
-    <icon>https://addons.mozilla.org/en-US/firefox/images/addon_icon/26/1253771342</icon>
-    <compatible_applications>
-        <application>
-            <name>Firefox</name>
-            <application_id>1</application_id>
-            <min_version>3.0a8</min_version>
-            <max_version>3.7a1pre</max_version>
-            <appID>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</appID>
-             </application>
-         </compatible_applications>      
-        <all_compatible_os>
-            <os>ALL</os><os>ALL</os><os>ALL</os><os>ALL</os><os>ALL</os><os>ALL</os>        </all_compatible_os>
-        <eula></eula>
-    <thumbnail>https://addons.mozilla.org/en-US/firefox/images/t/9395/1174607013</thumbnail>
-    <rating>5</rating>
-    <learnmore>https://addons.mozilla.org/addon/26?src=api</learnmore>
-             <install hash='sha256:9a79462abc533e318a25da5e217f8edfa750d182c49cacaad3247a31db167630'
-              os='ALL'>https://addons.mozilla.org/downloads/file/52324/download_statusbar-0.9.6.5-fx.xpi?src=api</install>          
-         </addon>
-<addon>
-        <name>Cooliris</name>
-    <type id='1'>Extension</type>
-    <guid>piclens@cooliris.com</guid>
-    <version>1.11.5</version>
-    <status id='4'>Public</status>
-    <authors>
-          <author>The Cooliris Team</author>
-    </authors>      
-    <summary>The Cooliris 3D Wall -- Simply the fastest and most stunning way to browse photos and videos from the Web or your desktop. Effortlessly scroll an infinite &quot;3D Wall&quot; of your content from Facebook, Google Images, YouTube, Flickr, and hundreds more.</summary>
-    <description>Meet Cooliris, the 3D Wall that speeds up search on Google Images, YouTube, Flickr, and more. Enjoy the richest way to view photos from Facebook, Picasa, and even your own computer. On our infinite 3D Wall, you can effortlessly scroll though thousands of images and videos in seconds without having to click from page to page. Our Channels feature even lets you surf the latest news, TV episodes, and more. For details see: http://www.cooliris.com--------------------------------------------------------------------------------------------------------------------------Mac OS X 10.4 and Mac PowerPC are not supported on Cooliris v1.11.1+ To use Cooliris version 1.10 or earlier, please visit https://addons.mozilla.org/en-US/firefox/addons/versions/5579--------------------------------------------------------------------------------------------------------------------------HOW TO USE COOLIRIS Launch Cooliris any from your browser toolbar, or visit one of many hundreds of supported sites and click the Cooliris icon that appears as you mouseover images and videos. For example, to enjoy Cooliris on Google Images:1. Go to http://images.google.com2. Search as you normally do, e.g. &quot;mountains&quot; 3. Mouseover any thumbnail image from your search results4. Click the Cooliris icon that appears (or just click the Cooliris toolbar icon).Cooliris also works on Facebook, Flickr, YouTube, MySpace, Picasa Web Albums, and many more. See http://www.cooliris.com/product/supported. You can also search major providers within Cooliris with the built-in search box in the top right corner of the Cooliris interface.To lay back to watch TV episodes or the latest news in our Channels feature, just click the Cooliris icon on your browser toolbar and click the Channels button.TIPS &amp; TRICKS- For the best experience, use Firefox 3.5.2+ - Open items from the Wall to a new tab by CTRL-clicking &quot;go to webpage&quot; icon- Hide/show the Cooliris menu bars by pressing F8 (for PC) or Alt+Esc (for Mac)- Share your 3D Wall view by cutting and pasting its URL- Save your favorite 3D Wall view to your browser&#39;s bookmarks or set it as your homepage  SPREAD THE LOVE!Tell a friend or post about Cooliris at http://www.cooliris.com/inviteOr, if you&#39;re interested in what&#39;s coming next, join our beta community at http://cooliris.com/beta/signup------------------------By downloading Cooliris from Firefox Add-ons, you agree to the terms of our EULA and Privacy Policy. To see our current EULA and Privacy Policy, please visit http://www.cooliris.com/legal/.</description>
-    <icon>https://addons.mozilla.org/en-US/firefox/images/addon_icon/5579/1256164032</icon>
-    <compatible_applications>
-        <application>
-            <name>Firefox</name>
-            <application_id>1</application_id>
-            <min_version>3.0</min_version>
-            <max_version>3.5.*</max_version>
-            <appID>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</appID>
-             </application>
-         </compatible_applications>      
-        <all_compatible_os>
-            <os>ALL</os><os>ALL</os><os>ALL</os><os>ALL</os><os>ALL</os><os>ALL</os><os>WINNT</os><os>Darwin</os><os>Linux</os>        </all_compatible_os>
-        <eula></eula>
-    <thumbnail>https://addons.mozilla.org/en-US/firefox/images/t/21903/1229074254</thumbnail>
-    <rating>4</rating>
-    <learnmore>https://addons.mozilla.org/addon/5579?src=api</learnmore>
-             <install hash='sha256:4ad84619e4aa4d2f32595979f1754d385c1032dcf35c429ca06be7e5f57973c8'
-              os='WINNT'>https://addons.mozilla.org/downloads/file/67458/cooliris-1.11.5-fx-win.xpi?src=api</install>          
-                      <install hash='sha256:aa46f91deb91c9fb8232fe22c6202eef43072efcf8b0d55b53574b27537a751c'
-              os='Darwin'>https://addons.mozilla.org/downloads/file/67461/cooliris-1.11.5-fx-macosx.xpi?src=api</install>          
-                      <install hash='sha256:3f428415b01665802f1a240ce218f87a78de2233b616e43bf7594ca90231550d'
-              os='Linux'>https://addons.mozilla.org/downloads/file/67462/cooliris-1.11.5-fx-linux.xpi?src=api</install>          
-         </addon>
-<addon>
-        <name>Multiple Tab Handler</name>
-    <type id='1'>Extension</type>
-    <guid>multipletab@piro.sakura.ne.jp</guid>
-    <version>0.5.2009110501</version>
-    <status id='4'>Public</status>
-    <authors>
-          <author>Piro (piro_or)</author>
-    </authors>      
-    <summary>Provides feature to close multiple tabs.</summary>
-    <description>This provides features to handle multiple tabs at once, for example, close them, reload them, and so on. When you press the mouse button and dragging over tabs, they will be selected. (Note: The tab will be just moved, if you move the mouse quickly. To start selection, you have to keep the button pressed and wait for a while.) After you release the button, the popup to choose command will be shown. Of course, you can toggle selection by Ctrl-click on each tab and call features from the context menu. Yes, the behavior looks like Excel.Buit-in features for selected tabs: * Close selected tabs * Close not-selected tabs * Reload selected tabs * Duplicate selected tabs * Move selected tabs to a new window * Bookmark selected tabs * Copy URIs/titles+URIs/HTML links for selected tabs to the clipboard * Save (download) selected tabs to the local disk * Print selected tabs (require Print All Tabs: https://addons.mozilla.org/firefox/addon/5142 )You can customize the tab selection menu by Menu Editor ( https://addons.mozilla.org/firefox/addon/710 ).Extra features for general tab context menu: * Close right tabs * Close left tabs * Close all tabs include the selected tab * Close similar tabs (same domain) exclude the selected tabYou can move tabs with drag and drop if you start to drag on a tab after you press the mouse button immediately. Multiple tabs can be dragged and moved if you select multiple tabs by Ctrl-click or Shift-click before you start to drag.This emulates some features of &quot;iRider&quot;. Selecting of closeboxes can close tabs directly, and you can switch tabs by dragging on tabs. (require configuration)See also Tree Style Tab ( https://addons.mozilla.org/firefox/addon/5890 ).This is developed under a project to restructure TBE for Firefox 2. See also Informational Tab ( https://addons.mozilla.org/firefox/addon/4930 ).---------------------------------------For developers, Multiple Tab Handler provides public API. By the API, you&#39;ll be able to... * Add new feature to the tab selection menu. * Add new item to the tab context menu easiliy. * Get selected tabs as an array. * Toggle selection state of tabs.More information, see: http://piro.sakura.ne.jp/xul/_multipletab.html.en#api</description>
-    <icon>https://addons.mozilla.org/en-US/firefox/images/addon_icon/4838/1257398754</icon>
-    <compatible_applications>
-        <application>
-            <name>Firefox</name>
-            <application_id>1</application_id>
-            <min_version>3.0</min_version>
-            <max_version>3.7a1pre</max_version>
-            <appID>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</appID>
-             </application>
-         </compatible_applications>      
-        <all_compatible_os>
-            <os>ALL</os><os>ALL</os><os>ALL</os><os>ALL</os><os>ALL</os><os>ALL</os><os>WINNT</os><os>Darwin</os><os>Linux</os><os>ALL</os>        </all_compatible_os>
-        <eula></eula>
-    <thumbnail>https://addons.mozilla.org/en-US/firefox/images/t/13538/1257941174</thumbnail>
-    <rating>5</rating>
-    <learnmore>https://addons.mozilla.org/addon/4838?src=api</learnmore>
-             <install hash='sha256:e440b0dc532df880adbc2a26d76c10e6f4f40599437ec8f695d7cbc409612639'
-              os='ALL'>https://addons.mozilla.org/downloads/file/68863/multiple_tab_handler-0.5.2009110501-fx.xpi?src=api</install>          
-         </addon>
-<addon>
-        <name>Flagfox</name>
-    <type id='1'>Extension</type>
-    <guid>{1018e4d6-728f-4b20-ad56-37578a4de76b}</guid>
-    <version>3.3.18</version>
-    <status id='4'>Public</status>
-    <authors>
-          <author>Dave.G</author>
-    </authors>      
-    <summary>Displays a country flag depicting the location of the current website&#39;s server and provides quick access to detailed location and webserver information.</summary>
-    <description>Flagfox is an extension for Mozilla Firefox that shows a flag icon indicating the current website&#39;s server location. It uses relatively little resources, and works by accessing an IP address location database contained within the extension rather than relying on top-level-domain roots like &quot;.com&quot; or &quot;.uk&quot;. Clicking the icon loads Geotool, which provides a map of the location as well as more detailed information such as the ISP, city, and local time. The context menu also provides quick access to information about the country of origin, as well as the ability to lookup the domain&#39;s registrant via Whois.Uses of Flagfox range from simply educating users about the global nature of the Internet to:* SEO and web development research* Indicating the native languages and legal jurisdictions for webservers* Warning when sites that are not in the country the say they are* Quickly viewing/copying server IP addresses for diagnostic and other usesFlagfox is fairly customizable, allowing users to choose between two icon sets with positioning options anywhere in the address or status bar. Advanced users may create their own custom lookup to perform specialized searches for the current server.</description>
-    <icon>https://addons.mozilla.org/en-US/firefox/images/addon_icon/5791/1257569747</icon>
-    <compatible_applications>
-        <application>
-            <name>Firefox</name>
-            <application_id>1</application_id>
-            <min_version>2.0</min_version>
-            <max_version>3.6.*</max_version>
-            <appID>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</appID>
-             </application>
-             <application>
-            <name>SeaMonkey</name>
-            <application_id>59</application_id>
-            <min_version>2.0</min_version>
-            <max_version>2.0.*</max_version>
-            <appID>{92650c4d-4b8e-4d2a-b7eb-24ecf4f6b63a}</appID>
-             </application>
-         </compatible_applications>      
-        <all_compatible_os>
-            <os>ALL</os><os>ALL</os><os>ALL</os><os>ALL</os><os>ALL</os><os>ALL</os><os>WINNT</os><os>Darwin</os><os>Linux</os><os>ALL</os><os>ALL</os>        </all_compatible_os>
-        <eula></eula>
-    <thumbnail>https://addons.mozilla.org/en-US/firefox/images/t/26049/1221584458</thumbnail>
-    <rating>5</rating>
-    <learnmore>https://addons.mozilla.org/addon/5791?src=api</learnmore>
-             <install hash='sha256:8e150ef3083354295d7058bcc70fa30b3a249dc8552eded1974802696c5f4e1c'
-              os='ALL'>https://addons.mozilla.org/downloads/file/69111/flagfox-3.3.18-fx+sm.xpi?src=api</install>          
-         </addon>
-<addon>
-        <name>Yoono - Socialize Your Browser</name>
-    <type id='1'>Extension</type>
-    <guid>{d9284e50-81fc-11da-a72b-0800200c9a66}</guid>
-    <version>6.2.1</version>
-    <status id='4'>Public</status>
-    <authors>
-          <author>Yoono </author>
-    </authors>      
-    <summary>All your social networks and instant messaging in one easy to use sidebar. Get all your friend updates, update your status and share stuff easily across Facebook, MySpace, Twitter, and more - all at once! Simplify your online social life.</summary>
-    <description>Yoono is a powerful but easy to use sidebar for Firefox. Yoono helps you simplify your online social life by connecting you to Facebook, MySpace, Twitter, Flickr, Friendfeed, AIM, Yahoo IM and more...all in one place.  Yoono is also the easiest way to share stuff with all your social networks - share links, images and video from the page you&#39;re viewing across all your networks simultaneously.  Yoono also includes a Discovery widget that helps you discover great new websites, products, and videos and then easily share them with your friends.STAY CONNECTED* Connect to all your social networks and never miss another status update from friends or family. You&#39;re connected wherever you are on the web.* Update your status across all your social networks at the same time.* All your IM services right in your browser sidebar to easily chat while your surf the web - no more logging on to multiple services. SHARE WITH FRIENDS* Easily share links, images, and video from the page you are viewing with all your social networks at the same time.* Share in your IM conversations by dragging and dropping links, images and video from the page you are viewing* It&#39;s a single, dead simple way to share anything from anywhere you are on the web. DISCOVER COOL STUFF* Discover recommended websites, videos, images, products and more - all related to the site you are viewing - in the Discovery widget.* Highlight words in the web page yourself to discover related Google search results, Wikipedia entries, videos, and more.* Yoono also highlights keywords in the web page you&#39;re viewing for quick access to DiscoveriesNEW IN YOONO 6.2:We are committed to giving you regular updates and improvements to Yoono - our latest release includes these great new features:- Stream filters – you can hide individual friends or apps to prevent them from showing in your Yoono Updates stream- Integrated Twitter Search – view and save twitter search results and get notifications when new results are available- MySpace Sharing  - now you can simultaneously share with MySpace as well- Google translate for tweets (handy with Twitter search results)- Fixed Facebook chat presence issue- Hashtags (#) in tweets now linked to Twitter search results- Image previews for Yfrog shared images - Bug fixesALSO NEW FROM YOONO – YOONO DESKTOP!We are also very excited to announce Yoono Desktop – everything you love about Yoono as a standalone desktop client.  Available as a beta for Windows and Mac at http://www.yoono.com/desktop_features.html .  Give it a try!WHAT PEOPLE ARE SAYING ABOUT YOONO:“The Social Network Plugin You’ve Been Waiting For” -Techcrunch-“Yoono now offering an elegant solution to social networking clutter” -Webware-See what users are saying at: http://search.twitter.com/search?q=yoonoAvailable for Windows, Mac and Linux.</description>
-    <icon>https://addons.mozilla.org/en-US/firefox/images/addon_icon/1833/1252755123</icon>
-    <compatible_applications>
-        <application>
-            <name>Firefox</name>
-            <application_id>1</application_id>
-            <min_version>2.0</min_version>
-            <max_version>3.6a1pre</max_version>
-            <appID>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</appID>
-             </application>
-         </compatible_applications>      
-        <all_compatible_os>
-            <os>ALL</os><os>ALL</os><os>ALL</os><os>ALL</os><os>ALL</os><os>ALL</os><os>WINNT</os><os>Darwin</os><os>Linux</os><os>ALL</os><os>ALL</os><os>ALL</os>        </all_compatible_os>
-        <eula></eula>
-    <thumbnail>https://addons.mozilla.org/en-US/firefox/images/t/27420/1251757944</thumbnail>
-    <rating>5</rating>
-    <learnmore>https://addons.mozilla.org/addon/1833?src=api</learnmore>
-             <install hash='sha256:f079cc830ecbacd9fa40a7e1d76361a8f6922d10f03ee0d4426c74ea110365ed'
-              os='ALL'>https://addons.mozilla.org/downloads/file/64398/yoono-6.2.1-fx.xpi?src=api</install>          
-         </addon>
-</addons>
- 
