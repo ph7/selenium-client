@@ -472,7 +472,7 @@ module Selenium
       # Set the execution delay in milliseconds, i.e. a pause delay following
       # each selenium operation. By default, there is no such delay.
       #
-      # Setting an execution can be useful to troubleshoot of capture videos
+      # Setting an execution can be useful to troubleshoot or capture videos
       def execution_delay=(delay_in_milliseconds)
         remote_control_command "setSpeed", [delay_in_milliseconds]
       end

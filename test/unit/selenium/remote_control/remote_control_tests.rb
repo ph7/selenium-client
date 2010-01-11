@@ -87,9 +87,14 @@ unit_tests do
   end
 
   test "Shutdown command can be customized for backward compatibility" do
-    remote_control = Selenium::RemoteControl::RemoteControl.new(:a_host, :a_port, :shutdown_command => "shutDown")
+    rc = Selenium::RemoteControl::RemoteControl.new(:a_host, :a_port, :shutdown_command => "shutDown")
     Net::HTTP.expects(:get).with(:a_host, '/selenium-server/driver/?cmd=shutDown', :a_port)
-    remote_control.stop
+    rc.stop
   end
-    
+  
+  test "additional_args includes selenium flag and path to firefox profile" do
+    rc = Selenium::RemoteControl::RemoteControl.new(:a_host, :a_port, :firefox_profile => :a_path)
+    assert_equal :a_path, rc.firefox_profile
+  end
+  
 end

@@ -153,7 +153,7 @@ Writing Tests
  If BDD is more your style, here is how you can achieve the same thing  using RSpec:
 
     require 'rubygems'
-    gem "rspec", "=1.2.8"
+    gem "rspec", ">=1.2.8"
     gem "selenium-client", ">=1.2.16"
     require "selenium/client"
     require "selenium/rspec/spec_helper"
@@ -326,3 +326,8 @@ Contributors
    - Fix escaping bug when dealing with embedded regexes such as
      "webratlink=evalregex:/Pastry Lovers \\(Organizer\\)/"
      [patch](http://github.com/derfred/selenium-client/commit/4342cbb39d1a92b8db8f26ee0dc6c1a8f3287737)
+
+ * [Alex Chaffe](http://alexch.github.com)
+   - Better error reporting and fixed bug where if the response 
+     doesn't start with "OK" it swallows the first three
+     chars (leading to annoying "ed out after 5000 msec" messages)
