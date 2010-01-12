@@ -4,7 +4,6 @@ target
 pkg
 doc
 .svn
-lib/selenium/client/generated_driver.rb
 *.ipr
 *.iml
 *.iws

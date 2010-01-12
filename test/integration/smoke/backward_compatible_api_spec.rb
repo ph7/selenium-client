@@ -4,7 +4,7 @@ require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe "Backward Compatible API" do
 
-  it "provides generated driver methods" do
+  it "provides legacy driver methods" do
 		page.open "http://localhost:4444/selenium-server/tests/html/test_click_page1.html"
     page.get_title.should eql("Click Page 1")
 		page.get_text("link").index("Click here for next page").should_not be_nil
