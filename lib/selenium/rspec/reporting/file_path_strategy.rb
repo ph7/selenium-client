@@ -23,6 +23,10 @@ module Selenium
           @relative_dir ||=  "resources/" + file_name_without_extension
         end
 
+        def relative_file_path_for_current_url(example)
+          "#{relative_dir}/example_#{example.reporting_uid}.url"
+        end
+
         def relative_file_path_for_html_capture(example)
           "#{relative_dir}/example_#{example.reporting_uid}.html"
         end
@@ -41,6 +45,10 @@ module Selenium
 
         def relative_file_path_for_browser_network_traffic(example)
           "#{relative_dir}/example_#{example.reporting_uid}_browser_network_traffic.log"
+        end
+
+        def file_path_for_current_url(example)
+          file_path relative_file_path_for_current_url(example)
         end
 
         def file_path_for_html_capture(example)

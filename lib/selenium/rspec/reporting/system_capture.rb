@@ -15,6 +15,11 @@ module Selenium
           # getHTMLSource, especially when DeepTest timeout is low, I need to investigate...
           # Set deeptest :timeout_in_seconds => 30 to see it happen
           begin
+            capture_current_url
+          rescue Exception => e
+            STDERR.puts "WARNING: Could not capture current URL: #{e}"
+          end
+          begin
             retrieve_remote_control_logs
           rescue Exception => e
             STDERR.puts "WARNING: Could not retrieve remote control logs: #{e}"
@@ -33,6 +38,15 @@ module Selenium
             capture_system_screenshot
           rescue Exception => e
             STDERR.puts "WARNING: Could not capture system screenshot: #{e}"
+          end
+        end
+
+        def capture_current_url
+          return unless @selenium_driver.session_started?
+
+          current_url = @selenium_driver.get_location
+          File.open(@file_path_strategy.file_path_for_current_url(@example), "w") do |f|
+            f.write "[InternetShortcut]\nURL=#{current_url}\n"
           end
         end
 
