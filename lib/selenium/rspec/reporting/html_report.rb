@@ -29,11 +29,13 @@ module Selenium
           html = ""
           if current_url
             html << <<-EOS
-              <div>
-                Current URL: <a href="#{current_url}">#{current_url}</a>
-              </div>
-              <br/><br/>
-            EOS
+
+          <div>
+            Current URL: <a href="#{current_url}">#{current_url}</a>
+          </div>
+          <br/><br/>
+
+          EOS
           end
           if File.exists? @file_path_strategy.file_path_for_html_capture(example)
             html << toggable_section(dom_id, :id => "snapshot", :url=> snapshot_url, :name => "Dynamic HTML Snapshot")
@@ -109,7 +111,7 @@ module Selenium
         def toggable_image_section(dom_id, options)
           <<-EOS
           
-          <div>[<a id="#{dom_id}_#{options[:id]}_link" href="javascript:toggleVisilibility('#{dom_id}_#{options[:id]}', '#{options[:name]}');">Show #{options[:name]}</a>]</div>
+          <div>[ <a id="#{dom_id}_#{options[:id]}_link" href="javascript:toggleVisilibility('#{dom_id}_#{options[:id]}', '#{options[:name]}');">Show #{options[:name]}</a> ]</div>
           <br/>      
           <div id="#{dom_id}_#{options[:id]}" style="display: none">
             <a href="#{options[:url]}">
