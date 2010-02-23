@@ -3,7 +3,7 @@
 # Sample Ruby script using the Selenium client API
 #
 require "rubygems"
-gem "selenium-client", ">=1.2.17"
+gem "selenium-client", ">=1.2.18"
 require "selenium/client"
 
 begin
