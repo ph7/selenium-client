@@ -69,15 +69,22 @@ unit_tests do
   test "start does not launch the remote control process in the background by default" do
     remote_control = Selenium::RemoteControl::RemoteControl.new(:a_host, :the_port)
     remote_control.jar_file = :the_jar_file
-    Nautilus::Shell.any_instance.expects(:run).with(anything, :background => nil)
+    Nautilus::Shell.any_instance.expects(:run).with(anything, { :nohup => nil, :background => nil })
     remote_control.start
   end
 
   test "start launches the remote control process in the background when background option is true" do
     remote_control = Selenium::RemoteControl::RemoteControl.new(:a_host, :the_port)
     remote_control.jar_file = :the_jar_file
-    Nautilus::Shell.any_instance.expects(:run).with(anything, :background => true)
+    Nautilus::Shell.any_instance.expects(:run).with(anything, { :nohup => nil, :background => true })
     remote_control.start :background => true
+  end
+
+  test "start launches the remote control process with nohup if the nohup option is set" do
+    remote_control = Selenium::RemoteControl::RemoteControl.new(:a_host, :the_port)
+    remote_control.jar_file = :the_jar_file
+    Nautilus::Shell.any_instance.expects(:run).with(anything, { :nohup => '1', :background => true })
+    remote_control.start :background => true, :nohup => '1'
   end
 
   test "stop issues a shutDownSeleniumServer command on the right host and post" do

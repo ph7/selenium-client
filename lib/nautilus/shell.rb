@@ -9,12 +9,9 @@ module Nautilus
     def build_command(command, options = {})
       actual_command = command.kind_of?(Array) ? command.join(" ") : command
       if options[:background]
-        if windows?
-          actual_command = "start /wait /b " + command
-        elsif options[:background]
-          actual_command << " &"
-        end
-      end      
+        actual_command = windows? ? "start /wait /b #{actual_command}" : "#{actual_command} &"
+      end 
+      actual_command = "nohup #{actual_command}" if options[:nohup] && !windows?
       actual_command
     end
             
