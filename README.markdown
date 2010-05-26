@@ -331,3 +331,8 @@ Contributors
    - Better error reporting and fixed bug where if the response 
      doesn't start with "OK" it swallows the first three
      chars (leading to annoying "ed out after 5000 msec" messages)
+
+ * [Jeffrey ODell](http://github.com/jodell)
+   - [nohup support path](http://github.com/jodell/selenium-client/commit/66fdcb296f73b2f85d7e4bc38aa14cf0e2a27706)
+
+
