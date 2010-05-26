@@ -1,4 +1,5 @@
 build.xml
+nohup.out
 pom.xml
 target
 pkg
