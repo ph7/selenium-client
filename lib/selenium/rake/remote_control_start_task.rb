@@ -25,7 +25,7 @@ module Selenium
     class RemoteControlStartTask
       attr_accessor :port, :timeout_in_seconds, :background, 
                     :wait_until_up_and_running, :additional_args,
-                    :log_to
+                    :log_to, :nohup
       attr_reader :jar_file
 
       JAR_FILE_PATTERN = "vendor/selenium-remote-control/selenium-server-*.jar"
@@ -38,6 +38,7 @@ module Selenium
         @jar_file = project_specific_jar
         @additional_args = []
         @background = false
+        @nohup = false
         @wait_until_up_and_running = false
         yield self if block_given?
         define
@@ -56,7 +57,7 @@ module Selenium
           remote_control.jar_file = @jar_file
           remote_control.additional_args = @additional_args
           remote_control.log_to = @log_to
-          remote_control.start :background => @background
+          remote_control.start :background => @background, :nohup => @nohup
           if @background && @wait_until_up_and_running
             puts "Waiting for Remote Control to be up and running..."
             TCPSocket.wait_for_service :host => @host, :port => @port

@@ -1,6 +1,12 @@
                    selenium-client gem ChangeLog
                    =============================
 
+1.2.19 (?)
+==========
+
+ - nohup support (Jeffrey ODell)
+ - Upgrade Selenium RC to 1.0.3
+
 1.2.18 (2010-01-06)
 ===================
 

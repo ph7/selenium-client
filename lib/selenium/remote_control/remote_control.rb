@@ -22,7 +22,7 @@ module Selenium
         command << " #{additional_args.join(' ')}" unless additional_args.empty?
         command << " > #{log_to}" if log_to
         
-        @shell.run command, {:background => options[:background]}
+        @shell.run command, {:background => options[:background], :nohup => options[:nohup]}
       end
       
       def stop
