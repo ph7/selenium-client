@@ -22,7 +22,7 @@ module Nautilus
             
     def windows?
       require 'rbconfig'
-      Config::CONFIG['host_os'] =~ /mswin|mingw/
+      RbConfig::CONFIG['host_os'] =~ /mswin|mingw/
     end
     
     def sh(command)
