@@ -20,7 +20,7 @@ module Selenium
         
         def logs_and_screenshot_sections(example)
           dom_id = "example_" + example.reporting_uid
-          current_url = File.readlines(@file_path_strategy.file_path_for_current_url(example)).last.chomp.split('=').last if File.exists? @file_path_strategy.file_path_for_current_url(example)
+          current_url = File.readlines(@file_path_strategy.file_path_for_current_url(example)).last.chomp.sub(/\AURL=/, '') if File.exists? @file_path_strategy.file_path_for_current_url(example)
           system_screenshot_url = @file_path_strategy.relative_file_path_for_system_screenshot(example)
           page_screenshot_url = @file_path_strategy.relative_file_path_for_page_screenshot(example)
           snapshot_url = @file_path_strategy.relative_file_path_for_html_capture(example)
