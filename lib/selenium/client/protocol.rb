@@ -83,7 +83,19 @@ module Selenium
       def http_post(data)
         start = Time.now
         called_from = caller.detect{|line| line !~ /(selenium-client|vendor|usr\/lib\/ruby|\(eval\))/i}
-        http = Net::HTTP.new(@host, @port)
+        
+        env_proxy = ENV['http_proxy'] || ENV['HTTP_PROXY']
+        if env_proxy
+          uri = URI.parse(env_proxy)
+          proxy_host = uri.host
+          proxy_port = uri.port
+          proxy_user, proxy_pass = uri.userinfo.split(/:/) if uri.userinfo
+          http = Net::HTTP::Proxy(proxy_host, proxy_port, proxy_user, proxy_pass).new(@host, @port)
+        else
+          http = Net::HTTP.new(@host, @port)
+        end
+        
+        
         http.open_timeout = default_timeout_in_seconds
         http.read_timeout = default_timeout_in_seconds
         response = http.post('/selenium-server/driver/', data, HTTP_HEADERS)
