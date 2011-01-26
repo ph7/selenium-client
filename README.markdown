@@ -336,3 +336,7 @@ Contributors
    - [nohup support path](http://github.com/jodell/selenium-client/commit/66fdcb296f73b2f85d7e4bc38aa14cf0e2a27706)
 
 
+License
+=======
+
+Apache License, Version 2.0
