@@ -92,7 +92,7 @@ Plain API
           :port => 4444, 
           :browser => "*firefox", 
           :url => "http://www.google.com", 
-          :timeout_in_second => 60
+          :timeout_in_seconds => 60
     
       @browser.start_new_browser_session
     	@browser.open "/"
@@ -128,7 +128,7 @@ Writing Tests
             :port => 4444, 
             :browser => "*firefox", 
             :url => "http://www.google.com", 
-            :timeout_in_second => 60
+            :timeout_in_seconds => 60
     
         browser.start_new_browser_session
       end
@@ -168,7 +168,7 @@ Writing Tests
               :port => 4444, 
               :browser => "*firefox", 
               :url => "http://www.google.com", 
-              :timeout_in_second => 60
+              :timeout_in_seconds => 60
       end
     
       before(:each) do
