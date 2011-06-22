@@ -144,6 +144,15 @@ module Selenium
         def click(locator)
             remote_control_command("click", [locator,])
         end
+        
+        # Clicks on a link, button, checkbox or radio button and waits for the new 
+        # page to load.  The default timeout is 5000 milliseconds
+        #
+        # 'locator' is an element locator
+        def clickAndWaitForPageToLoad(locator, timeout=5000)
+            remote_control_command("click", [locator,])
+            waitForPageToLoad(timeout)
+        end
 
 
         # Double clicks on a link, button, checkbox or radio button. If the double click action
