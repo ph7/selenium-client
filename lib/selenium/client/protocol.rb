@@ -87,14 +87,6 @@ module Selenium
         http.open_timeout = default_timeout_in_seconds
         http.read_timeout = default_timeout_in_seconds
         response = http.post('/selenium-server/driver/', data, HTTP_HEADERS)
-        if response.body !~ /^OK/
-          puts "#{start} selenium-client received failure from selenium server:"
-          puts "requested:"
-          puts "\t" + CGI::unescape(data.split('&').join("\n\t"))
-          puts "received:"
-          puts "\t#{response.body.inspect}"
-          puts "\tcalled from #{called_from}"
-        end
         [ response.body[0..1], response.body ]
       end
      
