@@ -1,5 +1,11 @@
 Welcome to the official Ruby driver for [Selenium Remote Control](http://selenium-rc.openqa.org)
 
+DEPRECATED
+==========
+
+ The selenium-client gem has been unmaintained for several years. PLease
+ use http://rubygems.org/gems/selenium-webdriver instead.
+
 Mission
 =======
 
