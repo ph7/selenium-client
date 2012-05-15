@@ -3,7 +3,7 @@ Welcome to the official Ruby driver for [Selenium Remote Control](http://seleniu
 DEPRECATED
 ==========
 
- The selenium-client gem has been unmaintained for several years. PLease
+ The selenium-client gem has been unmaintained for several years. Please
  use http://rubygems.org/gems/selenium-webdriver instead.
 
 Mission
