@@ -3,6 +3,24 @@ require File.expand_path(File.dirname(__FILE__) + "/../../../lib/selenium/rspec/
 
 describe "System Capture" do
 
+  it "Retrieving current URL should not bomb when there is no session" do
+    selenium_driver.stop
+    example  = stub('example',:reporting_uid => 123)
+    strategy = Selenium::RSpec::Reporting::FilePathStrategy.new "/tmp/selenium_ruby_client/test_report.html"
+    system_capture = Selenium::RSpec::Reporting::SystemCapture.new selenium_driver, example, strategy
+    system_capture.capture_current_url
+  end
+
+  it "Retrieves current URL on local file system when session is started" do
+    FileUtils.rm_rf "/tmp/selenium_ruby_client"
+    example  = stub('example',:reporting_uid => 123)
+    strategy = Selenium::RSpec::Reporting::FilePathStrategy.new "/tmp/selenium_ruby_client/test_report.html"
+    system_capture = Selenium::RSpec::Reporting::SystemCapture.new selenium_driver, example, strategy
+    system_capture.capture_current_url
+
+    File.exists?("/tmp/selenium_ruby_client/resources/test_report/example_123.url").should be_true
+  end
+
   it "Retrieves remote control logs on local file system when no session is started" do
     selenium_driver.stop
     FileUtils.rm_rf "/tmp/selenium_ruby_client"

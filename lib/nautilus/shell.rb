@@ -21,7 +21,8 @@ module Nautilus
     end
             
     def windows?
-      RUBY_PLATFORM =~ /mswin/
+      require 'rbconfig'
+      RbConfig::CONFIG['host_os'] =~ /mswin|mingw/
     end
     
     def sh(command)

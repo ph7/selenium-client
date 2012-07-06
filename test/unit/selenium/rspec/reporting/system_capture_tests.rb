@@ -2,8 +2,35 @@ require File.expand_path(File.dirname(__FILE__) + '/../../../unit_test_helper')
 
 unit_tests do
   
+  test "capture_current_url captures the current URL" do
+    capture = Selenium::RSpec::Reporting::SystemCapture.new nil, nil, nil
+    capture.stubs(:retrieve_remote_control_logs)
+    capture.stubs(:capture_html_snapshot)
+    capture.stubs(:capture_page_screenshot)
+    capture.stubs(:capture_system_screenshot)
+    capture.stubs(:retrieve_browser_network_traffic)
+
+    capture.expects(:capture_current_url)
+    capture.capture_system_state
+  end
+
+  test "capture_current_url prints an error message when the current URL cannot be retrieved" do
+    capture = Selenium::RSpec::Reporting::SystemCapture.new nil, nil, nil
+    capture.stubs(:retrieve_remote_control_logs)
+    capture.stubs(:capture_html_snapshot)
+    capture.stubs(:capture_page_screenshot)
+    capture.stubs(:capture_system_screenshot)
+    capture.stubs(:retrieve_browser_network_traffic)
+
+    capture.expects(:capture_current_url).raises(StandardError.new("the error message"))
+    assert_stderr_match %r{WARNING: Could not capture current URL: the error message$} do
+      capture.capture_system_state
+    end
+  end
+
   test "capture_system_state retrieves remote control logs" do
     capture = Selenium::RSpec::Reporting::SystemCapture.new nil, nil, nil
+    capture.stubs(:capture_current_url)
     capture.stubs(:capture_html_snapshot)
     capture.stubs(:capture_page_screenshot)
     capture.stubs(:capture_system_screenshot)
@@ -13,8 +40,9 @@ unit_tests do
     capture.capture_system_state
   end
 
-  test "capture_system_state print error message when remote control logs cannot be retrieved" do
+  test "capture_system_state prints an error message when remote control logs cannot be retrieved" do
     capture = Selenium::RSpec::Reporting::SystemCapture.new nil, nil, nil
+    capture.stubs(:capture_current_url)
     capture.stubs(:capture_html_snapshot)
     capture.stubs(:capture_page_screenshot)
     capture.stubs(:capture_system_screenshot)
@@ -28,6 +56,7 @@ unit_tests do
 
   test "capture_system_state captures an HTML snapshot" do
     capture = Selenium::RSpec::Reporting::SystemCapture.new nil, nil, nil
+    capture.stubs(:capture_current_url)
     capture.stubs(:retrieve_remote_control_logs)
     capture.stubs(:capture_page_screenshot)
     capture.stubs(:capture_system_screenshot)
@@ -37,8 +66,9 @@ unit_tests do
     capture.capture_system_state
   end
 
-  test "capture_system_state print error message when HTML snapshot cannot be retrieved" do
+  test "capture_system_state prints an error message when HTML snapshot cannot be retrieved" do
     capture = Selenium::RSpec::Reporting::SystemCapture.new nil, nil, nil
+    capture.stubs(:capture_current_url)
     capture.stubs(:retrieve_remote_control_logs)
     capture.stubs(:capture_page_screenshot)
     capture.stubs(:capture_system_screenshot)
@@ -52,6 +82,7 @@ unit_tests do
 
   test "capture_system_state captures a page screenshot" do
     capture = Selenium::RSpec::Reporting::SystemCapture.new nil, nil, nil
+    capture.stubs(:capture_current_url)
     capture.stubs(:retrieve_remote_control_logs)
     capture.stubs(:capture_html_snapshot)
     capture.stubs(:capture_system_screenshot)
@@ -61,8 +92,9 @@ unit_tests do
     capture.capture_system_state
   end
 
-  test "capture_system_state print error message when page screenshot cannot be retrieved" do
+  test "capture_system_state prints an error message when page screenshot cannot be retrieved" do
     capture = Selenium::RSpec::Reporting::SystemCapture.new nil, nil, nil
+    capture.stubs(:capture_current_url)
     capture.stubs(:retrieve_remote_control_logs)
     capture.stubs(:capture_html_snapshot)
     capture.stubs(:capture_system_screenshot)
@@ -76,6 +108,7 @@ unit_tests do
 
   test "capture_system_state captures a system screenshot" do
     capture = Selenium::RSpec::Reporting::SystemCapture.new nil, nil, nil
+    capture.stubs(:capture_current_url)
     capture.stubs(:retrieve_remote_control_logs)
     capture.stubs(:capture_html_snapshot)
     capture.stubs(:capture_page_screenshot)
@@ -85,8 +118,9 @@ unit_tests do
     capture.capture_system_state
   end
 
-  test "capture_system_state print error message when system screenshot cannot be retrieved" do
+  test "capture_system_state prints an error message when system screenshot cannot be retrieved" do
     capture = Selenium::RSpec::Reporting::SystemCapture.new nil, nil, nil
+    capture.stubs(:capture_current_url)
     capture.stubs(:retrieve_remote_control_logs)
     capture.stubs(:capture_html_snapshot)
     capture.stubs(:capture_page_screenshot)
