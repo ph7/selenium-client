@@ -26,7 +26,8 @@ Spec::Runner.configure do |config|
         selenium_driver.set_context "Starting example '#{self.description}'"
       end
     rescue Exception => e
-      STDERR.puts "Problem while setting context on example start" + e
+      STDERR.puts "Problem while setting context on example start " + e
+	  STDERR.puts "Please make sure your driver object is named 'selenium_driver' and is visible from the Spec code"
     end
   end
 
